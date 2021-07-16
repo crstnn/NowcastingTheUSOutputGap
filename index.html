@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Nowcasting the Output Gap</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+
+    <div id="header">
+        <h1>Nowcasting the Output Gap</h1>
+    </div>
+
+    <head>
+        <script src="plotly.js"></script>
+        <script src="data.js"></script>
+    </head>
+
+    <body onresize="resize_update()">
+        <div id="data">
+            <div id="graph"></div>
+            <div id="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Indicator</th>
+                            <th>April</th>
+                            <th>May</th>
+                            <th>June</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Federal funds rate (%)</td>
+                            <td>0.1</td>
+                            <td>0.1</td>
+                            <td>0.1</td>
+                        </tr>
+                        <tr>
+                            <td>Term spread (%)</td>
+                            <td>1.6</td>
+                            <td>1.6</td>
+                            <td>1.4</td>
+                        </tr>
+                        <tr>
+                            <td>Risk spread (%)</td>
+                            <td>0.7</td>
+                            <td>0.7</td>
+                            <td>0.7</td>
+                        </tr>
+                        <tr>
+                            <td>Stock returns (%)</td>
+                            <td>5.1</td>
+                            <td>0.5</td>
+                            <td>2.2</td>
+                        </tr>
+                        <tr>
+                            <td>Consumer sentiment (indx.)</td>
+                            <td>88.3</td>
+                            <td>82.9</td>
+                            <td>85.5</td>
+                        </tr>
+                        <tr>
+                            <td>Unemployment rate (%)</td>
+                            <td>6.1</td>
+                            <td>5.8</td>
+                            <td>5.9</td>
+                        </tr>
+                        <tr>
+                            <td>Monthly CPI Inflation (%)</td>
+                            <td>0.8</td>
+                            <td>0.6</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>IP growth (%)</td>
+                            <td>0.1</td>
+                            <td>0.8</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Housing starts growth (%)</td>
+                            <td>-12.8</td>
+                            <td>3.6</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="download">
+            <a href="outputgap.xlsx" download>
+                Download data
+            </a>
+        </div>
+        <div id="under_data">
+            <p>Output Gap Q1: 0.9% (final estimate (advance)) <br />
+               Output Gap Q2: 0.8%  </p>
+        </div>
+        <script src="script.js"></script>
+        <div id="demo"></div>
+        <div id="abstract_container">
+            <div id="abstract">
+                <br />
+                The nowcast of the output gap is based on the method described
+                in
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://authors.elsevier.com/a/1c0z615Dji4pgZ"
+                    >Berger, Morley, and Wong </a
+                >(forthcoming, <i>Journal of Econometrics</i>). Please cite the paper when referring to the nowcast
+                estimate.<br /><br />
+
+                The nowcast for the current quarter is reported in the figure using an orange line
+                from the actual estimated output gap for previous quarters. The
+                actual estimated output gap is based on parameter estimates
+                for the mixed-frequency Bayesian VAR specified in 
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://authors.elsevier.com/a/1c0z615Dji4pgZ"
+                    >Berger, Morley, and Wong</a
+                >
+                 and data up to the latest quarter 
+                for which real GDP has been released from
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://fred.stlouisfed.org/"
+                    >FRED</a
+                >
+               . The monthly variables 
+                that feed into the nowcast are given in the table.<br /><br />
+
+                Please see
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://authors.elsevier.com/a/1c0z615Dji4pgZ"
+                    >Berger, Morley, and Wong</a
+                >
+                for more details and please cite the
+                paper when using the method or the results presented here.<br /><br />
+
+                Note that we are not responsible for any financial decisions
+                made based on the results presented here.<br /><br />
+
+                Reference:<br /><br />
+
+                Berger, Tino, James Morley and Benjamin Wong, forthcoming, &quot;Nowcasting
+                the Output Gap&quot;, <i>Journal of Econometrics</i>.<br /> <br />
+                 
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523"
+                    >Link to journal version</a
+                >
+                <br /><br />
+                <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://ssrn.com/abstract=3586374"
+                >Link to working paper</a
+            
+                >
+                <br /><br />
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://drive.google.com/file/d/1-lLAqZe4bU622uHuOmySFdVxt9fLrIdf/view?usp=sharing"
+                    >Link to code</a
+                >
+                <br /><br />
+                Last updated: July 02, 2021<br />
+                Next update: July 16, 2021
+            </div>
+        </div>
+        <div id="footer">
+            <br />
+            <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="http://sites.google.com/site/drtinoberger"
+                >Tino Berger</a
+            >&nbsp;&nbsp;&nbsp;&nbsp;
+            <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="http://sites.google.com/site/jamescmorley"
+                >James Morley</a
+            >&nbsp;&nbsp;&nbsp;&nbsp;
+            <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="http://sites.google.com/site/benjaminwongshijie"
+                >Benjamin Wong</a
+            >
+            <br />
+            <br />
+            <a
+                href="https://twitter.com/intent/tweet?button_hashtag=outputgapnow"
+                class="twitter-hashtag-button"
+                data-show-count="false"
+                >Tweet @ #outputgapnow</a
+            >
+            <script
+                async
+                src="https://platform.twitter.com/widgets.js"
+                charset="utf-8"
+            ></script>
+        </div>
+    </body>
+</html>

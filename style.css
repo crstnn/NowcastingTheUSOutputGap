@@ -1,0 +1,155 @@
+body {
+    background-color: #fafafa;
+}
+a{
+    font-weight: 600;
+    text-decoration: underline;
+    color: slateblue;
+}
+#header {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: xx-large;
+    margin: 0em;
+}
+#data{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  justify-content: center;
+}
+#graph{
+    width :50%;
+    padding: 1em;
+}
+h1 {
+    margin-block-start: 0.3em;
+    margin-block-end: 0.3em;
+}
+
+#download{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+table {
+    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    border-collapse: collapse;
+    text-align: right;
+    
+}
+tbody>tr>:nth-child(2){
+    width: 5em;
+   }
+tbody>tr>:nth-child(3){
+    width: 5em;
+   }
+tbody>tr>:nth-child(4){
+    width: 5em;
+   }
+tbody>tr>:nth-child(1){
+    text-align: left;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+   }
+tbody>tr>:nth-child(3){
+    width: 5em;
+   }
+td, th {
+    padding: 0.2em;
+}
+th {
+    text-align: center;
+    border-bottom: 1px solid #444444!important;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.modebar{
+      display: none !important;
+}
+#footer {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#soon {
+    font-size: large;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+p {
+    display: block;
+    width: 800px;
+    height: auto;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+#abstract {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 50%;
+    text-align: justify
+}
+
+#abstract_container {
+    display: flex;
+    justify-content: center;
+    align-items: center";
+
+}
+
+#under_data {
+    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: x-large;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#under_data>p{
+    margin: 0;
+}
+#myRange{
+    margin:auto;
+    width: 30%;
+}
+#slide_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1.5em;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 0.5em;
+    border-radius: 0.5em;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+.slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 25px;
+height: 25px;
+border-radius: 50%; 
+background: #4CAF50;
+cursor: pointer;
+}
+  
+.slider::-moz-range-thumb {
+width: 25px;
+height: 25px;
+border-radius: 50%;
+background: #4CAF50;
+cursor: pointer;
+}
