@@ -5,7 +5,7 @@ function getGapData(){
     req.open( "GET", url, false);
     req.send(null);
     return req.responseText;
-}
+} 
 
 function getYearAndQuarter(val){
     q = val % 1
