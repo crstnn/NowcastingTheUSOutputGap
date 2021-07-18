@@ -7,16 +7,16 @@ function getGapData(){
     return req.responseText;
 }
 
-// function getYearAndQuarter(val){
-//     q = val % 1
-//     d = {
-//         0: "Q1",
-//         0.25: "Q2",
-//         0.5: "Q3",
-//         0.75: "Q4"
-//     }
-//     return String(~~val) + " " + String(d[q])
-// }
+function getYearAndQuarter(val){
+    q = val % 1
+    d = {
+        0: "Q1",
+        0.25: "Q2",
+        0.5: "Q3",
+        0.75: "Q4"
+    }
+    return String(~~val) + " " + String(d[q])
+}
 
 function graph() {
     console.log("test")
