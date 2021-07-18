@@ -19,7 +19,6 @@ function getYearAndQuarter(val){
 }
 
 function graph() {
-    console.log("test")
 
     var gapDict = JSON.parse(getGapData());
 
