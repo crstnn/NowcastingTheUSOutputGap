@@ -1,4 +1,17 @@
+url = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap/?type=json';
+
+function getGapData(){
+    var req = new XMLHttpRequest();
+    req.open( "GET", url, false);
+    req.send(null);
+    console.log(req)
+    return req.responseText;
+}
+
+
 function graph() {
+    var gapData = getGapData();
+    console.log(gapData);
     let recession_shapes = [];
     for (var i = 0; i < data_recessions.length; i++) {
         recession_shapes.push({
