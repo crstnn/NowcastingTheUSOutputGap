@@ -15,6 +15,7 @@ function getYearAndQuarter(val){
         0.5: "Q3",
         0.75: "Q4"
     }
+    console.log(String(~~val) + " " + String(d[q]))
     return String(~~val) + " " + String(d[q])
 }
 
