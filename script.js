@@ -77,9 +77,11 @@ function graph() {
 
       var layout = {autosize: true,
                     margin: {'l': 30, 'r': 30, 't': 30, 'b': 30},
+                    yaxis: {
+                      ticksuffix: "%"},
                     legend: {
                         orientation: "h",
-                        yanchor: "bottom",
+                        yanchor: "top",
                         y: 1.02,
                         xanchor: "right",
                         x: 1}}
