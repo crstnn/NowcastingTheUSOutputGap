@@ -15,11 +15,12 @@ function getYearAndQuarter(val){
         0.5: "Q3",
         0.75: "Q4"
     }
-    console.log(val)
     return String(~~val) + " " + String(d[q])
 }
 
 function graph() {
+    console.log("test")
+
     var gapDict = JSON.parse(getGapData());
 
     document.getElementById("last_update").innerHTML = "Latest update: "+ String(gapDict['latestRunUTC']) + " UTC";
