@@ -13,7 +13,7 @@
         <script src="data.js"></script>
     </head>
 
-    <body onresize="resize_update()">
+    <body onresize="graph()">
         <div id="data">
             <div id="graph"></div>
         </div>
@@ -27,7 +27,6 @@
 			<button id="download_button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-spread/?type=csv'" type="button">Download Monthly Spread Time-Series CSV</button>
 			<button id="download_button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'" type="button">Download Quarterly Time-Series CSV</button>
         </div>
-        <script src="script.js"></script>
         <div id="demo"></div>
         <div id="abstract_container">
             <div id="abstract">
@@ -99,7 +98,8 @@
                     >Link to code</a
                 >
                 <br /><br />
-                Last updated: July 02, 2021<br />
+                <div id="last_update"> Latest update:</div>
+                <script src="script.js"></script>
             </div>
         </div>
         <div id="footer">
