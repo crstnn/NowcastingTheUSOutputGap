@@ -72,7 +72,8 @@ function graph() {
         mode: 'lines + markers',
         name: 'Conditional Forecast',
         customdata: forecastXVal.map(getYearAndQuarter),
-        hovertemplate: "%{customdata}, %{y}"
+        hovertemplate: "%{customdata}, %{y}",
+        visible: "legendonly"
       };
 
       var layout = {autosize: true,
