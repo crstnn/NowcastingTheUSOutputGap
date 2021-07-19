@@ -137,6 +137,8 @@ function onResize(){
 
 const fig = document.getElementById(graphDiv)
 
+fig.on('plotly_legenddoubleclick', () => false);
+
 fig.on('plotly_legendclick', function(clickData) { 
   const curvNum = clickData.curveNumber
 
@@ -146,7 +148,6 @@ fig.on('plotly_legendclick', function(clickData) {
 
     Plotly.relayout(graphDiv, update)
   }
-
 
 })
 
