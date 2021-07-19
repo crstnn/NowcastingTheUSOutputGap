@@ -79,7 +79,7 @@ function graph() {
       };
 
       var layout = {autosize: true,
-                    margin: {'l': 30, 'r': 30, 't': 30, 'b': 30},
+                    margin: {'l': 35, 'r': 30, 't': 30, 'b': 30},
                     yaxis: {
                       ticksuffix: "%"},
                     legend: {
