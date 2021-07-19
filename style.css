@@ -88,9 +88,13 @@ p {
 
 .button {
     margin:0.5px;
-    background-color: rgb(221, 221, 221); 
+    background-color: rgb(235, 229, 229); 
     color: black; 
     border: 1.5px solid #0b789c;
+  }
+
+.button:hover {
+    background-color: rgb(211, 210, 210); 
   }
 
 #abstract {
