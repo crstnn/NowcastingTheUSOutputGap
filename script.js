@@ -22,7 +22,7 @@ function graph() {
 
     var gapDict = JSON.parse(getGapData());
 
-    document.getElementById("last_update").innerHTML = "Latest update: "+ String(gapDict['latestRunUTC']) + " UTC";
+    document.getElementById("last_update").innerHTML = "Latest update (UTC): "+ String(gapDict['latestRunUTC']);
 
       cValList = Object.values(gapDict['concreteObservations'])
       nValList = Object.values(gapDict['nowcastForecastObservations'])
