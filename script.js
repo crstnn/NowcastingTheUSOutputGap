@@ -138,16 +138,13 @@ function onResize(){
 const fig = document.getElementById(graphDiv)
 
 fig.on('plotly_legendclick', function(clickData) { 
-
-  curvNum = clickData.curveNumber
+  const curvNum = clickData.curveNumber
 
   if ([1, 2].includes(curvNum)){
-
     var update = {};
     update["shapes[" + String(curvNum-1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false
 
     Plotly.relayout(graphDiv, update)
-
   }
 
 
