@@ -87,9 +87,10 @@ p {
 }
 
 .button {
+    margin:1px;
     background-color: rgb(221, 221, 221); 
     color: black; 
-    border: 2px solid #0284af;
+    border: 2px solid #0b789c;
   }
 
 #abstract {

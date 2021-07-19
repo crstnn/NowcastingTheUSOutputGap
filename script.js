@@ -49,7 +49,8 @@ function graph() {
         mode: 'lines + markers',
         name: 'Concrete Observations',
         customdata: yearQuarterText,
-        hovertemplate: "%{customdata}, %{y}"
+        hovertemplate: "%{customdata}, %{y}",
+        line: {color: "#0b789c"}
       };
 
       nowcastXVal = [nowcastForcastXVal[0]]
@@ -60,7 +61,8 @@ function graph() {
         mode: 'lines + markers',
         name: 'Nowcast',
         customdata: nowcastXVal.map(getYearAndQuarter),
-        hovertemplate: "%{customdata}, %{y}"
+        hovertemplate: "%{customdata}, %{y}",
+        line: {color: "#EF8354"}
       };
 
       forecastXVal = nowcastForcastXVal.slice(Math.max(nowcastForcastXVal.length - 5, 1))
@@ -72,7 +74,8 @@ function graph() {
         name: 'Conditional Forecast',
         customdata: forecastXVal.map(getYearAndQuarter),
         hovertemplate: "%{customdata}, %{y}",
-        visible: "legendonly"
+        visible: "legendonly",
+        line: {color: "#89b34a"}
       };
 
       var layout = {autosize: true,
