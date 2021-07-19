@@ -128,7 +128,6 @@ function graph(gapDict) {
 }
 
 var gapDict = JSON.parse(getGapData());
-
 graph(gapDict);
 
 function onResize(){
