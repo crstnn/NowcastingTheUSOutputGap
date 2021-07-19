@@ -1,4 +1,9 @@
 url = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap/?type=json';
+concreteColour = "#0b789c";
+nowcastColour = "#EF8354";
+forecastColour = "#89b34a";
+graphDiv = "graph";
+
 
 function getGapData(){
     var req = new XMLHttpRequest();
@@ -18,9 +23,7 @@ function getYearAndQuarter(val){
     return String(~~val) + " " + String(d[q])
 }
 
-function graph() {
-
-    var gapDict = JSON.parse(getGapData());
+function graph(gapDict) {
 
     document.getElementById("last_update").innerHTML = "Latest update (UTC): "+ String(gapDict['latestRunUTC']);
 
@@ -39,46 +42,74 @@ function graph() {
         nowcastForecastYVal.push(nValList[i]['gapPercentage'])
       }
 
+      concreteXVal = Object.keys(gapDict['concreteObservations'])
       nowcastForcastXVal = Object.keys(gapDict['nowcastForecastObservations'])
+      nowcastXVal = [nowcastForcastXVal[0]]
+      nowcastYVal = [nowcastForecastYVal[0]]
+      forecastXVal = nowcastForcastXVal.slice(Math.max(nowcastForcastXVal.length - 5, 1))
+      forecastYVal = nowcastForecastYVal.slice(Math.max(nowcastForecastYVal.length - 5, 1))
 
       yearQuarterText = Object.keys(gapDict['concreteObservations']).map(getYearAndQuarter)
 
       var traceConcreteObs = {
-        x: Object.keys(gapDict['concreteObservations']),
+        x: concreteXVal,
         y: concreteYVal,
         mode: 'lines + markers',
         name: 'Concrete Estimates',
         customdata: yearQuarterText,
         hovertemplate: "%{customdata}, %{y}",
-        line: {color: "#0b789c"}
+        line: {color: concreteColour}
       };
-
-      nowcastXVal = [nowcastForcastXVal[0]]
 
       var traceNowcast = {
         x: nowcastXVal,
-        y: [nowcastForecastYVal[0]],
+        y: nowcastYVal,
         mode: 'lines + markers',
         name: 'Nowcast',
         customdata: nowcastXVal.map(getYearAndQuarter),
         hovertemplate: "%{customdata}, %{y}",
-        line: {color: "#EF8354"}
+        line: {color: nowcastColour}
       };
-
-      forecastXVal = nowcastForcastXVal.slice(Math.max(nowcastForcastXVal.length - 5, 1))
 
       var traceForecast = {
         x: forecastXVal,
-        y: nowcastForecastYVal,
+        y: forecastYVal,
         mode: 'lines + markers',
         name: 'Conditional Forecast',
         customdata: forecastXVal.map(getYearAndQuarter),
         hovertemplate: "%{customdata}, %{y}",
         visible: "legendonly",
-        line: {color: "#89b34a"}
+        line: {color: forecastColour}
       };
 
       var layout = {autosize: true,
+                    shapes: [
+                      {
+                        type: 'line',
+                        x0: concreteXVal[concreteXVal.length-1],
+                        y0: concreteYVal[concreteYVal.length-1],
+                        x1: nowcastXVal[0],
+                        y1: nowcastYVal[0],
+                        visible: true,
+                        line: {
+                          color: nowcastColour,
+                          width: 2,
+                        }
+                      },
+                      {
+                        type: 'line',
+                        x0: nowcastXVal[0],
+                        y0: nowcastYVal[0],
+                        x1: forecastXVal[0],
+                        y1: forecastYVal[0],
+                        visible: false,
+                        line: {
+                          color: forecastColour,
+                          width: 2,
+                        }
+                      }
+
+                    ],
                     margin: {'l': 35, 'r': 30, 't': 30, 'b': 30},
                     yaxis: {
                       ticksuffix: "%"},
@@ -87,13 +118,38 @@ function graph() {
                         yanchor: "top",
                         y: 1.02,
                         xanchor: "right",
-                        x: 1}}
+                        x: 1}
+                      }
                         
       var data = [traceConcreteObs, traceNowcast, traceForecast];
 
-      Plotly.newPlot("graph", data, layout);
+      Plotly.newPlot(graphDiv, data, layout);
 
 }
 
-graph();
+var gapDict = JSON.parse(getGapData());
+
+graph(gapDict);
+
+function onResize(){
+  graph(gapDict);
+}
+
+const fig = document.getElementById(graphDiv)
+
+fig.on('plotly_legendclick', function(clickData) { 
+
+  curvNum = clickData.curveNumber
+
+  if ([1, 2].includes(curvNum)){
+
+    var update = {};
+    update["shapes[" + String(curvNum-1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false
+
+    Plotly.relayout(graphDiv, update)
+
+  }
+
+
+})
 
