@@ -20,11 +20,6 @@
         <div id="under_data">
 
         </div>
-		    <div id="download">
-            <button id="download_button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly/?type=csv'" type="button">Download Monthly Time-Series CSV</button>
-			<button id="download_button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-spread/?type=csv'" type="button">Download Monthly Spread Time-Series CSV</button>
-			<button id="download_button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'" type="button">Download Quarterly Time-Series CSV</button>
-        </div>
         <div id="demo"></div>
         <div id="abstract_container">
             <div id="abstract">
@@ -66,8 +61,14 @@
                     >Berger, Morley, and Wong</a
                 >
                 for more details and please cite the
-                paper when using the method or the results presented here.<br /><br /><br /><br />
+                paper when using the method or the results presented here.<br />
 
+                <div id="download">
+                    <button id="download_button" class="button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly/?type=csv'" type="button">Download Monthly Time-Series CSV</button>
+                    <button id="download_button" class="button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-spread/?type=csv'" type="button">Download Monthly Spread Time-Series CSV</button>
+                    <button id="download_button" class="button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'" type="button">Download Quarterly Time-Series CSV</button>
+                </div><br />
+                <br />
                 <h4>Reference:</h4>
 
                 Tino Berger, James Morley and Benjamin Wong, forthcoming, &quot;Nowcasting
