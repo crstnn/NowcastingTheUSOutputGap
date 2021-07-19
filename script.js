@@ -47,7 +47,7 @@ function graph() {
         x: Object.keys(gapDict['concreteObservations']),
         y: concreteYVal,
         mode: 'lines + markers',
-        name: 'Concrete Observations',
+        name: 'Concrete Estimates',
         customdata: yearQuarterText,
         hovertemplate: "%{customdata}, %{y}",
         line: {color: "#0b789c"}
