@@ -1,3 +1,5 @@
+html, body{margin:0px; padding:0px;}
+
 body {
     background-color: #fafafa;
 }
@@ -10,7 +12,6 @@ a{
     text-align: center;
     font-family: Georgia, serif;
     font-size: x-large;
-    margin: 0em;
 }
 #data{
     display: flex;
@@ -134,3 +135,10 @@ p {
     padding: 1.5em;
 }
 
+.topNav {
+    background-color: rgb(241, 241, 241);
+    overflow: auto;
+    padding: 5px;
+    margin:0;
+
+  }
