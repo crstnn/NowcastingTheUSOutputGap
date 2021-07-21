@@ -2,12 +2,13 @@ url = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap/?
 concreteColour = "#0b789c";
 nowcastColour = "#EF8354";
 forecastColour = "#89b34a";
+recessionColour = "#DDDDDD";
 graphDiv = "graph";
 
 
 function getGapData(){
     var req = new XMLHttpRequest();
-    req.open( "GET", url, false);
+    req.open("GET", url, false);
     req.send(null);
     return req.responseText;
 }
@@ -108,18 +109,46 @@ function graph(gapDict) {
                           width: 2,
                         }
                       }
-
                     ],
                     margin: {'l': 35, 'r': 30, 't': 30, 'b': 30},
                     yaxis: {
-                      ticksuffix: "%"},
+                      ticksuffix: "%"
+                    },
+                    xaxis: {
+                      showgrid: false
+                    },
                     legend: {
                         orientation: "h",
                         yanchor: "top",
-                        y: 1.02,
+                        y: 1.03,
                         xanchor: "right",
                         x: 1}
                       }
+      
+      const recessions = [[1969.75, 1970.75],
+      [1973.75, 1975.0],
+      [1980.0, 1980.5],
+      [1981.5, 1982.75],
+      [1990.5, 1991.0],
+      [2001.0, 2001.75],
+      [2007.75, 2009.25],
+      [2020.0, 2020.25]] 
+
+      recessions.forEach(recessionPeriod => layout['shapes'].push(                      
+        {
+        type: 'rect',
+        xref: 'x',
+        yref: 'paper',
+        x0: recessionPeriod[0],
+        y0: 0,
+        x1: recessionPeriod[1],
+        y1: 1,
+        fillcolor: recessionColour,
+        opacity: 0.2,
+        line: {
+            width: 0
+        }
+      }))
                         
       var data = [traceConcreteObs, traceNowcast, traceForecast];
 
