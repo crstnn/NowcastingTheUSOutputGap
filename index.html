@@ -22,9 +22,8 @@
         <div id="under_data">
                 <div style="font-size:12px" id="last_update"> Latest update:</div>
         </div>
-        <div id="demo"></div>
         <div id="abstract_container">
-            <div id="abstract">
+            <div class="t">
                 <br />
                 The nowcast of the United States output gap is based on the method described in
                 <a
@@ -64,11 +63,32 @@
                 for more details and please cite the
                 paper when using the method or the results presented here.<br />
 
+<br />
+
+                <button class="collapsible">Data</button>
+                <div class="content">
+                <p class="dataBoxText">
+                    Below are the three data files necessary to run the code (as seen in the paper).
+                </br>
+                    These data are mainly gathered from FRED but for those time-series that are not timely, they are scraped from elsewhere.
+                    
+                    </br></br>
+                    Contents by column (based on FRED codes - starting in 1967):
+                    </br>
+                    Montly: FEDFUNDS, UMCSENT, UNRATE, CPIAUCSL, INDPRO, HOUST, SP500
+                    </br>
+                    Montly spread: BAA, AAA, DGS10, DGS1
+                    </br>   
+                    Quarterly: GDPC1
+
+                </p>
                 <div id="download">
                     <button id="download_button" class="button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly/?type=csv'" type="button">Download Latest Monthly Time-Series CSV</button>
                     <button id="download_button" class="button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-spread/?type=csv'" type="button">Download Latest Monthly Spread Time-Series CSV</button>
                     <button id="download_button" class="button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'" type="button">Download Latest Quarterly Time-Series CSV</button>
-                </div><br />
+                </br>
+                </div>
+                </div>
                 
                 <h4>Reference:</h4>
 

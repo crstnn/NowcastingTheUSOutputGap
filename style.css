@@ -95,10 +95,11 @@ p {
   }
 
 .button:hover {
-    background-color: rgb(211, 210, 210); 
+    background-color: rgb(211, 210, 210);
+    cursor: pointer;
   }
 
-#abstract {
+.t {
     font-family: Georgia, 'Times New Roman', Times, serif;
     width: 50%;
     text-align: justify
@@ -108,7 +109,6 @@ p {
     display: flex;
     justify-content: center;
     align-items: center";
-
 }
 
 #under_data {
@@ -120,20 +120,6 @@ p {
     align-items: center;
     text-align: center;
 }
-#under_data>p{
-    margin: 0;
-}
-#myRange{
-    margin:auto;
-    width: 30%;
-}
-#slide_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 1.5em;
-}
 
 .topNav {
     background-color: rgb(136, 136, 136);
@@ -141,4 +127,37 @@ p {
     padding: 5px;
     margin:0;
 
+  }
+
+.dataBoxText{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 100%;
+    text-align: justify;
+    word-wrap: break-word;
+}
+
+  .collapsible {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(182, 182, 182);
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 20px;
+    word-wrap:break-word;
+  }
+  
+.active, .collapsible:hover {
+    background-color: rgb(148, 145, 145);
+  }
+  
+.content {
+    padding: 0px 25px 0px 25px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease-out;
+    background-color: #f1f1f1;
   }
