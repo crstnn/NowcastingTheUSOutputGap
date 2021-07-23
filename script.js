@@ -21,8 +21,8 @@ function getYearAndQuarter(val) {
     0.25: "Q2",
     0.5: "Q3",
     0.75: "Q4"
-  }
-  return String(~~val) + " " + String(d[q])
+  };
+  return String(~~val) + " " + String(d[q]);
 }
 
 function graph(gapDict) {
@@ -38,20 +38,20 @@ function graph(gapDict) {
     concreteYVal.push(cValList[i]['gapPercentage']);
   }
 
-  nowcastForecastYVal = []
+  nowcastForecastYVal = [];
 
   for (var i = 0; i < nValList.length; i++) {
     nowcastForecastYVal.push(nValList[i]['gapPercentage']);
   }
 
-  concreteXVal = Object.keys(gapDict['concreteObservations'])
-  nowcastForcastXVal = Object.keys(gapDict['nowcastForecastObservations'])
-  nowcastXVal = [nowcastForcastXVal[0]]
-  nowcastYVal = [nowcastForecastYVal[0]]
-  forecastXVal = nowcastForcastXVal.slice(Math.max(nowcastForcastXVal.length - 5, 1))
-  forecastYVal = nowcastForecastYVal.slice(Math.max(nowcastForecastYVal.length - 5, 1))
+  concreteXVal = Object.keys(gapDict['concreteObservations']);
+  nowcastForcastXVal = Object.keys(gapDict['nowcastForecastObservations']);
+  nowcastXVal = [nowcastForcastXVal[0]];
+  nowcastYVal = [nowcastForecastYVal[0]];
+  forecastXVal = nowcastForcastXVal.slice(Math.max(nowcastForcastXVal.length - 5, 1));
+  forecastYVal = nowcastForecastYVal.slice(Math.max(nowcastForecastYVal.length - 5, 1));
 
-  yearQuarterText = Object.keys(gapDict['concreteObservations']).map(getYearAndQuarter)
+  yearQuarterText = Object.keys(gapDict['concreteObservations']).map(getYearAndQuarter);
 
   var traceConcreteObs = {
     x: concreteXVal,
@@ -126,7 +126,7 @@ function graph(gapDict) {
       xanchor: "right",
       x: 1
     }
-  }
+  };
 
   recessions.forEach(recessionPeriod => layout['shapes'].push(
     {
@@ -142,7 +142,7 @@ function graph(gapDict) {
       line: {
         width: 0
       }
-    }))
+    }));
 
   const data = [traceConcreteObs, traceNowcast, traceForecast];
 
@@ -173,7 +173,7 @@ fig.on('plotly_legendclick', (clickData) => {
     Plotly.relayout(graphDiv, update);
   }
 
-})
+});
 
 
 const dataCollapsible = document.getElementsByClassName("collapsible");
@@ -214,33 +214,34 @@ function buildTable(dataDict) {
     "10": "October",
     "11": "November",
     "12": "December",
-  }
+  };
 
-  const last4monthsTable = document.getElementById('dataTable')
-  var dataArray = []
-  var keyArray = []
+  const last4monthsTable = document.getElementById('dataTable');
+  var dataArray = [];
+  var keyArray = [];
   for (var key in dataDict["observations"]) {
-    keyArray.push(key)
+    keyArray.push(key);
     dataArray.push(dataDict["observations"][key]);
   }
 
   titles = ["Federal funds rate (%)", "Term spread (%)", "Risk spread (%)", "Stock returns (%)",
-    "Consumer sentiment (indx.)", "Unemployment rate (%)", "Monthly CPI Inflation (%)", "IP growth (%)", "Housing starts growth (%)"]
-  dictKeys = ["FEDFUNDS", "TERMSPREAD", "RISKSPREAD", "SP500PERC", "UMCSENT", "UNRATE", "CPIAUCSLPERC", "INDPROPERC", "HOUSTPERC"]
+    "Consumer sentiment (indx.)", "Unemployment rate (%)", "Monthly CPI Inflation (%)", "IP growth (%)", "Housing starts growth (%)"];
+  dictKeys = ["FEDFUNDS", "TERMSPREAD", "RISKSPREAD", "SP500PERC", "UMCSENT", "UNRATE", "CPIAUCSLPERC", "INDPROPERC", "HOUSTPERC"];
 
   var horizontalHeader = "<tr><th> </th>";
   for (const key of keyArray) {
-    horizontalHeader += "<th>" + month[key.slice(-2)] + "</th>"
+    horizontalHeader += "<th>" + month[key.slice(-2)] + "</th>";
   }
-  horizontalHeader += "</tr><tr>"
+
+  horizontalHeader += "</tr><tr>";
   last4monthsTable.innerHTML += horizontalHeader;
 
   for (var k = 0; k < dictKeys.length; k++) {
-    row = `<tr><th> ${titles[k]} </th>`
+    row = `<tr><th> ${titles[k]} </th>`;
     for (var i = 0; i < dataArray.length; i++) {
-      row += `<td>${round(dataArray[i][dictKeys[k]])}</td>`
+      row += `<td>${round(dataArray[i][dictKeys[k]])}</td>`;
     }
-    row += "</tr>"
+    row += "</tr>";
     last4monthsTable.innerHTML += row;
   }
 }
