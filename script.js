@@ -177,7 +177,7 @@ fig.on('plotly_legendclick', (clickData) => {
 
 
 const dataCollapsible = document.getElementsByClassName("collapsible");
-const dataCollapsibleArrow = ocument.getElementById("arrow");
+const dataCollapsibleArrow = document.getElementById("arrow");
 
 for (var i = 0; i < dataCollapsible.length; i++) {
   dataCollapsible[i].addEventListener("click", function () {
