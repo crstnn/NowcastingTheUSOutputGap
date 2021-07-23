@@ -177,10 +177,12 @@ fig.on('plotly_legendclick', (clickData) => {
 
 
 const dataCollapsible = document.getElementsByClassName("collapsible");
+const dataCollapsibleArrow = ocument.getElementById("arrow");
 
 for (var i = 0; i < dataCollapsible.length; i++) {
   dataCollapsible[i].addEventListener("click", function () {
     this.classList.toggle("active");
+    dataCollapsibleArrow.classList.toggle("down");
     var content = this.nextElementSibling;
     if (content.style.maxHeight) {
       content.style.maxHeight = null;
