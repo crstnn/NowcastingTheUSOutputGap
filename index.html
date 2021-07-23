@@ -1,182 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-    <title>Nowcasting the Output Gap</title>
-    <link rel="stylesheet" href="style.css" />
-    <meta charset="UTF-8" />
+<title>Nowcasting the Output Gap</title>
+<link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
 
-    <div id="header">
-        <h1>Nowcasting the Output Gap</h1>
+<div id="header">
+    <h1>Nowcasting the Output Gap</h1>
+</div>
+<div class="topNav">
+</div>
+
+<head>
+    <script src="plotly-2.2.0.min.js"></script>
+</head>
+
+<body onresize="onResize()">
+    <div id="data">
+        <div id="graph"></div>
     </div>
-    <div class="topNav">
-      </div>
 
-    <head>
-        <script src="plotly-2.2.0.min.js"></script>
-    </head>
+    <div id="under_data">
+        <div style="font-size:12px" id="last_update"> Latest update:</div>
+    </div>
+    <div id="abstract_container">
+        <div class="t">
+            <br />
+            The nowcast of the United States output gap is based on the method described in
+            <a target="_blank" rel="noopener noreferrer"
+                href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Berger, Morley, and
+                Wong</a> (forthcoming, <i>Journal of Econometrics</i>). Please cite the paper when referring to the
+            nowcast
+            estimate.<br /><br />
 
-    <body onresize="onResize()">
-        <div id="data">
-            <div id="graph"></div>
-        </div>
+            The nowcast for the current quarter is reported in the figure using an orange line
+            from the actual estimated output gap for previous quarters. The
+            actual estimated output gap is based on parameter estimates
+            for the mixed-frequency Bayesian VAR specified in
+            <a target="_blank" rel="noopener noreferrer"
+                href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Berger, Morley, and
+                Wong</a>
+            and data up to the latest quarter
+            for which real GDP has been released from
+            <a target="_blank" rel="noopener noreferrer" href="https://fred.stlouisfed.org/">FRED</a>.<br /><br />
 
-        <div id="under_data">
-                <div style="font-size:12px" id="last_update"> Latest update:</div>
-        </div>
-        <div id="abstract_container">
-            <div class="t">
-                <br />
-                The nowcast of the United States output gap is based on the method described in
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523"
-                    >Berger, Morley, and Wong</a
-                > (forthcoming, <i>Journal of Econometrics</i>). Please cite the paper when referring to the nowcast
-                estimate.<br /><br />
+            Please see
+            <a target="_blank" rel="noopener noreferrer"
+                href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Berger, Morley, and
+                Wong</a>
+            for more details and please cite the
+            paper when using the method or the results presented here.<br />
 
-                The nowcast for the current quarter is reported in the figure using an orange line
-                from the actual estimated output gap for previous quarters. The
-                actual estimated output gap is based on parameter estimates
-                for the mixed-frequency Bayesian VAR specified in 
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523"
-                    >Berger, Morley, and Wong</a
-                >
-                 and data up to the latest quarter 
-                for which real GDP has been released from
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://fred.stlouisfed.org/"
-                    >FRED</a
-                >.<br /><br />
+            <br />
 
-                Please see
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523"
-                    >Berger, Morley, and Wong</a
-                >
-                for more details and please cite the
-                paper when using the method or the results presented here.<br />
-
-<br />
-
-                <button class="collapsible">Data</button>
-                <div class="content">
+            <button class="collapsible">Data</button>
+            <div class="content">
                 <p class="dataBoxText">
-                    The table contains the monthly variables that feed into the latest nowcast estimate shown on the graph.
+                    The table contains the monthly variables that feed into the latest nowcast estimate shown on the
+                    graph.
                 </p>
                 <table class="table">
-                    <th>Federal funds rate (%)</th>
-                    <th>Term spread (%)</th>
-                    <th>Risk spread (%)</th>
-                    <th>Stock returns (%)</th>
-                    <th>Consumer sentiment (indx.)</th>
-                    <th>Unemployment rate (%)</th>
-                    <th>Monthly CPI Inflation (%)</th>
-                    <th>IP growth (%)</th>
-                    <th>Housing starts growth (%)</th>
-                </tr>
-                <tbody id="dataTable">
+                    <tbody id="dataTable">
 
-                </tbody>
+                    </tbody>
                 </table>
                 <p class="dataBoxText">
-                </br>
+                    </br>
                     <hr>
-                </br>
-                    Below are the three data files necessary to run the code, they are updated daily (independent of the nowcast).
-                </br>
-                    These data are mainly gathered from FRED but for those time-series that are not timely, they are scraped from elsewhere.
-                    
+                    </br>
+                    Below are the three data files necessary to run the code, they are updated daily (independent of the
+                    nowcast).
+                    </br>
+                    These data are mainly gathered from FRED but for those time-series that are not timely, they are
+                    scraped from elsewhere.
+
                     </br></br>
                     Contents by column (based on FRED codes - starting in 1967):
                     </br>
                     Montly: FEDFUNDS, UMCSENT, UNRATE, CPIAUCSL, INDPRO, HOUST, SP500
                     </br>
                     Montly spread: BAA, AAA, DGS10, DGS1
-                    </br>   
+                    </br>
                     Quarterly: GDPC1
 
                 </p>
                 <div id="download">
-                    <button id="download_button" class="button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly/?type=csv'" type="button">Download Latest Monthly Time-Series CSV</button>
-                    <button id="download_button" class="button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-spread/?type=csv'" type="button">Download Latest Monthly Spread Time-Series CSV</button>
-                    <button id="download_button" class="button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'" type="button">Download Latest Quarterly Time-Series CSV</button>
-                </br>
+                    <button id="download_button" class="button"
+                        onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly/?type=csv'"
+                        type="button">Download Latest Monthly Time-Series CSV</button>
+                    <button id="download_button" class="button"
+                        onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-spread/?type=csv'"
+                        type="button">Download Latest Monthly Spread Time-Series CSV</button>
+                    <button id="download_button" class="button"
+                        onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'"
+                        type="button">Download Latest Quarterly Time-Series CSV</button>
+                    </br>
                 </div>
-                </div>
-                
-                <h4>Reference:</h4>
-
-                Tino Berger, James Morley and Benjamin Wong, forthcoming, &quot;Nowcasting
-                the Output Gap&quot;, <i>Journal of Econometrics</i>.<br /> <br />
-                 
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523"
-                    >Link to journal version</a
-                >
-                <br /><br />
-                <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://ssrn.com/abstract=3586374"
-                >Link to working paper</a
-            
-                >
-                <br /><br />
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://drive.google.com/file/d/1-lLAqZe4bU622uHuOmySFdVxt9fLrIdf/view?usp=sharing"
-                    >Link to code</a
-                >
-                <br /><br />
-                <script src="recessionData.js"></script>
-                <script src="script.js"></script>
             </div>
+
+            <h4>Reference:</h4>
+
+            Tino Berger, James Morley and Benjamin Wong, forthcoming, &quot;Nowcasting
+            the Output Gap&quot;, <i>Journal of Econometrics</i>.<br /> <br />
+
+            <a target="_blank" rel="noopener noreferrer"
+                href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Link to journal
+                version</a>
+            <br /><br />
+            <a target="_blank" rel="noopener noreferrer" href="https://ssrn.com/abstract=3586374">Link to working
+                paper</a>
+            <br /><br />
+            <a target="_blank" rel="noopener noreferrer"
+                href="https://drive.google.com/file/d/1-lLAqZe4bU622uHuOmySFdVxt9fLrIdf/view?usp=sharing">Link to
+                code</a>
+            <br /><br />
+            <script src="recessionData.js"></script>
+            <script src="script.js"></script>
         </div>
-        <div id="footer">
-            <br />
-            <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="http://sites.google.com/site/drtinoberger"
-                >Tino Berger</a
-            >&nbsp;&nbsp;&nbsp;&nbsp;
-            <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="http://sites.google.com/site/jamescmorley"
-                >James Morley</a
-            >&nbsp;&nbsp;&nbsp;&nbsp;
-            <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="http://sites.google.com/site/benjaminwongshijie"
-                >Benjamin Wong</a
-            >
-            <br />
-            <br />
-            <a
-                href="https://twitter.com/intent/tweet?button_hashtag=outputgapnow"
-                class="twitter-hashtag-button"
-                data-show-count="false"
-                >Tweet @ #outputgapnow</a
-            >
-            <script
-                async
-                src="https://platform.twitter.com/widgets.js"
-                charset="utf-8"
-            ></script>
-			<div style="font-size:12px"><p></p>Note that we are not responsible for any financial decisions
-                made based on the results presented here.</div>
+    </div>
+    <div id="footer">
+        <br />
+        <a target="_blank" rel="noopener noreferrer" href="http://sites.google.com/site/drtinoberger">Tino
+            Berger</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a target="_blank" rel="noopener noreferrer" href="http://sites.google.com/site/jamescmorley">James
+            Morley</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a target="_blank" rel="noopener noreferrer" href="http://sites.google.com/site/benjaminwongshijie">Benjamin
+            Wong</a>
+        <br />
+        <br />
+        <a href="https://twitter.com/intent/tweet?button_hashtag=outputgapnow" class="twitter-hashtag-button"
+            data-show-count="false">Tweet @ #outputgapnow</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <div style="font-size:12px">
+            <p></p>Note that we are not responsible for any financial decisions
+            made based on the results presented here.
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

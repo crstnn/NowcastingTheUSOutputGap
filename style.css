@@ -1,63 +1,74 @@
-html, body{margin:0px; padding:0px;}
+html, body {
+    margin: 0px;
+    padding: 0px;
+}
 
 body {
     background-color: #fafafa;
 }
-a{
+
+a {
     font-weight: 600;
     text-decoration: underline;
     color: rgb(39, 33, 87);
 }
+
 #header {
     text-align: center;
     font-family: Georgia, serif;
     font-size: x-large;
 }
-#data{
+
+#data {
     display: flex;
     flex-direction: row;
     align-items: center;
-  justify-content: center;
+    justify-content: center;
 }
-#graph{
+
+#graph {
     width: 55%;
     padding: 0.01em;
 }
+
 h1 {
     margin-block-start: 0.3em;
     margin-block-end: 0.3em;
 }
 
-#download{
+#download {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
+
 table {
-    font-size: 13px;
-    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    border-collapse: collapse;
     text-align: right;
-    
+    margin-left: auto;
+    margin-right: auto;
 }
 
 td, th {
     padding: 0.2em;
 }
+
 th {
     text-align: center;
     border-bottom: 1px solid #444444!important;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-.modebar{
-      display: none !important;
+
+.modebar {
+    display: none !important;
 }
+
 #footer {
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
 #soon {
     font-size: large;
     text-align: center;
@@ -74,16 +85,16 @@ p {
 }
 
 .button {
-    margin:0.5px;
-    background-color: rgb(235, 229, 229); 
-    color: black; 
+    margin: 0.5px;
+    background-color: rgb(235, 229, 229);
+    color: black;
     border: 1.5px solid #0b789c;
-  }
+}
 
 .button:hover {
     background-color: rgb(211, 210, 210);
     cursor: pointer;
-  }
+}
 
 .t {
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -98,7 +109,7 @@ p {
 }
 
 #under_data {
-    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: x-large;
     display: flex;
     flex-direction: column;
@@ -111,18 +122,17 @@ p {
     background-color: rgb(136, 136, 136);
     overflow: auto;
     padding: 5px;
-    margin:0;
+    margin: 0;
+}
 
-  }
-
-.dataBoxText{
+.dataBoxText {
     font-family: Georgia, 'Times New Roman', Times, serif;
     width: 100%;
     text-align: justify;
     word-wrap: break-word;
 }
 
-  .collapsible {
+.collapsible {
     font-family: Georgia, 'Times New Roman', Times, serif;
     background-color: rgb(182, 182, 182);
     color: white;
@@ -133,17 +143,17 @@ p {
     text-align: left;
     outline: none;
     font-size: 20px;
-    word-wrap:break-word;
-  }
-  
+    word-wrap: break-word;
+}
+
 .active, .collapsible:hover {
     background-color: rgb(148, 145, 145);
-  }
-  
+}
+
 .content {
     padding: 0px 25px 0px 25px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.25s ease-out;
     background-color: #f1f1f1;
-  }
+}
