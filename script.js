@@ -191,6 +191,10 @@ for (var i = 0; i < dataCollapsible.length; i++) {
 const last4MonthsDict = JSON.parse(getAPIData(last4MonthsForNowcastUrl));
 buildTable(last4MonthsDict)
 
+function round(val) {
+  if (val == "None"){return "-"}
+  return Math.round(val * 100) / 100
+}
 
 function buildTable(dataDict) {
   const last4monthsTable = document.getElementById('dataTable')
@@ -203,15 +207,15 @@ function buildTable(dataDict) {
 
   for (var i=0; i < dataArray.length; i++){
     var row = `<tr>
-    <td>${dataArray[i].X}</td>
-    <td>${dataArray[i].X}</td>
-    <td>${dataArray[i].X}</td>
-    <td>${dataArray[i].X}</td>
-    <td>${dataArray[i].UMCSENT}</td>   
-    <td>${dataArray[i].UNRATE}</td>
-    <td>${dataArray[i].X}</td>
-    <td>${dataArray[i].X}</td>     
-    <td>${dataArray[i].X}</td>     
+    <td>${round(dataArray[i].FEDFUNDS)}</td>
+    <td>${round(dataArray[i].TERMSPREAD)}</td>
+    <td>${round(dataArray[i].RISKSPREAD)}</td>
+    <td>${round(dataArray[i].SP500PERC)}</td>
+    <td>${round(dataArray[i].UMCSENT)}</td>   
+    <td>${round(dataArray[i].UNRATE)}</td>
+    <td>${round(dataArray[i].CPIAUCSLPERC)}</td>
+    <td>${round(dataArray[i].INDPROPERC)}</td>     
+    <td>${round(dataArray[i].HOUSTPERC)}</td>     
     </tr>`
     last4monthsTable.innerHTML += row
   }
