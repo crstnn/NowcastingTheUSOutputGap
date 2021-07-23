@@ -1,4 +1,5 @@
-url = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap/?type=json';
+gapUrl = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap/?type=json';
+last4MonthsForNowcastUrl = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-last-4-months-used-in-nowcast/?type=json';
 concreteColour = "#0b789c";
 nowcastColour = "#EF8354";
 forecastColour = "#89b34a";
@@ -6,7 +7,7 @@ recessionColour = "#DDDDDD";
 graphDiv = "graph";
 
 
-function getGapData(){
+function getAPIData(url){
     var req = new XMLHttpRequest();
     req.open("GET", url, false);
     req.send(null);
@@ -28,19 +29,19 @@ function graph(gapDict) {
 
     document.getElementById("last_update").innerHTML = "Latest update (UTC): "+ String(gapDict['latestRunUTC']);
 
-      cValList = Object.values(gapDict['concreteObservations'])
-      nValList = Object.values(gapDict['nowcastForecastObservations'])
+      cValList = Object.values(gapDict['concreteObservations']);
+      nValList = Object.values(gapDict['nowcastForecastObservations']);
 
-      concreteYVal = []
+      concreteYVal = [];
 
       for (var i = 0; i < cValList.length; i++){
-        concreteYVal.push(cValList[i]['gapPercentage'])
+        concreteYVal.push(cValList[i]['gapPercentage']);
       }
 
       nowcastForecastYVal = []
 
       for (var i = 0; i < nValList.length; i++){
-        nowcastForecastYVal.push(nValList[i]['gapPercentage'])
+        nowcastForecastYVal.push(nValList[i]['gapPercentage']);
       }
 
       concreteXVal = Object.keys(gapDict['concreteObservations'])
@@ -141,41 +142,42 @@ function graph(gapDict) {
         }
       }))
                         
-      var data = [traceConcreteObs, traceNowcast, traceForecast];
+      const data = [traceConcreteObs, traceNowcast, traceForecast];
 
       Plotly.newPlot(graphDiv, data, layout);
 
 }
 
-var gapDict = JSON.parse(getGapData());
+const gapDict = JSON.parse(getAPIData(gapUrl));
 graph(gapDict);
+
 
 function onResize(){
   graph(gapDict);
 }
 
+
 const fig = document.getElementById(graphDiv)
 
 fig.on('plotly_legenddoubleclick', () => false);
 
-fig.on('plotly_legendclick', function(clickData) { 
-  const curvNum = clickData.curveNumber
+fig.on('plotly_legendclick', (clickData) => { 
+  const curvNum = clickData.curveNumber;
 
   if ([1, 2].includes(curvNum)){
     var update = {};
-    update["shapes[" + String(curvNum-1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false
+    update["shapes[" + String(curvNum-1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false;
 
-    Plotly.relayout(graphDiv, update)
+    Plotly.relayout(graphDiv, update);
   }
 
 })
 
 
-var coll = document.getElementsByClassName("collapsible");
-var i;
+const dataCollapsible = document.getElementsByClassName("collapsible");
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
+for (var i = 0; i < dataCollapsible.length; i++) {
+  dataCollapsible[i].addEventListener("click", function () {
     this.classList.toggle("active");
     var content = this.nextElementSibling;
     if (content.style.maxHeight){
@@ -184,4 +186,33 @@ for (i = 0; i < coll.length; i++) {
       content.style.maxHeight = content.scrollHeight + "px";
     } 
   });
+}
+
+const last4MonthsDict = JSON.parse(getAPIData(last4MonthsForNowcastUrl));
+buildTable(last4MonthsDict)
+
+
+function buildTable(dataDict) {
+  const last4monthsTable = document.getElementById('dataTable')
+  var dataArray = []
+  for (var key in dataDict["observations"]) {
+    if (dataDict["observations"].hasOwnProperty(key)) {
+      dataArray.push( dataDict["observations"][key] );
+    }
+  }
+
+  for (var i=0; i < dataArray.length; i++){
+    var row = `<tr>
+    <td>${dataArray[i].X}</td>
+    <td>${dataArray[i].X}</td>
+    <td>${dataArray[i].X}</td>
+    <td>${dataArray[i].X}</td>
+    <td>${dataArray[i].UMCSENT}</td>   
+    <td>${dataArray[i].UNRATE}</td>
+    <td>${dataArray[i].X}</td>
+    <td>${dataArray[i].X}</td>     
+    <td>${dataArray[i].X}</td>     
+    </tr>`
+    last4monthsTable.innerHTML += row
+  }
 }
