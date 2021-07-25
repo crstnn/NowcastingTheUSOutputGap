@@ -9,9 +9,7 @@ graphDiv = "graph";
 
 function getAPIData(url) {
   var req = new XMLHttpRequest();
-  req.open("GET", url, false);
-  req.send(null);
-  return req.responseText;
+  return req.open("GET", url, true);
 }
 
 function getYearAndQuarter(val) {
@@ -150,30 +148,42 @@ function graph(gapDict) {
 
 }
 
-const gapDict = JSON.parse(getAPIData(gapUrl));
-graph(gapDict);
+var gapreq = new XMLHttpRequest();
+gapreq.open("GET", gapUrl, true);
+gapreq.timeout = 3000;
+
+gapreq.onload = function () {
+  if (this.status == 200){
+    const gapDict =  JSON.parse(gapreq.responseText);
+    graph(gapDict);
+    
+    const fig = document.getElementById(graphDiv)
+
+    fig.on('plotly_legenddoubleclick', () => false);
+
+    fig.on('plotly_legendclick', (clickData) => {
+      const curvNum = clickData.curveNumber;
+
+      if ([1, 2].includes(curvNum)) {
+        var update = {};
+        update["shapes[" + String(curvNum - 1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false;
+
+        Plotly.relayout(graphDiv, update);
+      }
+
+    });
+  }
+};
+
+gapreq.send(null);
+
 
 
 function onResize() {
-  graph(gapDict);
+  graph(JSON.parse(gapreq.responseText));
 }
 
 
-const fig = document.getElementById(graphDiv)
-
-fig.on('plotly_legenddoubleclick', () => false);
-
-fig.on('plotly_legendclick', (clickData) => {
-  const curvNum = clickData.curveNumber;
-
-  if ([1, 2].includes(curvNum)) {
-    var update = {};
-    update["shapes[" + String(curvNum - 1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false;
-
-    Plotly.relayout(graphDiv, update);
-  }
-
-});
 
 
 const dataCollapsible = document.getElementsByClassName("collapsible");
@@ -192,8 +202,21 @@ for (var i = 0; i < dataCollapsible.length; i++) {
   });
 }
 
-const last4MonthsDict = JSON.parse(getAPIData(last4MonthsForNowcastUrl));
-buildTable(last4MonthsDict)
+var l4Mreq = new XMLHttpRequest();
+l4Mreq.open("GET", last4MonthsForNowcastUrl, true);
+
+l4Mreq.timeout = 3000;
+
+l4Mreq.onload = function () {
+  if (this.status == 200){
+  const last4MonthsDict = JSON.parse(l4Mreq.responseText);
+  buildTable(last4MonthsDict)
+  }
+};
+
+l4Mreq.send(null);
+
+
 
 function round(val) {
   if (val == "None") { return "-" }
