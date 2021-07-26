@@ -154,7 +154,7 @@ gapreq.timeout = 3000;
 
 gapreq.onload = function () {
   if (this.status == 200){
-    const gapDict =  JSON.parse(gapreq.responseText);
+    var gapDict =  JSON.parse(gapreq.responseText);
     graph(gapDict);
     
     const fig = document.getElementById(graphDiv)
@@ -180,7 +180,7 @@ gapreq.send(null);
 
 
 function onResize() {
-  graph();
+  graph(JSON.parse(gapreq.responseText));
 }
 
 
