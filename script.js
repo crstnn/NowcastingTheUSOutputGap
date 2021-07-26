@@ -180,7 +180,7 @@ gapreq.send(null);
 
 
 function onResize() {
-  graph(JSON.parse(gapreq.responseText));
+  graph();
 }
 
 
