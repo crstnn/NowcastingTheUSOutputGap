@@ -213,6 +213,7 @@ function round(val) {
 };
 
 function buildTable(dataDict) {
+  console.log(dataDict)
   month = {
     "01": "January",
     "02": "February",
@@ -231,9 +232,9 @@ function buildTable(dataDict) {
   const last4monthsTable = document.getElementById('dataTable');
   let dataArray = [];
   let keyArray = [];
-  for (let key in dataDict["observations"]) {
+  for (let key in dataDict) {
     keyArray.push(key);
-    dataArray.push(dataDict["observations"][key]);
+    dataArray.push(dataDict[key]);
   };
 
   titles = ["Federal funds rate (%)", "Term spread (%)", "Risk spread (%)", "Stock returns (%)",
