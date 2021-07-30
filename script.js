@@ -150,7 +150,7 @@ function graph(reqJSON) {
 
   Plotly.newPlot(graphDiv, data, layout);
 
-}
+};
 
 var req = new XMLHttpRequest();
 req.open("GET", URL, true);
@@ -179,7 +179,7 @@ req.onload = function () {
 
     buildTable(reqJSON.last4MonthsTable);
 
-  }
+  };
 };
 
 req.send(null);
