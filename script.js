@@ -1,10 +1,11 @@
-gapUrl = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap/?type=json';
-last4MonthsForNowcastUrl = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-last-4-months-used-in-nowcast/?type=json';
-concreteColour = "#0b789c";
-nowcastColour = "#EF8354";
-forecastColour = "#89b34a";
-recessionColour = "#DDDDDD";
-graphDiv = "graph";
+const URL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap-all-data/';
+
+const concreteColour = "#0b789c";
+const nowcastColour = "#EF8354";
+const forecastColour = "#89b34a";
+const recessionColour = "#DDDDDD";
+const uncalledRecessionColour = "#f6eabe";
+const graphDiv = "graph";
 
 
 function getAPIData(url) {
@@ -23,12 +24,12 @@ function getYearAndQuarter(val) {
   return String(~~val) + " " + String(d[q]);
 }
 
-function graph(gapDict) {
+function graph(reqJSON) {
 
-  document.getElementById("last_update").innerHTML = "Latest update (UTC): " + String(gapDict['latestRunUTC']);
+  document.getElementById("last_update").innerHTML = "Latest update (UTC): " + String(reqJSON['latestRunUTC']);
 
-  cValList = Object.values(gapDict['concreteObservations']);
-  nValList = Object.values(gapDict['nowcastForecastObservations']);
+  cValList = Object.values(reqJSON['concreteObservations']);
+  nValList = Object.values(reqJSON['nowcastForecastObservations']);
 
   concreteYVal = [];
 
@@ -42,14 +43,14 @@ function graph(gapDict) {
     nowcastForecastYVal.push(nValList[i]['gapPercentage']);
   }
 
-  concreteXVal = Object.keys(gapDict['concreteObservations']);
-  nowcastForcastXVal = Object.keys(gapDict['nowcastForecastObservations']);
+  concreteXVal = Object.keys(reqJSON['concreteObservations']);
+  nowcastForcastXVal = Object.keys(reqJSON['nowcastForecastObservations']);
   nowcastXVal = [nowcastForcastXVal[0]];
   nowcastYVal = [nowcastForecastYVal[0]];
   forecastXVal = nowcastForcastXVal.slice(Math.max(nowcastForcastXVal.length - 5, 1));
   forecastYVal = nowcastForecastYVal.slice(Math.max(nowcastForecastYVal.length - 5, 1));
 
-  yearQuarterText = Object.keys(gapDict['concreteObservations']).map(getYearAndQuarter);
+  yearQuarterText = Object.keys(reqJSON['concreteObservations']).map(getYearAndQuarter);
 
   var traceConcreteObs = {
     x: concreteXVal,
@@ -126,21 +127,24 @@ function graph(gapDict) {
     }
   };
 
-  recessions.forEach(recessionPeriod => layout['shapes'].push(
+  reqJSON.recessions.forEach(recessionPeriod => {
+    const recCol = recessionPeriod.troughDate == "None" ? uncalledRecessionColour : recessionColour;
+    const troughDate = recessionPeriod.troughDate == "None" ? forecastXVal[forecastXVal.length - 1] : recessionPeriod.troughDate;
+    layout['shapes'].push(
     {
       type: 'rect',
       xref: 'x',
       yref: 'paper',
-      x0: recessionPeriod[0],
+      x0: recessionPeriod.peakDate,
       y0: 0,
-      x1: recessionPeriod[1],
+      x1: troughDate,
       y1: 1,
-      fillcolor: recessionColour,
+      fillcolor: recCol,
       opacity: 0.2,
       line: {
         width: 0
       }
-    }));
+    })});
 
   const data = [traceConcreteObs, traceNowcast, traceForecast];
 
@@ -148,14 +152,14 @@ function graph(gapDict) {
 
 }
 
-var gapreq = new XMLHttpRequest();
-gapreq.open("GET", gapUrl, true);
-gapreq.timeout = 3000;
+var req = new XMLHttpRequest();
+req.open("GET", URL, true);
+req.timeout = 3000;
 
-gapreq.onload = function () {
+req.onload = function () {
   if (this.status == 200){
-    var gapDict =  JSON.parse(gapreq.responseText);
-    graph(gapDict);
+    var reqJSON =  JSON.parse(req.responseText);
+    graph(reqJSON);
     
     const fig = document.getElementById(graphDiv)
 
@@ -169,21 +173,21 @@ gapreq.onload = function () {
         update["shapes[" + String(curvNum - 1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false;
 
         Plotly.relayout(graphDiv, update);
-      }
+      };
 
     });
+
+    buildTable(reqJSON.last4MonthsTable);
+
   }
 };
 
-gapreq.send(null);
-
+req.send(null);
 
 
 function onResize() {
-  graph(JSON.parse(gapreq.responseText));
-}
-
-
+  graph(JSON.parse(req.responseText));
+};
 
 
 const dataCollapsible = document.getElementsByClassName("collapsible");
@@ -198,30 +202,15 @@ for (var i = 0; i < dataCollapsible.length; i++) {
       content.style.maxHeight = null;
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
-    }
+    };
   });
-}
-
-var l4Mreq = new XMLHttpRequest();
-l4Mreq.open("GET", last4MonthsForNowcastUrl, true);
-
-l4Mreq.timeout = 3000;
-
-l4Mreq.onload = function () {
-  if (this.status == 200){
-  const last4MonthsDict = JSON.parse(l4Mreq.responseText);
-  buildTable(last4MonthsDict)
-  }
 };
-
-l4Mreq.send(null);
-
 
 
 function round(val) {
-  if (val == "None") { return "-" }
-  return Math.round(val * 100) / 100
-}
+  if (val == "None") { return "-" };
+  return Math.round(val * 100) / 100;
+};
 
 function buildTable(dataDict) {
   month = {
@@ -240,31 +229,33 @@ function buildTable(dataDict) {
   };
 
   const last4monthsTable = document.getElementById('dataTable');
-  var dataArray = [];
-  var keyArray = [];
-  for (var key in dataDict["observations"]) {
+  let dataArray = [];
+  let keyArray = [];
+  for (let key in dataDict["observations"]) {
     keyArray.push(key);
     dataArray.push(dataDict["observations"][key]);
-  }
+  };
 
   titles = ["Federal funds rate (%)", "Term spread (%)", "Risk spread (%)", "Stock returns (%)",
     "Consumer sentiment (indx.)", "Unemployment rate (%)", "Monthly CPI Inflation (%)", "IP growth (%)", "Housing starts growth (%)"];
   dictKeys = ["FEDFUNDS", "TERMSPREAD", "RISKSPREAD", "SP500PERC", "UMCSENT", "UNRATE", "CPIAUCSLPERC", "INDPROPERC", "HOUSTPERC"];
 
-  var horizontalHeader = "<tr><th> </th>";
+  let horizontalHeader = "<tr><th> </th>";
   for (const key of keyArray) {
     horizontalHeader += "<th>" + month[key.slice(-2)] + "</th>";
-  }
+  };
 
   horizontalHeader += "</tr><tr>";
   last4monthsTable.innerHTML += horizontalHeader;
 
   for (var k = 0; k < dictKeys.length; k++) {
-    row = `<tr><th> ${titles[k]} </th>`;
+    let row = `<tr><th> ${titles[k]} </th>`;
     for (var i = 0; i < dataArray.length; i++) {
       row += `<td>${round(dataArray[i][dictKeys[k]])}</td>`;
-    }
+    };
     row += "</tr>";
     last4monthsTable.innerHTML += row;
-  }
-}
+  };
+};
+
+;
