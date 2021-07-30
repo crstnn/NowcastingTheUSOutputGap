@@ -161,7 +161,7 @@ req.onload = function () {
     var reqJSON =  JSON.parse(req.responseText);
     graph(reqJSON);
     
-    const fig = document.getElementById(graphDiv)
+    const fig = document.getElementById(graphDiv);
 
     fig.on('plotly_legenddoubleclick', () => false);
 
