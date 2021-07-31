@@ -213,7 +213,6 @@ function round(val) {
 };
 
 function buildTable(dataDict) {
-  console.log(dataDict)
   month = {
     "01": "January",
     "02": "February",
