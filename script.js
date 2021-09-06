@@ -13,6 +13,7 @@ function getAPIData(url) {
   return req.open("GET", url, true);
 }
 
+
 function getYearAndQuarter(val) {
   q = val % 1
   d = {
