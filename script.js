@@ -155,7 +155,7 @@ function graph(reqJSON) {
 
 var req = new XMLHttpRequest();
 req.open("GET", URL, true);
-req.timeout = 3000;
+req.timeout = 5000;
 
 req.onload = function () {
   if (this.status == 200){
