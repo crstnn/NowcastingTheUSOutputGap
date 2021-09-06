@@ -11,11 +11,11 @@ const graphDiv = "graph";
 function getAPIData(url) {
   var req = new XMLHttpRequest();
   return req.open("GET", url, true);
-}
+};
 
 
 function getYearAndQuarter(val) {
-  q = val % 1
+  q = val % 1;
   d = {
     0: "Q1",
     0.25: "Q2",
