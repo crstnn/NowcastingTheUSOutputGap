@@ -57,7 +57,7 @@ function graph(reqJSON) {
     x: concreteXVal,
     y: concreteYVal,
     mode: 'lines + markers',
-    name: 'Concrete Estimates',
+    name: 'Realised Estimates',
     customdata: yearQuarterText,
     hovertemplate: "%{customdata}, %{y}",
     line: { color: concreteColour }

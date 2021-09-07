@@ -25,38 +25,28 @@
     <div id="abstract_container">
         <div class="t">
             <br />
-            The nowcast of the United States output gap is based on the method described in
+            The nowcast for the U.S. output gap is based on the method described in
             <a target="_blank" rel="noopener noreferrer"
                 href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Berger, Morley, and
                 Wong</a> (forthcoming, <i>Journal of Econometrics</i>). Please cite the paper when referring to the
             nowcast
             estimate.<br /><br />
 
-            The nowcast for the current quarter is reported in the figure using an orange line
-            from the actual estimated output gap for previous quarters. Please hover over the time-series to see the exact month's percentages. The conditional forecast can be toggled by clicking on it. For more information on the data used please click the 'Data' dropdown. The
-            actual estimated output gap is based on parameter estimates
-            for the mixed-frequency Bayesian VAR specified in
+            The nowcast is reported in the figure using an orange line extending from the realized estimated output gap for previous quarters. 
+            Conditional forecasts are also displayed as a green line, but can be toggled off by clicking on it in the legend. 
+            Exact values can be seen by hovering over each point in the figure. For more information on the monthly indicators used in the nowcasts please click the 'Monthly Indicators' dropdown. 
+            The realized estimated output gap is based on parameter estimates for the mixed-frequency Bayesian VAR specified in
             <a target="_blank" rel="noopener noreferrer"
                 href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Berger, Morley, and
                 Wong</a>
-            and data up to the latest quarter
-            for which real GDP has been released from
-            <a target="_blank" rel="noopener noreferrer" href="https://fred.stlouisfed.org/">FRED</a>.<br /><br />
-
-            Please see
-            <a target="_blank" rel="noopener noreferrer"
-                href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Berger, Morley, and
-                Wong</a>
-            for more details and please cite the
-            paper when using the method or the results presented here.<br />
+                and data up to the latest quarter for which real GDP has been released.<br />
 
             <br />
 
-            <button class="collapsible">Data <i id="arrow" class="arrow left"></i></button>
+            <button class="collapsible">Monthly Indicators<i id="arrow" class="arrow left"></i></button>
             <div class="content">
                 <p class="dataBoxText">
-                    The table contains the latest monthly values that feed into the nowcast estimate shown on the
-                    graph.
+                    The table contains the latest values of monthly indicators that feed into the nowcast estimates.
                 </p>
                 <table class="table">
                     <tbody id="dataTable">
@@ -67,12 +57,8 @@
                     </br>
                     <hr>
                     </br>
-                    Below are the three data files necessary to run the code, they are updated daily (independent of the
-                    nowcast).
-                    </br>
-                    These data are mostly gathered from FRED but for those time-series that are not timely, they are
-                    scraped from elsewhere.
-
+                    Below are the three data files that can be used to run the MATLAB code linked to below. These files are updated daily. 
+                    These data are mostly gathered from FRED, except for some indicators reported on FRED with a lag, which are scraped from elsewhere.                
                     </br></br>
                     Contents by column (based on FRED codes - starting in 1967):
                     </br>
