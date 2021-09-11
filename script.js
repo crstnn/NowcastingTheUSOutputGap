@@ -6,6 +6,7 @@ const forecastColour = "#89b34a";
 const recessionColour = "#DDDDDD";
 const uncalledRecessionColour = "#f6eabe";
 const graphDiv = "graph";
+const outputGapText = "outputGapTextUnderData";
 
 
 function getAPIData(url) {
@@ -13,43 +14,76 @@ function getAPIData(url) {
   return req.open("GET", url, true);
 }
 
-
-function getYearAndQuarter(val) {
+function getQuarter(val, isTruncated=true) {
   q = val % 1;
-  d = {
+  dTrunc = {
     0: "Q1",
     0.25: "Q2",
     0.5: "Q3",
     0.75: "Q4"
   };
-  return String(~~val) + " " + String(d[q]);
+  d = {
+    0: "1" + "st".sup() + " Quarter",
+    0.25: "2" + "nd".sup() + " Quarter",
+    0.5: "3" + "rd".sup() + " Quarter",
+    0.75: "4" + "th".sup() + " Quarter"
+  };
+  return String(isTruncated ? dTrunc[q] : d[q]);
 }
+
+
+function getYearAndQuarter(val) {
+  return String(~~val) + " " + getQuarter(val);
+}
+
+function writeTextBelowGraph(reqJSON){
+  const cValList = Object.values(reqJSON['concreteObservations']);
+  const nValList = Object.values(reqJSON['nowcastForecastObservations']);
+
+  const 
+    concreteXVal = Object.keys(reqJSON['concreteObservations']),
+    nowcastForcastXVal = Object.keys(reqJSON['nowcastForecastObservations']),
+    lastQuarterOutputGap = Math.round(cValList[cValList.length-1]['gapPercentage'] * 10) / 10,
+    nowcastGap = Math.round(nValList[0]['gapPercentage'] * 10) / 10,
+    lastQuarterTypeIsIntitialRealised = Boolean(cValList[cValList.length-1]['isRealized']),
+    nowcastGapIsIntitialRealised = Boolean(nValList[0]['isRealized']);
+
+  const outputGapTextDiv = document.getElementById(outputGapText);
+  outputGapTextDiv.innerHTML = `<p>
+                                  ${getQuarter(concreteXVal[concreteXVal.length-1], false)} 
+                                  Output Gap: ${lastQuarterOutputGap} ${lastQuarterTypeIsIntitialRealised ? '(initial realized)' : ""}<br/>
+                                  ${getQuarter(nowcastForcastXVal[0], false)} 
+                                  Output Gap: ${nowcastGap} ${nowcastGapIsIntitialRealised ? '(initial realized)' : ""}
+                                  </p>`;
+
+};
 
 function graph(reqJSON) {
 
   document.getElementById("last_update").innerHTML = "Latest update (UTC): " + String(reqJSON['latestRunUTC']);
 
-  cValList = Object.values(reqJSON['concreteObservations']);
-  nValList = Object.values(reqJSON['nowcastForecastObservations']);
+  const cValList = Object.values(reqJSON['concreteObservations']);
+  const nValList = Object.values(reqJSON['nowcastForecastObservations']);
 
-  concreteYVal = [];
+  const concreteYVal = [];
 
   for (var i = 0; i < cValList.length; i++) {
     concreteYVal.push(cValList[i]['gapPercentage']);
   }
 
-  nowcastForecastYVal = [];
+  const nowcastForecastYVal = [];
 
   for (var i = 0; i < nValList.length; i++) {
     nowcastForecastYVal.push(nValList[i]['gapPercentage']);
   }
 
-  concreteXVal = Object.keys(reqJSON['concreteObservations']);
-  nowcastForcastXVal = Object.keys(reqJSON['nowcastForecastObservations']);
-  nowcastXVal = [nowcastForcastXVal[0]];
-  nowcastYVal = [nowcastForecastYVal[0]];
-  forecastXVal = nowcastForcastXVal.slice(Math.max(nowcastForcastXVal.length - 5, 1));
-  forecastYVal = nowcastForecastYVal.slice(Math.max(nowcastForecastYVal.length - 5, 1));
+  const 
+    concreteXVal = Object.keys(reqJSON['concreteObservations']),
+    nowcastForcastXVal = Object.keys(reqJSON['nowcastForecastObservations']),
+    nowcastXVal = [nowcastForcastXVal[0]],
+    nowcastYVal = [nowcastForecastYVal[0]],
+    forecastXVal = nowcastForcastXVal.slice(Math.max(nowcastForcastXVal.length - 5, 1)),
+    forecastYVal = nowcastForecastYVal.slice(Math.max(nowcastForecastYVal.length - 5, 1));
 
   yearQuarterText = Object.keys(reqJSON['concreteObservations']).map(getYearAndQuarter);
 
@@ -177,6 +211,8 @@ req.onload = function () {
       };
 
     });
+
+    writeTextBelowGraph(reqJSON)
 
     buildTable(reqJSON.last4MonthsTable);
 
