@@ -125,6 +125,8 @@ p {
     width: 100%;
     text-align: justify;
     word-wrap: break-word;
+    white-space: normal;
+    word-break: break-all;
 }
 
 .collapsible {
