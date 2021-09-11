@@ -57,7 +57,7 @@ function graph(reqJSON) {
     x: concreteXVal,
     y: concreteYVal,
     mode: 'lines + markers',
-    name: 'Realised Estimates',
+    name: 'Realized Estimates',
     customdata: yearQuarterText,
     hovertemplate: "%{customdata}, %{y}",
     line: { color: concreteColour }
@@ -77,7 +77,7 @@ function graph(reqJSON) {
     x: forecastXVal,
     y: forecastYVal,
     mode: 'lines + markers',
-    name: 'Conditional Forecast',
+    name: 'Conditional Forecasts',
     customdata: forecastXVal.map(getYearAndQuarter),
     hovertemplate: "%{customdata}, %{y}",
     visible: "legendonly",
