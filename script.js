@@ -36,6 +36,30 @@ function getYearAndQuarter(val) {
   return String(~~val) + " " + getQuarter(val);
 }
 
+function writeTextBelowGraph2(reqJSON){
+  const obsDictCombined = Object.assign({}, reqJSON['concreteObservations'], reqJSON['nowcastForecastObservations'])
+
+  const zip = (a, b) => a.map((key, idx) => [key, b[idx]]);
+
+  const obsToDisplay = zip(Object.keys(obsDictCombined), Object.values(obsDictCombined)).filter(o => Boolean(o[1]["isToBeDisplayed"]));
+  // post-condition of GET request, only ever 2 obs to display. We will just display the first two if this no longer holds
+
+  const
+    quarterToDisplay1 = Math.round(obsToDisplay[0][1]['gapPercentage'] * 10) / 10,
+    quarterToDisplay2 = Math.round(obsToDisplay[1][1]['gapPercentage'] * 10) / 10,
+    lastQuarterTypeIsIntitialRealised = Boolean(obsToDisplay[0][1]['isRealized']),
+    nowcastGapIsIntitialRealised = Boolean(obsToDisplay[1][1]['isRealized']);
+
+  const outputGapTextDiv = document.getElementById(outputGapText);
+  outputGapTextDiv.innerHTML = `<p>
+                                  ${getQuarter(obsToDisplay[0][0], false)} 
+                                  Output Gap: ${quarterToDisplay1} ${lastQuarterTypeIsIntitialRealised ? '(initial realized)' : ""}<br/>
+                                  ${getQuarter(obsToDisplay[1][0], false)} 
+                                  Output Gap: ${quarterToDisplay2} ${nowcastGapIsIntitialRealised ? '(initial realized)' : ""}
+                                  </p>`;
+
+};
+
 function writeTextBelowGraph(reqJSON){
   const cValList = Object.values(reqJSON['concreteObservations']);
   const nValList = Object.values(reqJSON['nowcastForecastObservations']);
