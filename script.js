@@ -12,7 +12,7 @@ const outputGapText = "outputGapTextUnderData";
 function getAPIData(url) {
   var req = new XMLHttpRequest();
   return req.open("GET", url, true);
-}
+};
 
 function getQuarter(val, isTruncated=true) {
   q = val % 1;
@@ -29,12 +29,12 @@ function getQuarter(val, isTruncated=true) {
     0.75: "4" + "th".sup() + " Quarter"
   };
   return String(isTruncated ? dTrunc[q] : d[q]);
-}
+};
 
 
 function getYearAndQuarter(val) {
   return String(~~val) + " " + getQuarter(val);
-}
+};
 
 function writeTextBelowGraph2(reqJSON){
   const obsDictCombined = Object.assign({}, reqJSON['concreteObservations'], reqJSON['nowcastForecastObservations']);
