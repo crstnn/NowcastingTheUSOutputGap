@@ -37,6 +37,7 @@ function getYearAndQuarter(val) {
 };
 
 function writeTextBelowGraph2(reqJSON){
+  // perhaps for future version OBSOLETE FOR NOW
   const obsDictCombined = Object.assign({}, reqJSON['concreteObservations'], reqJSON['nowcastForecastObservations']);
 
   const zip = (a, b) => a.map((key, idx) => [key, b[idx]]);
