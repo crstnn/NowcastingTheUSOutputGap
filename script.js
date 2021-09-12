@@ -61,6 +61,7 @@ function writeTextBelowGraph2(reqJSON){
 };
 
 function writeTextBelowGraph(reqJSON){
+
   const cValList = Object.values(reqJSON['concreteObservations']);
   const nValList = Object.values(reqJSON['nowcastForecastObservations']);
 
@@ -74,10 +75,9 @@ function writeTextBelowGraph(reqJSON){
 
   const outputGapTextDiv = document.getElementById(outputGapText);
   outputGapTextDiv.innerHTML = `<p>
-                                  ${getQuarter(concreteXVal[concreteXVal.length-1], false)} 
-                                  Output Gap: ${lastQuarterOutputGap} ${lastQuarterTypeIsIntitialRealised ? '(initial realized)' : ""}<br/>
-                                  ${getQuarter(nowcastForcastXVal[0], false)} 
-                                  Output Gap: ${nowcastGap} ${nowcastGapIsIntitialRealised ? '(initial realized)' : ""}
+
+                                  Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(initial realized)' : ""}<br/>
+                                  Output Gap ${getYearAndQuarter(concreteXVal[concreteXVal.length-1])}: ${lastQuarterOutputGap} ${lastQuarterTypeIsIntitialRealised ? '(initial realized)' : ""}
                                   </p>`;
 
 };
