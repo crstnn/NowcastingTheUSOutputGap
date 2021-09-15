@@ -211,7 +211,7 @@ p {
   @media only screen and (max-device-width: 480px) {
 
     .t {
-        width: 95%;
+        width: 90%;
         font-size: 50px;
     }
     
