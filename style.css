@@ -211,7 +211,7 @@ p {
         font-size: 50px;
     }
     
-    div#graph {
+    #graph {
         width: 100%;
     }
     
@@ -230,6 +230,10 @@ p {
 
     .collapsible {
         font-size: 50px;
+    }
+
+    #last_update {
+        font-size: normal;
     }
 
     #disclaimer {
