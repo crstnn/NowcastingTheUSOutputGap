@@ -21,7 +21,11 @@ a {
 }
 
 #last_update {
-    font-size: small
+    font-size: small;
+    align-items: center;
+    word-wrap: break-word;
+    margin:auto;
+    width:30%;
 }
 
 #data {
