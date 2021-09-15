@@ -131,6 +131,8 @@ p {
 
 #outputGapTextUnderData {
     font-size: x-large;
+    word-wrap: break-word;
+
 }
 
 #under_data {
