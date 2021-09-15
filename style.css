@@ -211,17 +211,12 @@ p {
   @media only screen and (max-device-width: 480px) {
 
     .t {
-        width: 97%;
+        width: 95%;
         font-size: 50px;
     }
     
     #graph {
         width: 100%;
-    }
-    
-    .t {
-        width: 98%;
-        font-size: 50px;
     }
     
     div#graph {
