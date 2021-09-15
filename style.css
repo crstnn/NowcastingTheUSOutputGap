@@ -28,7 +28,7 @@ a {
 }
 
 #graph {
-    width: 55%;
+    width: 60%;
     padding: 0.01em;
 }
 
@@ -78,7 +78,7 @@ th {
     align-items: center;
     word-wrap: break-word;
     margin:auto;
-    width:40%;
+    width:30%;
 }
 
 p {
