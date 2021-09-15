@@ -201,9 +201,10 @@ p {
   }
 
   @media only screen and (max-device-width: 480px) {
-      
+
     .t {
         width: 98%;
+        font-size: large;
     }
     
     div#graph {
