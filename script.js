@@ -6,7 +6,7 @@ const forecastColour = "#89b34a";
 const recessionColour = "#DDDDDD";
 const uncalledRecessionColour = "#f6eabe";
 const graphDiv = "graph";
-const outputGapText = "outputGapTextUnderData";
+const outputGapText = "output_gap_text_under_data";
 
 
 function getAPIData(url) {
