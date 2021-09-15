@@ -22,7 +22,7 @@ a {
 #last_update {
     font-size: small;
     align-items: center;
-    word-wrap: break-word;
+    word-wrap: normal;
     margin:auto;
     width:30%;
 }
@@ -89,7 +89,7 @@ th {
     font-size: x-small;
     justify-content: center;
     align-items: center;
-    word-wrap: break-word;
+    word-wrap: normal;
     margin:auto;
     width:30%;
 }
@@ -99,7 +99,7 @@ p {
     width: 800px;
     height: auto;
     word-break: break-all;
-    word-wrap: break-word;
+    word-wrap: normal;
     white-space: normal;
 }
 
@@ -130,7 +130,7 @@ p {
 
 #outputGapTextUnderData {
     font-size: x-large;
-    word-wrap: break-word;
+    word-wrap: normal;
     word-break: break-all;
     white-space: normal;
 }
@@ -156,7 +156,7 @@ p {
     font-family: Georgia, 'Times New Roman', Times, serif;
     width: 100%;
     text-align: justify;
-    word-wrap: break-word;
+    word-wrap: normal;
     white-space: normal;
     word-break: break-all;
 }
@@ -171,7 +171,7 @@ p {
     border: none;
     text-align: left;
     outline: none;
-    word-wrap: break-word;
+    word-wrap: normal;
     font-size: x-large;
 }
 
