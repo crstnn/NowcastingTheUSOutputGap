@@ -81,6 +81,7 @@ th {
 #footer {
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    align-items: center;
 }
 
 #disclaimer {
@@ -246,7 +247,7 @@ p {
 
     #disclaimer {
         font-size: 30px;
-        width:50%;
+        width:70%;
     }
 
   }
