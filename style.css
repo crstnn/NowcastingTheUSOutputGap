@@ -105,7 +105,8 @@ p {
 .t {
     font-family: Georgia, 'Times New Roman', Times, serif;
     width: 50%;
-    text-align: justify
+    text-align: justify;
+    font-size: normal;
 }
 
 #abstract_container {
