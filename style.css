@@ -33,11 +33,16 @@ a {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 #graph {
     width: 60%;
     padding: 0.01em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
@@ -201,7 +206,7 @@ p {
     }
     
     #graph {
-        width: 100%;
+        width: 99%;
     }
 
   }
