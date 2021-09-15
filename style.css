@@ -1,6 +1,7 @@
 html, body {
     margin: 0px;
     padding: 0px;
+    content:"width=device-width";
 }
 
 body {
@@ -72,10 +73,12 @@ th {
 #disclaimer {
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 11px;
+    font-size: x-small;
     justify-content: center;
     align-items: center;
     word-wrap: break-word;
+    margin:auto;
+    width:40%;
 }
 
 p {
