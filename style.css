@@ -20,6 +20,10 @@ a {
     font-size: x-large;
 }
 
+#last_update {
+    font-size: small
+}
+
 #data {
     display: flex;
     flex-direction: row;
