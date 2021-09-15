@@ -131,8 +131,8 @@ p {
 #outputGapTextUnderData {
     font-size: x-large;
     word-wrap: normal;
-    word-break: normal;
     white-space: normal;
+    word-break: normal;
 }
 
 #under_data {
@@ -207,7 +207,7 @@ p {
     -webkit-transform: rotate(45deg);
   }
 
-  @media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 480px) {
 
     #header {
         font-size: 70px;
