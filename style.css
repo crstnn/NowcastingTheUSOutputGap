@@ -206,6 +206,8 @@ p {
 
   @media only screen and (max-device-width: 480px) {
 
+    title {font-size: 200%}
+
     .t {
         width: 97%;
         font-size: 50px;
@@ -229,7 +231,7 @@ p {
     }
 
     #dataTable{
-        font-size: normal;
+        font-size: 30px;
     }
 
     div#footer {
@@ -241,11 +243,11 @@ p {
     }
 
     #last_update {
-        font-size: normal;
+        font-size: 30px;
     }
 
     #disclaimer {
-        font-size: normal;
+        font-size: 30px;
         width:50%;
     }
 
