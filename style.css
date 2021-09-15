@@ -228,6 +228,10 @@ p {
         font-size: 60px;
     }
 
+    #dataTable{
+        font-size: normal;
+    }
+
     div#footer {
         font-size: 30px;
     }
