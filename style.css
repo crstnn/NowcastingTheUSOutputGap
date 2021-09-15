@@ -210,7 +210,7 @@ p {
   @media only screen and (max-device-width: 480px) {
 
     #header {
-        font-size: xxx-large;
+        font-size: 70px;
     }
 
     .t {
