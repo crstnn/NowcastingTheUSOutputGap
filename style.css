@@ -203,11 +203,19 @@ p {
 
     .t {
         width: 98%;
-        font-size: 40px;
+        font-size: 50px;
     }
     
     div#graph {
         width: 100%;
+    }
+
+    div#footer {
+        font-size: 40px;
+    }
+
+    .collapsible {
+        font-size: 50px;
     }
 
   }
