@@ -209,6 +209,10 @@ p {
 
   @media only screen and (max-device-width: 480px) {
 
+    #header {
+        font-size: xxx-large;
+    }
+
     .t {
         width: 90%;
         font-size: 50px;
