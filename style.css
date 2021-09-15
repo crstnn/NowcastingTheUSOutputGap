@@ -194,3 +194,14 @@ p {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
   }
+
+  @media only screen and (max-device-width: 480px) {
+
+    .t {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        width: 90%;
+        text-align: justify;
+        font-size: normal;
+    }
+
+  }
