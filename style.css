@@ -128,7 +128,7 @@ p {
     align-items: center;
 }
 
-#outputGapTextUnderData {
+#output_gap_text_under_data {
     font-size: x-large;
     word-wrap: normal;
     white-space: normal;
@@ -143,6 +143,9 @@ p {
     justify-content: center;
     align-items: center;
     text-align: center;
+    word-wrap: normal;
+    white-space: normal;
+    word-break: normal;
 }
 
 .topNav {
@@ -226,7 +229,7 @@ p {
         width: 100%;
     }
 
-    #outputGapTextUnderData {
+    #output_gap_text_under_data {
         font-size: 55px;
     }
 
