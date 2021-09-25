@@ -258,7 +258,7 @@ p {
 
   }
 
-  @media only screen and (max-device-width: 632px) and (orientation : landscape) {
+  @media only screen and (max-device-width: 800px) and (orientation : landscape) {
 
     #header {
         font-size: 40px;
