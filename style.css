@@ -257,3 +257,49 @@ p {
     }
 
   }
+
+  @media only screen and (max-device-width: 632px) and (orientation : landscape) {
+
+    #header {
+        font-size: 40px;
+    }
+
+    .t {
+        width: 70%;
+        font-size: 40px;
+    }
+    
+    #graph {
+        width: 100%;
+    }
+    
+    div#graph {
+        width: 100%;
+    }
+
+    #output_gap_text_under_data {
+        font-size: 50px;
+    }
+
+    #dataTable{
+        font-size: 30px;
+    }
+
+    div#footer {
+        font-size: 30px;
+    }
+
+    .collapsible {
+        font-size: 40px;
+    }
+
+    #last_update {
+        font-size: 30px;
+    }
+
+    #disclaimer {
+        font-size: 30px;
+        width:70%;
+    }
+
+  }
