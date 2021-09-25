@@ -212,7 +212,7 @@ p {
     -webkit-transform: rotate(45deg);
   }
 
-@media only screen and (max-device-width: 632px) and (orientation : landscape) {
+@media only screen and (max-device-width: 632px) and (orientation : portrait) {
 
     #header {
         font-size: 40px;
