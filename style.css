@@ -220,7 +220,7 @@ p {
 
     .t {
         width: 80%;
-        font-size: 40px;
+        font-size: 38px;
     }
     
     #graph {
@@ -232,7 +232,7 @@ p {
     }
 
     #output_gap_text_under_data {
-        font-size: 45px;
+        font-size: 42px;
     }
 
     #dataTable{
