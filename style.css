@@ -260,13 +260,8 @@ p {
 
 @media only screen and (max-device-width: 950px) and (orientation : landscape) {
 
-    #header {
-        font-size: 35px;
-    }
-
     .t {
         width: 70%;
-        font-size: 40px;
     }
     
     #graph {
@@ -275,31 +270,6 @@ p {
     
     div#graph {
         width: 95%;
-    }
-
-    #output_gap_text_under_data {
-        font-size: 45px;
-    }
-
-    #dataTable{
-        font-size: 30px;
-    }
-
-    div#footer {
-        font-size: 30px;
-    }
-
-    .collapsible {
-        font-size: 40px;
-    }
-
-    #last_update {
-        font-size: 30px;
-    }
-
-    #disclaimer {
-        font-size: 20px;
-        width:70%;
     }
 
   }
