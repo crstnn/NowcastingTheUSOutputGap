@@ -215,12 +215,12 @@ p {
 @media only screen and (max-device-width: 480px) {
 
     #header {
-        font-size: 62px;
+        font-size: 55px;
     }
 
     .t {
-        width: 90%;
-        font-size: 50px;
+        width: 80%;
+        font-size: 40px;
     }
     
     #graph {
@@ -232,7 +232,7 @@ p {
     }
 
     #output_gap_text_under_data {
-        font-size: 55px;
+        font-size: 50px;
     }
 
     #dataTable{
@@ -244,7 +244,7 @@ p {
     }
 
     .collapsible {
-        font-size: 50px;
+        font-size: 40px;
     }
 
     #last_update {

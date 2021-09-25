@@ -268,9 +268,14 @@ for (var i = 0; i < dataCollapsible.length; i++) {
 };
 
 
-function round(val) {
-  if (val == "None") { return "-" };
-  return Math.round(val * 100) / 100;
+function round(value) {
+  function countDecimals(val) {
+    if(Math.floor(val) === val) return 0;
+    return val.toString().split(".")[1].length || 0;
+    }
+  if (value == "None") return "-";
+  if (countDecimals(value) <=2) return value;
+  return parseFloat(value).toFixed(2);
 };
 
 function buildTable(dataDict) {
