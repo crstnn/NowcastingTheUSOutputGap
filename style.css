@@ -215,7 +215,7 @@ p {
 @media only screen and (max-device-width: 632px) and (orientation : portrait) {
 
     #header {
-        font-size: 25px;
+        font-size: 30px;
     }
 
     .t {
