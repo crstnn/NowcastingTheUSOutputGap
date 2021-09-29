@@ -216,8 +216,8 @@ req.open("GET", URL, true);
 req.timeout = 8000;
 
 req.onload = function () {
+  const fig = document.getElementById(graphDiv);
   if (this.status == 200){
-    const fig = document.getElementById(graphDiv);
     fig.innerHTML = '';
     var reqJSON =  JSON.parse(req.responseText);
     graph(reqJSON);
@@ -240,7 +240,7 @@ req.onload = function () {
 
     buildTable(reqJSON.last4MonthsTable);
 
-  };
+  } else { fig.innerHTML = '<b>Site undergoing maintenance. Please come back later.</b></br>'; };
 };
 
 req.send(null);
