@@ -217,10 +217,10 @@ req.timeout = 8000;
 
 req.onload = function () {
   if (this.status == 200){
+    const fig = document.getElementById(graphDiv);
+    fig.innerHTML = '';
     var reqJSON =  JSON.parse(req.responseText);
     graph(reqJSON);
-    
-    const fig = document.getElementById(graphDiv);
 
     fig.on('plotly_legenddoubleclick', () => false);
 
