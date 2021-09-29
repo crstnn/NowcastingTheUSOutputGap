@@ -92,13 +92,13 @@ function graph(reqJSON) {
   const concreteYVal = [];
 
   for (var i = 0; i < cValList.length; i++) {
-    concreteYVal.push(cValList[i]['gapPercentage']);
+    concreteYVal.push(round(cValList[i]['gapPercentage']));
   }
 
   const nowcastForecastYVal = [];
 
   for (var i = 0; i < nValList.length; i++) {
-    nowcastForecastYVal.push(nValList[i]['gapPercentage']);
+    nowcastForecastYVal.push(round(nValList[i]['gapPercentage']));
   }
 
   const 
