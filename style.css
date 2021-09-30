@@ -106,7 +106,9 @@ p {
 }
 
 .button {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     margin: 0.5px;
+    font-size: medium;
     background-color: rgb(235, 229, 229);
     color: black;
     border: 1.5px solid #0b789c;
