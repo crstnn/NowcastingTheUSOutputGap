@@ -36,11 +36,11 @@ function getYearAndQuarter(val) {
   return String(~~val) + " " + getQuarter(val);
 };
 
+const zip = (a, b) => a.map((key, idx) => [key, b[idx]]);
+
 function writeTextBelowGraph2(reqJSON){
   // perhaps for future version OBSOLETE FOR NOW
   const obsDictCombined = Object.assign({}, reqJSON['concreteObservations'], reqJSON['nowcastForecastObservations']);
-
-  const zip = (a, b) => a.map((key, idx) => [key, b[idx]]);
 
   const obsToDisplay = zip(Object.keys(obsDictCombined), Object.values(obsDictCombined)).filter(o => Boolean(o[1]["isToBeDisplayed"]));
   // post-condition of GET request, only ever 2 obs to display. We will just display the first two if this no longer holds
@@ -71,11 +71,13 @@ function writeTextBelowGraph(reqJSON){
     nowcastForcastXVal = Object.keys(reqJSON['nowcastForecastObservations']),
     lastQuarterOutputGap = Math.round(cValList[cValList.length-1]['gapPercentage'] * 10) / 10,
     nowcastGap = Math.round(nValList[0]['gapPercentage'] * 10) / 10,
+    forecastGap = Math.round(nValList[1]['gapPercentage'] * 10) / 10,
     lastQuarterTypeIsIntitialRealised = Boolean(cValList[cValList.length-1]['isRealized']),
     nowcastGapIsIntitialRealised = Boolean(nValList[0]['isRealized']);
 
   const outputGapTextDiv = document.getElementById(outputGapText);
   outputGapTextDiv.innerHTML = `<p>
+                                  Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>
                                   Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(initial realized)' : ""}<br/>
                                   Output Gap ${getYearAndQuarter(concreteXVal[concreteXVal.length-1])}: ${lastQuarterOutputGap}% ${lastQuarterTypeIsIntitialRealised ? '(initial realized)' : ""}
                                   </p>`;
