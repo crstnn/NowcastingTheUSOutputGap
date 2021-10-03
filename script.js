@@ -1,28 +1,28 @@
 const URL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap-all-data/';
 
-const concreteColour = "#0b789c";
-const nowcastColour = "#EF8354";
-const forecastColour = "#89b34a";
-const recessionColour = "#DDDDDD";
-const uncalledRecessionColour = "#f6eabe";
-const graphDiv = "graph";
-const outputGapText = "output_gap_text_under_data";
+const concreteColour = "#0b789c",
+      nowcastColour = "#EF8354",
+      forecastColour = "#89b34a",
+      recessionColour = "#DDDDDD",
+      uncalledRecessionColour = "#f6eabe",
+      graphDiv = "graph",
+      outputGapText = "output_gap_text_under_data";
 
 
 function getAPIData(url) {
-  var req = new XMLHttpRequest();
+  const req = new XMLHttpRequest();
   return req.open("GET", url, true);
 };
 
 function getQuarter(val, isTruncated=true) {
-  q = val % 1;
-  dTrunc = {
+  const q = val % 1;
+  const dTrunc = {
     0: "Q1",
     0.25: "Q2",
     0.5: "Q3",
     0.75: "Q4"
   };
-  d = {
+  const d = {
     0: "1" + "st".sup() + " Quarter",
     0.25: "2" + "nd".sup() + " Quarter",
     0.5: "3" + "rd".sup() + " Quarter",
@@ -113,7 +113,7 @@ function graph(reqJSON) {
 
   yearQuarterText = Object.keys(reqJSON['concreteObservations']).map(getYearAndQuarter);
 
-  var traceConcreteObs = {
+  const traceConcreteObs = {
     x: concreteXVal,
     y: concreteYVal,
     mode: 'lines + markers',
@@ -123,7 +123,7 @@ function graph(reqJSON) {
     line: { color: concreteColour }
   };
 
-  var traceNowcast = {
+  const traceNowcast = {
     x: nowcastXVal,
     y: nowcastYVal,
     mode: 'lines + markers',
@@ -133,7 +133,7 @@ function graph(reqJSON) {
     line: { color: nowcastColour }
   };
 
-  var traceForecast = {
+  const traceForecast = {
     x: forecastXVal,
     y: forecastYVal,
     mode: 'lines + markers',
@@ -144,7 +144,7 @@ function graph(reqJSON) {
     line: { color: forecastColour }
   };
 
-  var layout = {
+  const layout = {
     autosize: true,
     shapes: [
       {
@@ -213,7 +213,7 @@ function graph(reqJSON) {
 
 };
 
-var req = new XMLHttpRequest();
+const req = new XMLHttpRequest();
 req.open("GET", URL, true);
 req.timeout = 8000;
 
@@ -221,7 +221,7 @@ req.onload = function () {
   const fig = document.getElementById(graphDiv);
   if (this.status == 200){
     fig.innerHTML = '';
-    var reqJSON =  JSON.parse(req.responseText);
+    const reqJSON =  JSON.parse(req.responseText);
     graph(reqJSON);
 
     fig.on('plotly_legenddoubleclick', () => false);
@@ -230,7 +230,7 @@ req.onload = function () {
       const curvNum = clickData.curveNumber;
 
       if ([1, 2].includes(curvNum)) {
-        var update = {};
+        const update = {};
         update["shapes[" + String(curvNum - 1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false;
 
         Plotly.relayout(graphDiv, update);
@@ -260,7 +260,7 @@ for (var i = 0; i < dataCollapsible.length; i++) {
   dataCollapsible[i].addEventListener("click", function () {
     this.classList.toggle("active");
     dataCollapsibleArrow.classList.toggle("down");
-    var content = this.nextElementSibling;
+    const content = this.nextElementSibling;
     if (content.style.maxHeight) {
       content.style.maxHeight = null;
     } else {
@@ -281,7 +281,7 @@ function round(value) {
 };
 
 function buildTable(dataDict) {
-  month = {
+  const month = {
     "01": "January",
     "02": "February",
     "03": "March",
@@ -297,9 +297,9 @@ function buildTable(dataDict) {
   };
 
   const last4monthsTable = document.getElementById('dataTable');
-  let dataArray = [];
-  let keyArray = [];
-  for (let key in dataDict) {
+  const dataArray = [];
+  const keyArray = [];
+  for (const key in dataDict) {
     keyArray.push(key);
     dataArray.push(dataDict[key]);
   };
@@ -308,7 +308,7 @@ function buildTable(dataDict) {
     "Consumer sentiment (indx.)", "Unemployment rate (%)", "Monthly CPI Inflation (%)", "IP growth (%)", "Housing starts growth (%)"];
   dictKeys = ["FEDFUNDS", "TERMSPREAD", "RISKSPREAD", "SP500PERC", "UMCSENT", "UNRATE", "CPIAUCSLPERC", "INDPROPERC", "HOUSTPERC"];
 
-  let horizontalHeader = "<tr><th> </th>";
+  var horizontalHeader = "<tr><th> </th>";
   for (const key of keyArray) {
     horizontalHeader += "<th>" + month[key.slice(-2)] + "</th>";
   };
@@ -317,7 +317,7 @@ function buildTable(dataDict) {
   last4monthsTable.innerHTML += horizontalHeader;
 
   for (var k = 0; k < dictKeys.length; k++) {
-    let row = `<tr><th> ${titles[k]} </th>`;
+    var row = `<tr><th> ${titles[k]} </th>`;
     for (var i = 0; i < dataArray.length; i++) {
       row += `<td>${round(dataArray[i][dictKeys[k]])}</td>`;
     };
