@@ -33,7 +33,7 @@ function getQuarter(val, isTruncated=true) {
 
 
 function getYearAndQuarter(val) {
-  return String(~~val) + " " + getQuarter(val);
+  return String(~~val) + getQuarter(val);
 };
 
 const zip = (a, b) => a.map((key, idx) => [key, b[idx]]);
