@@ -16,7 +16,7 @@
 
 <body onresize="onResize()">
     <div id="data">
-        <div id="graph">loading...</br></div>
+        <div id="graph">loading...<br></div>
     </div>
 
     <div id="under_data">
@@ -29,53 +29,53 @@
     </div>
     <div id="abstract_container">
         <div class="t">
-            <br />
+            <br>
             The nowcast for the U.S. output gap is based on the method described in
             <a target="_blank" rel="noopener noreferrer"
                 href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Berger, Morley, and
                 Wong</a> (forthcoming, <i>Journal of Econometrics</i>). Please cite the paper when referring to the
-            nowcast.<br /><br />
+            nowcast.<br><br>
             Nowcast estimate(s) are reported in the figure using an orange line extending from the realized estimated output gap for earlier quarters. 
             Conditional forecasts can be toggled on or off by clicking on the label in the legend and are displayed as a green line.
             Exact values of the output gap can be seen by hovering over or tapping on each point in the figure. 
-            <br />
-            <br />
+            <br>
+            <br>
             For more information on the monthly indicators used in calculating the nowcast(s) please click the 'Monthly Indicators' dropdown. 
             The realized output gap is based on parameter estimates for the mixed-frequency Bayesian VAR specified in
             <a target="_blank" rel="noopener noreferrer"
                 href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Berger, Morley, and
                 Wong</a>
-                and data up to the latest quarter for which real GDP has been released.<br />
+                and data up to the latest quarter for which real GDP has been released.<br>
 
-            <br />
+            <br>
 
             <button class="collapsible">Monthly Indicators<i id="arrow" class="arrow left"></i></button>
             <div class="content">
-            </br>
+            <br>
                 The following table contains the latest values of monthly indicators that feed into the nowcast(s) (note that consumer sentiment may be a
                 preliminary measure and there can be small revisions to IP growth and
                 housing starts with subsequent monthly releases):
-            </br></br>
+            <br><br>
                 <table class="table">
                     <tbody id="dataTable">
 
                     </tbody>
                 </table>
                 <p class="dataBoxText">
-                    </br>
+                    <br>
                     <hr>
-                    </br>
+                    <br>
                     Below are the three data files that can be used to run the MATLAB code linked to below by placing in the same directory. These files are updated daily. 
                     These data are mostly gathered from FRED, except for some indicators reported on FRED with a lag, which are scraped from elsewhere.                
-                    </br></br>
+                    <br><br>
                     <i>Contents by column</i> (based on FRED codes - starting in 1967):
-                    </br>
+                    <br>
                     Monthly: FEDFUNDS, UMCSENT, UNRATE, CPIAUCSL, INDPRO, HOUST, SP500
-                    </br>
+                    <br>
                     Monthly spread: BAA, AAA, DGS10, DGS1
-                    </br>
+                    <br>
                     Quarterly: GDPC1
-                    </br>
+                    <br>
                     Gap (as shown on graph): Output gap, whether RGDP has been realized
                 </p>
                 <div id="download">
@@ -88,50 +88,51 @@
                     <button id="download_button" class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'"
                         type="button">Download Latest Quarterly Time-Series CSV</button>
-                    </br>
+                    <br>
                 </div>
             </div>
             
             <h4>Reference:</h4>
 
             Tino Berger, James Morley and Benjamin Wong, forthcoming, &quot;Nowcasting
-            the Output Gap,&quot; <i>Journal of Econometrics</i>.<br /> <br />
+            the Output Gap,&quot; <i>Journal of Econometrics</i>.<br> <br>
 
             <a target="_blank" rel="noopener noreferrer"
                 href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Link to journal
                 version</a>
-            <br />
+            <br>
             <a target="_blank" rel="noopener noreferrer" href="https://ssrn.com/abstract=3586374">Link to working
                 paper</a>
-            <br />
+            <br>
             <a target="_blank" rel="noopener noreferrer"
                 href="https://drive.google.com/file/d/1-lLAqZe4bU622uHuOmySFdVxt9fLrIdf/view?usp=sharing">Link to
                 code</a>
-            <br /><br />
+            <br><br>
 
             <script src="script.js"></script>
             
         </div>
     </div>
     <div id="footer">
-        <br />
+        <br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener noreferrer" href="http://sites.google.com/site/drtinoberger">Tino
             Berger</a>&nbsp;&nbsp;&nbsp;&nbsp;
         <a target="_blank" rel="noopener noreferrer" href="http://sites.google.com/site/jamescmorley">James
             Morley</a>&nbsp;&nbsp;&nbsp;&nbsp;
         <a target="_blank" rel="noopener noreferrer" href="http://sites.google.com/site/benjaminwongshijie">Benjamin
             Wong</a>
-        <br />
-        <br />
+        <br>
+        <br>
         <a href="https://twitter.com/intent/tweet?button_hashtag=outputgapnow" class="twitter-hashtag-button"
             data-show-count="false">Tweet @ #outputgapnow</a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </br>
-        </br>
+        <br>
+        <br>
         <div id="disclaimer">
             Note that we are not responsible for any financial decisions
-            made based on the results presented here.
+            made based on the results presented here. 
         </div>
+        <br>
     </div>
 </body>
 
