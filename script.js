@@ -61,7 +61,7 @@ function writeTextBelowGraph(reqJSON){
 
 function graph(reqJSON) {
 
-  document.getElementById("last_update").innerHTML = "Last update (UTC): " + reqJSON['latestRunUTC'].slice(0, reqJSON['latestRunUTC'].length - 3);
+  document.getElementById("last_update").innerHTML = "Last updated (UTC): " + reqJSON['latestRunUTC'].slice(0, reqJSON['latestRunUTC'].length - 3);
 
   const cValList = Object.values(reqJSON['concreteObservations']);
   const nValList = Object.values(reqJSON['nowcastForecastObservations']);
