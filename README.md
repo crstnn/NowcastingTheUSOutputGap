@@ -1,1 +1,1 @@
-Website can be viewed [here](https://outputgapnow.com/) or [here](https://crstnn.github.io/NowcastingTheUSOutputGapFE/).
+The website for "Nowcasting the Output Gap" according to Berger, Wong and Morley's mixed-frequency Bayesian VAR model can be viewed [here](https://outputgapnow.com/) or [here](https://crstnn.github.io/NowcastingTheUSOutputGapFE/).
