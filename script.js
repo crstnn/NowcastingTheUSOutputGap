@@ -38,6 +38,16 @@ function getYearAndQuarter(val) {
 
 function writeTextBelowGraph(reqJSON){
 
+  function isCurrentQuarter(conditionalForecastXval){
+    const conditionalForecastQuarter = conditionalForecastXval % 1;
+    const lastUpdateMonth = parseInt(reqJSON['latestRunUTC'].slice(5, 7));
+
+    return (conditionalForecastQuarter == 0 && [1, 2, 3].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.25 && [4, 5, 6].includes(lastUpdateMonth)) || 
+            (conditionalForecastQuarter == 0.5 && [7, 8, 9].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.75 && [10, 11, 12].includes(lastUpdateMonth));
+
+  };
+  
+
   const cValList = Object.values(reqJSON['concreteObservations']);
   const nValList = Object.values(reqJSON['nowcastForecastObservations']);
 
@@ -51,11 +61,13 @@ function writeTextBelowGraph(reqJSON){
     nowcastGapIsIntitialRealised = Boolean(nValList[0]['isRealized']);
 
   const outputGapTextDiv = document.getElementById(outputGapText);
-  outputGapTextDiv.innerHTML = `<p>
-                                  Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>
-                                  Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(initial realized)' : "(nowcast)"}<br/>
-                                  Output Gap ${getYearAndQuarter(concreteXVal[concreteXVal.length-1])}: ${lastQuarterOutputGap}% ${lastQuarterTypeIsIntitialRealised ? '(initial realized)' : ""}
-                                  </p>`;
+
+  const textForDiv = '<p>' + (isCurrentQuarter(nowcastForcastXVal[1]) ? `Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>` : "") + 
+    `Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(initial realized)' : "(nowcast)"}<br/>
+    Output Gap ${getYearAndQuarter(concreteXVal[concreteXVal.length-1])}: ${lastQuarterOutputGap}% ${lastQuarterTypeIsIntitialRealised ? '(initial realized)' : ""}
+    </p>`;
+  
+  outputGapTextDiv.innerHTML = textForDiv;
 
 };
 
