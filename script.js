@@ -36,31 +36,6 @@ function getYearAndQuarter(val) {
   return String(~~val) + getQuarter(val);
 };
 
-const zip = (a, b) => a.map((key, idx) => [key, b[idx]]);
-
-function writeTextBelowGraph2(reqJSON){
-  // perhaps for future version OBSOLETE FOR NOW
-  const obsDictCombined = Object.assign({}, reqJSON['concreteObservations'], reqJSON['nowcastForecastObservations']);
-
-  const obsToDisplay = zip(Object.keys(obsDictCombined), Object.values(obsDictCombined)).filter(o => Boolean(o[1]["isToBeDisplayed"]));
-  // post-condition of GET request, only ever 2 obs to display. We will just display the first two if this no longer holds
-
-  const
-    quarterToDisplay1 = Math.round(obsToDisplay[0][1]['gapPercentage'] * 10) / 10,
-    quarterToDisplay2 = Math.round(obsToDisplay[1][1]['gapPercentage'] * 10) / 10,
-    lastQuarterTypeIsIntitialRealised = Boolean(obsToDisplay[0][1]['isRealized']),
-    nowcastGapIsIntitialRealised = Boolean(obsToDisplay[1][1]['isRealized']);
-
-  const outputGapTextDiv = document.getElementById(outputGapText);
-  outputGapTextDiv.innerHTML = `<p>
-                                  ${getQuarter(obsToDisplay[0][0], false)} 
-                                  Output Gap: ${quarterToDisplay1} ${lastQuarterTypeIsIntitialRealised ? '(initial realized)' : ""}<br/>
-                                  ${getQuarter(obsToDisplay[1][0], false)} 
-                                  Output Gap: ${quarterToDisplay2} ${nowcastGapIsIntitialRealised ? '(initial realized)' : ""}
-                                  </p>`;
-
-};
-
 function writeTextBelowGraph(reqJSON){
 
   const cValList = Object.values(reqJSON['concreteObservations']);
@@ -77,8 +52,8 @@ function writeTextBelowGraph(reqJSON){
 
   const outputGapTextDiv = document.getElementById(outputGapText);
   outputGapTextDiv.innerHTML = `<p>
-                                  Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (conditional forecast)<br/>
-                                  Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(initial realized)' : "(nowcast estimate)"}<br/>
+                                  Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>
+                                  Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(initial realized)' : "(nowcast)"}<br/>
                                   Output Gap ${getYearAndQuarter(concreteXVal[concreteXVal.length-1])}: ${lastQuarterOutputGap}% ${lastQuarterTypeIsIntitialRealised ? '(initial realized)' : ""}
                                   </p>`;
 
