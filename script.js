@@ -78,7 +78,7 @@ function writeTextBelowGraph(reqJSON){
   const outputGapTextDiv = document.getElementById(outputGapText);
   outputGapTextDiv.innerHTML = `<p>
                                   Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (conditional forecast)<br/>
-                                  Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(initial realized)' : ""}<br/>
+                                  Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(initial realized)' : "(nowcast)"}<br/>
                                   Output Gap ${getYearAndQuarter(concreteXVal[concreteXVal.length-1])}: ${lastQuarterOutputGap}% ${lastQuarterTypeIsIntitialRealised ? '(initial realized)' : ""}
                                   </p>`;
 
