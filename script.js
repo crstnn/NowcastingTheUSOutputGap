@@ -47,7 +47,6 @@ function writeTextBelowGraph(reqJSON){
 
   };
   
-
   const cValList = Object.values(reqJSON['concreteObservations']);
   const nValList = Object.values(reqJSON['nowcastForecastObservations']);
 
@@ -59,15 +58,12 @@ function writeTextBelowGraph(reqJSON){
     forecastGap = Math.round(nValList[1]['gapPercentage'] * 10) / 10,
     lastQuarterTypeIsIntitialRealised = Boolean(cValList[cValList.length-1]['isRealized']),
     nowcastGapIsIntitialRealised = Boolean(nValList[0]['isRealized']);
-
-  const outputGapTextDiv = document.getElementById(outputGapText);
-
-  const textForDiv = '<p>' + (isCurrentQuarter(nowcastForcastXVal[1]) ? `Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>` : "") + 
-    `Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(initial realized)' : "(nowcast)"}<br/>
-    Output Gap ${getYearAndQuarter(concreteXVal[concreteXVal.length-1])}: ${lastQuarterOutputGap}% ${lastQuarterTypeIsIntitialRealised ? '(initial realized)' : ""}
-    </p>`;
   
-  outputGapTextDiv.innerHTML = textForDiv;
+  document.getElementById(outputGapText).innerHTML = 
+      '<p>' + (isCurrentQuarter(nowcastForcastXVal[1]) ? `Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>` : "") + 
+      `Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(initial realized)' : "(nowcast)"}<br/>
+      Output Gap ${getYearAndQuarter(concreteXVal[concreteXVal.length-1])}: ${lastQuarterOutputGap}% ${lastQuarterTypeIsIntitialRealised ? '(initial realized)' : ""}
+      </p>`;
 
 };
 
