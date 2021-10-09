@@ -291,7 +291,7 @@ function buildTable(dataDict) {
     "Consumer sentiment (indx.)", "Unemployment rate (%)", "Monthly CPI Inflation (%)", "IP growth (%)", "Housing starts growth (%)"];
   const dictKeys = ["FEDFUNDS", "TERMSPREAD", "RISKSPREAD", "SP500PERC", "UMCSENT", "UNRATE", "CPIAUCSLPERC", "INDPROPERC", "HOUSTPERC"];
 
-  var horizontalHeader = "<tr><th> </th>";
+  var horizontalHeader = "<tr><th></th>";
   for (const key of keyArray) {
     horizontalHeader += "<th>" + month[key.slice(-2)] + "</th>";
   };
@@ -300,7 +300,7 @@ function buildTable(dataDict) {
   last4monthsTable.innerHTML += horizontalHeader;
 
   for (var k = 0; k < dictKeys.length; k++) {
-    var row = `<tr><th> ${titles[k]} </th>`;
+    var row = `<tr><th>${titles[k]}</th>`;
     for (var i = 0; i < dataArray.length; i++) {
       row += `<td>${round(dataArray[i][dictKeys[k]])}</td>`;
     };
