@@ -225,7 +225,7 @@ req.onload = function () {
 
     buildTable(reqJSON.last4MonthsTable);
 
-  } else { fig.innerHTML = '<b>Site undergoing maintenance. Please come back later.</b></br>'; };
+  } else { fig.innerHTML = '<b>Site momentarily undergoing maintenance. Please come back later.</b></br>'; };
 };
 
 req.send(null);
