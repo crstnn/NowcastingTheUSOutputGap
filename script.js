@@ -263,6 +263,18 @@ function round(value) {
   return parseFloat(value).toFixed(2);
 };
 
+function roundString(value, isTo1DP=False) {
+  function countDecimals(val) {
+    if(Math.floor(val) === val) return 0;
+    return val.toString().split(".")[1].length || 0;
+    };
+  if (value == "None") return "-";
+
+  if (isTo1DP && countDecimals(value) <=2) return value;
+
+  return parseFloat(value).toFixed(2);
+};
+
 function buildTable(dataDict) {
   const month = {
     "01": "January",
@@ -302,7 +314,7 @@ function buildTable(dataDict) {
   for (var k = 0; k < dictKeys.length; k++) {
     var row = `<tr><th>${titles[k]}</th>`;
     for (var i = 0; i < dataArray.length; i++) {
-      row += `<td>${round(dataArray[i][dictKeys[k]])}</td>`;
+      row += `<td>${roundString(dataArray[i][dictKeys[k]], (dictKeys[k] == "UNRATE" || dictKeys[k] == "UMCSENT"))}</td>`;
     };
     row += "</tr>";
     last4monthsTable.innerHTML += row;
