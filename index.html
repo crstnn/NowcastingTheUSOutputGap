@@ -54,7 +54,7 @@
             <br>
                 The table below contains the most recent values of monthly indicators that feed into the output gap estimates. Note that consumer sentiment may be a
                 preliminary measure and there can be small revisions to IP growth and
-                housing starts over time. Also, interest rates used in calculating spreads are measured to two decimals.
+                housing starts over time. Also, we note that the interest rates used in calculating spreads are measured only to two decimals.
             <br><br>
                 <table class="table">
                     <tbody id="dataTable">
@@ -65,10 +65,10 @@
                     <br>
                     <hr>
                     <br>
-                    Below are three data files that can be placed in the same directory as the MATLAB code (see link to code at the bottom of this webpage) in order to replicate the nowcast estimates. 
-                    These data are mostly gathered from FRED, except for some indicators reported on FRED with a lag or truncated timelines, which are scraped from elsewhere.               
+                    Below are three data files that can be placed in the same directory as the MATLAB code linked to at the bottom of this webpage in order to replicate the nowcast estimates. 
+                    These data are mostly gathered from FRED, except for some indicators reported on FRED with a lag or truncated timelines for which we scrape from other sources.               
                     <br><br>
-                    <u>Contents by column</u> (<i>based on FRED codes - starting from January 1967 or 1967Q1</i>):
+                    <u>Contents by column</u> (<i>denoted by FRED codes - starting from January 1967 or 1967Q1</i>):
                     <br>
                     Monthly data: FEDFUNDS, UMCSENT, UNRATE, CPIAUCSL, INDPRO, HOUST, SP500
                     <br>
@@ -79,13 +79,13 @@
                 <div id="download">
                     <button id="download_button" class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly/?type=csv'"
-                        type="button">Download Latest Monthly Time Series CSV</button>
+                        type="button">Download Monthly Time Series CSV</button>
                     <button id="download_button" class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-spread/?type=csv'"
-                        type="button">Download Latest Monthly Spread Time Series CSV</button>
+                        type="button">Download Monthly Time Series for Spreads CSV</button>
                     <button id="download_button" class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'"
-                        type="button">Download Latest Quarterly Time Series CSV</button>
+                        type="button">Download Quarterly Time Series CSV</button>
                     <br>
                 </div>
             </div>
