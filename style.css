@@ -208,12 +208,12 @@ p {
   .left {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
-  }
+}
 
   .down {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
-  }
+}
 
 @media only screen and (max-device-width: 632px) and (orientation : portrait) {
 
