@@ -195,7 +195,7 @@ p {
     margin-bottom: 10px;
     border-width: 0 3px 3px 0;
     display: inline-block;
-    padding: 3px;
+    padding: 4px;
   }
 
   .left {
@@ -272,7 +272,11 @@ p {
     .button {
         font-size: 35px;
     }
-    
+
+    .arrow {
+        border-width: 0 5px 5px 0;
+        padding: 10px;
+    }
 
   }
 
