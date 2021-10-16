@@ -156,13 +156,14 @@ function graph(reqJSON) {
         }
       }
     ],
-    margin: { 'l': 40, 'r': 40, 't': 30, 'b': 35 },
+    margin: { 'l': 30, 'r': 30, 't': 30, 'b': 20 },
     yaxis: {
       ticksuffix: "%",
       automargin: true
     },
     xaxis: {
-      showgrid: false
+      showgrid: false,
+      automargin: true
     },
     legend: {
       orientation: "h",
