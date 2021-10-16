@@ -259,6 +259,10 @@ p {
         width:70%;
     }
 
+    .button {
+        font-size: large;
+    }
+
   }
 
 @media only screen and (max-device-width: 950px) and (orientation : landscape) {
@@ -273,6 +277,10 @@ p {
     
     div#graph {
         width: 90%;
+    }
+
+    .button {
+        font-size: large;
     }
 
   }
