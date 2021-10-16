@@ -232,7 +232,7 @@ p {
 
 
 
-@media only screen and (max-device-width: 632px) and (orientation : portrait) {
+@media only screen and (max-device-width: 650px) and (orientation : portrait) {
 
     .t {
         width: 80%;
