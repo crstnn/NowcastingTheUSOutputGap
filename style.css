@@ -83,6 +83,7 @@ th {
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+    width: 80%;
 }
 
 #disclaimer {
@@ -98,21 +99,13 @@ th {
 
 p {
     display: block;
-    width: 800px;
     height: auto;
     word-break: normal;
     word-wrap: normal;
     white-space: normal;
+    font-size: normal;
 }
 
-.button {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    margin: 0.5px;
-    font-size: medium;
-    background-color: rgb(235, 229, 229);
-    color: black;
-    border: 1.5px solid #0b789c;
-}
 
 .button:hover {
     background-color: rgb(211, 210, 210);
@@ -171,7 +164,7 @@ p {
 
 .collapsible {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    background-color: rgb(182, 182, 182);
+    background-color: rgb(151, 151, 151);
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -184,22 +177,22 @@ p {
 }
 
 .active, .collapsible:hover {
-    background-color: rgb(148, 145, 145);
+    background-color: rgb(133, 133, 133);
 }
 
 .content {
     padding: 0px 25px 0px 25px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.25s ease-out;
+    transition: max-height 0.4s ease-out;
     background-color: #f1f1f1;
 }
 
 .arrow {
     border: solid rgb(56, 56, 56);
     float: right;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
@@ -208,18 +201,39 @@ p {
   .left {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
-  }
+}
 
   .down {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
+}
+
+.button {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    margin: 1.5px;
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 16px;
+    border-radius: 1.5px;
+    border: none;
+    background: linear-gradient(180deg, #e2e2e2 0%, #c5c5c5 100%);
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    touch-action: manipulation;
+    min-width: 350px;
+  }
+  
+  .button:hover {
+    box-shadow: inset 0px 0px 0px 1px rgba(108, 154, 255, 0.5);
+    outline: 0;
+    background: #c5c5c5;
   }
 
-@media only screen and (max-device-width: 632px) and (orientation : portrait) {
 
-    #header {
-        font-size: 30px;
-    }
+
+@media only screen and (max-device-width: 520px) and (orientation : portrait) {
 
     .t {
         width: 80%;
@@ -227,37 +241,38 @@ p {
     }
     
     #graph {
-        width: 100%;
+        width: 99%;
     }
     
-    div#graph {
-        width: 100%;
-    }
 
     #output_gap_text_under_data {
         font-size: 42px;
     }
 
-    #dataTable{
-        font-size: 30px;
-    }
-
-    div#footer {
+    #dataTable, #footer, #last_update, #header{
         font-size: 30px;
     }
 
     .collapsible {
-        font-size: 40px;
+        font-size: 60px;
+        padding: 25px;
     }
 
-    #last_update {
-        font-size: 30px;
+    .arrow{
+        margin-top: 25px;
+        margin-bottom: 25px;
     }
+
 
     #disclaimer {
         font-size: 20px;
         width:70%;
     }
+
+    .button {
+        font-size: 35px;
+    }
+    
 
   }
 
@@ -271,8 +286,9 @@ p {
         width: 90%;
     }
     
-    div#graph {
-        width: 90%;
+
+    .button {
+        font-size: 22px;
     }
 
   }

@@ -6,7 +6,8 @@ const concreteColour = "#0b789c",
       recessionColour = "#DDDDDD",
       uncalledRecessionColour = "#f6eabe",
       graphDiv = "graph",
-      outputGapText = "output_gap_text_under_data";
+      outputGapText = "output_gap_text_under_data",
+      viewportHorizontalMaxSizeMobile = 520;
 
 
 function getAPIData(url) {
@@ -128,7 +129,9 @@ function graph(reqJSON) {
   };
 
   const layout = {
+    font: { size: window.screen.width < viewportHorizontalMaxSizeMobile ? 30 : 13 },
     autosize: true,
+    height: window.screen.width < viewportHorizontalMaxSizeMobile ? 650 : 500 ,
     shapes: [
       {
         type: 'line',
@@ -155,19 +158,21 @@ function graph(reqJSON) {
         }
       }
     ],
-    margin: { 'l': 35, 'r': 30, 't': 30, 'b': 30 },
+    margin: { 'l': 30, 'r': 30, 't': 25, 'b': 20 },
     yaxis: {
-      ticksuffix: "%"
+      ticksuffix: "%",
+      automargin: true
     },
     xaxis: {
-      showgrid: false
+      showgrid: false,
+      automargin: true
     },
     legend: {
       orientation: "h",
       yanchor: "top",
-      y: 1.03,
+      y:  window.screen.width < viewportHorizontalMaxSizeMobile ? 1.18 : 1.03,
       xanchor: "right",
-      x: 1
+      x: 1.03,
     }
   };
 
@@ -277,18 +282,18 @@ function roundSpecial(value, isTo1DP=False) {
 
 function buildTable(dataDict) {
   const month = {
-    "01": "January",
-    "02": "February",
-    "03": "March",
-    "04": "April",
-    "05": "May",
-    "06": "June",
-    "07": "July",
-    "08": "August",
-    "09": "September",
-    "10": "October",
-    "11": "November",
-    "12": "December",
+    "01": "Jan.",
+    "02": "Feb.",
+    "03": "Mar.",
+    "04": "Apr.",
+    "05": "May.",
+    "06": "Jun.",
+    "07": "Jul.",
+    "08": "Aug.",
+    "09": "Sept.",
+    "10": "Oct.",
+    "11": "Nov.",
+    "12": "Dec.",
   };
 
   const last4monthsTable = document.getElementById('dataTable');
