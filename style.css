@@ -230,7 +230,7 @@ p {
         width: 100%;
     }
     
-    div#graph {
+    #graph {
         width: 100%;
     }
 
@@ -242,7 +242,7 @@ p {
         font-size: 30px;
     }
 
-    div#footer {
+    #footer {
         font-size: 30px;
     }
 
@@ -275,7 +275,7 @@ p {
         width: 90%;
     }
     
-    div#graph {
+    #graph {
         width: 90%;
     }
 
