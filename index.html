@@ -9,6 +9,11 @@
 </div>
 <div class="topNav">
 </div>
+<script>
+    window.location.reload = function () {
+        window.scrollTo(0, 0);
+    };
+</script>
 
 <head>
     <script src="plotly-2.2.0.min.js"></script>
@@ -29,7 +34,6 @@
     </div>
     <div id="abstract_container">
         <div class="t">
-            <br>
             Nowcasts for the U.S. output gap are calculated following the approach described in
             <a target="_blank" rel="noopener noreferrer"
                 href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Berger, Morley, and
@@ -90,7 +94,7 @@
                         type="button">Monthly Time Series CSV</button>
                     <button id="download_button" class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-spread/?type=csv'"
-                        type="button">Monthly Spread Time Series CSV</button>
+                        type="button">Monthly Time Series for Spreads CSV</button>
                     <button id="download_button" class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'"
                         type="button">Quarterly Time Series CSV</button>
@@ -98,14 +102,13 @@
                 </div>
             </div>
 
+            <script src="script.js"></script>
+
             <h4>Reference:</h4>
-
-            Tino Berger, James Morley and Benjamin Wong, forthcoming, &quot;Nowcasting
-            the Output Gap,&quot; <i>Journal of Econometrics</i>.
-            
-            <br> 
+            Tino Berger, James Morley and Benjamin Wong, forthcoming, "Nowcasting the Output Gap," <i>Journal of
+                Econometrics</i>.
             <br>
-
+            <br>
             <a target="_blank" rel="noopener noreferrer"
                 href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Link to journal
                 version</a>
@@ -117,8 +120,6 @@
                 href="https://drive.google.com/file/d/1-lLAqZe4bU622uHuOmySFdVxt9fLrIdf/view?usp=sharing">Link to
                 code</a>
             <br><br>
-
-            <script src="script.js"></script>
 
         </div>
     </div>
