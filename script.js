@@ -128,7 +128,7 @@ function graph(reqJSON) {
   };
 
   const layout = {
-    font: { size: 13 },
+    font: { size: window.screen.width < 950 ? 20 : 13 },
     autosize: true,
     shapes: [
       {
@@ -169,7 +169,6 @@ function graph(reqJSON) {
       y: 1.03,
       xanchor: "right",
       x: 1,
-      font: { size: 14 }
     }
   };
 
