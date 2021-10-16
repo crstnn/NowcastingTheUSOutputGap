@@ -230,6 +230,7 @@ p {
     background: #c5c5c5;
   }
 
+
 @media only screen and (max-device-width: 632px) and (orientation : portrait) {
 
     .t {
@@ -238,7 +239,7 @@ p {
     }
     
     #graph {
-        width: 100%;
+        width: 99%;
     }
     
 
