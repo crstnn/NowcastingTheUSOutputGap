@@ -254,6 +254,8 @@ p {
     .collapsible {
         font-size: 40px;
         padding: 25px;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
 
 
