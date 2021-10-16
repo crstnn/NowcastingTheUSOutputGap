@@ -226,7 +226,7 @@ p {
   .button:hover {
     box-shadow: inset 0px 0.8px 0px -0.25px rgba(150, 150, 150, 0.925), 0px 0px 0px 1px rgba(108, 154, 255, 0.5);
     outline: 0;
-    background: rgb(184, 184, 184);
+    background: rgb(206, 206, 206);
   }
 
 @media only screen and (max-device-width: 632px) and (orientation : portrait) {
