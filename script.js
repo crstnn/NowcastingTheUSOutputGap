@@ -169,7 +169,7 @@ function graph(reqJSON) {
     legend: {
       orientation: "h",
       yanchor: "top",
-      y: 1.12,
+      y: 1.08,
       xanchor: "right",
       x: 1.03,
     }
