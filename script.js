@@ -216,7 +216,7 @@ req.onload = function () {
 
     fig.on('plotly_legendclick', (clickData) => {
       const curvNum = clickData.curveNumber;
-
+      if (curvNum == 0) return false;
       if ([1, 2].includes(curvNum)) {
         const update = {};
         update["shapes[" + String(curvNum - 1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false;
