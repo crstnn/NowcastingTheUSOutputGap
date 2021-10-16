@@ -6,7 +6,8 @@ const concreteColour = "#0b789c",
       recessionColour = "#DDDDDD",
       uncalledRecessionColour = "#f6eabe",
       graphDiv = "graph",
-      outputGapText = "output_gap_text_under_data";
+      outputGapText = "output_gap_text_under_data",
+      viewportMaxSizeMobile = 520;
 
 
 function getAPIData(url) {
@@ -128,9 +129,9 @@ function graph(reqJSON) {
   };
 
   const layout = {
-    font: { size: window.screen.width < 520 ? 30 : 13 },
+    font: { size: window.screen.width < viewportMaxSizeMobile ? 30 : 13 },
     autosize: true,
-    height: 500,
+    height: window.screen.width < viewportMaxSizeMobile ? 700 : 500 ,
     shapes: [
       {
         type: 'line',
@@ -169,7 +170,7 @@ function graph(reqJSON) {
     legend: {
       orientation: "h",
       yanchor: "top",
-      y:  window.screen.width < 520 ? 1.2 : 1.03,
+      y:  window.screen.width < viewportMaxSizeMobile ? 1.2 : 1.03,
       xanchor: "right",
       x: 1.03,
     }
