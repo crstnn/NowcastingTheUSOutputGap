@@ -103,6 +103,7 @@ p {
     word-break: normal;
     word-wrap: normal;
     white-space: normal;
+    font-size: normal !important;
 }
 
 
@@ -115,7 +116,6 @@ p {
     font-family: Georgia, 'Times New Roman', Times, serif;
     width: 50%;
     text-align: justify;
-    font-size: normal;
 }
 
 #abstract_container {
