@@ -116,7 +116,7 @@ p {
     font-family: Georgia, 'Times New Roman', Times, serif;
     width: 50%;
     text-align: justify;
-    font-size: normal !important;
+    font-size: normal;
 }
 
 #abstract_container {
@@ -254,13 +254,13 @@ p {
     }
 
     .collapsible {
-        font-size: 40px;
+        font-size: 50px;
         padding: 25px;
     }
 
     .arrow{
-        margin-top: 12.5px;
-        margin-bottom: 12.5px;
+        margin-top: 25px;
+        margin-bottom: 25px;
     }
 
 
