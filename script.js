@@ -157,7 +157,7 @@ function graph(reqJSON) {
         }
       }
     ],
-    margin: { 'l': 30, 'r': 30, 't': 30, 'b': 20 },
+    margin: { 'l': 30, 'r': 30, 't': 25, 'b': 20 },
     yaxis: {
       ticksuffix: "%",
       automargin: true
@@ -169,7 +169,7 @@ function graph(reqJSON) {
     legend: {
       orientation: "h",
       yanchor: "top",
-      y: 1.08,
+      y:  window.screen.width < 650 ? 1.2 : 1.03,
       xanchor: "right",
       x: 1.03,
     }
