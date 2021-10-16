@@ -24,8 +24,8 @@
         <div id="output_gap_text_under_data">
         </div>
         <button id="download_button" class="button"
-                        onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap/?type=csv'"
-                        type="button">Download Output Gap Time Series CSV</button>
+            onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap/?type=csv'"
+            type="button">Download Output Gap Time Series CSV</button>
     </div>
     <div id="abstract_container">
         <div class="t">
@@ -35,27 +35,33 @@
                 href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Berger, Morley, and
                 Wong</a> (forthcoming, <i>Journal of Econometrics</i>). Please cite the paper when referring to the
             estimates reported here.<br><br>
-            The latest nowcast is reported above and displayed in the time series plot using an orange line extending from the 
-            realized estimates of the output gap based on data up to and including the latest quarter for which real GDP has been released. 
-            Conditional forecasts can be toggled on or off in the plot by clicking on the label in the legend and are displayed as a green line. 
-            Exact values of estimates can be seen by hovering over or tapping on each point in the plot. 
-            The quarterly output gap estimates (with the columns: output gap, T/F whether real GDP for a quarter has been realized) 
-            are also available starting from 1967Q2 in the data file linked to above. 
+            The latest nowcast reported above is displayed in the time series plot using an orange line extending from
+            the
+            realized estimates of the output gap based on data up to and including the latest quarter for which real GDP
+            has been released.
+            Conditional forecasts of future values of the output gap can be toggled on or off in the plot by clicking on
+            the label in the legend and are displayed as a green line.
+            Exact values of estimates can be seen by hovering over or tapping on each point in the plot.
+            The data file linked to above contains two columns corresponding to output gap estimates starting from
+            1967Q2 and whether or not real GDP has been realized for a given quarter.
             <br>
             <br>
-            The estimates are automatically updated at least daily and usually within 30 minutes of major data releases. 
-            The official time (UTC time zone) of the latest nowcast is given directly below the time series plot.
-            For details of the most recent monthly indicators used in calculating the output gap estimates, click the 'Monthly Indicators' dropdown.
+            The estimates are automatically updated daily and usually within 30 minutes of major data releases.
+            The date (UTC time zone) of the latest nowcast is reported directly below the time series plot.
+            For details of the most recent monthly indicators used in calculating the output gap estimates, click the
+            'Monthly Indicators' dropdown.
             <br>
             <br>
 
             <button class="collapsible">Monthly Indicators<i id="arrow" class="arrow left"></i></button>
             <div class="content">
-            <br>
-                The table below contains the most recent values of monthly indicators that feed into the output gap estimates. Note that consumer sentiment may be a
+                <br>
+                The table below contains the most recent values of monthly indicators that feed into the output gap
+                estimates. Note that consumer sentiment may be a
                 preliminary measure and there can be small revisions to IP growth and
-                housing starts over time. Also, interest rates used in calculating spreads are measured to two decimals.
-            <br><br>
+                housing starts over time. Also, we note that the interest rates used in calculating spreads are measured
+                only to two decimals.
+                <br><br>
                 <table class="table">
                     <tbody id="dataTable">
 
@@ -65,10 +71,12 @@
                     <br>
                     <hr>
                     <br>
-                    Below are three data files that can be used to run the MATLAB code (available in the link below) by placing in the same directory. 
-                    The data are mostly gathered from FRED, except for some indicators reported on FRED with a lag, which are scraped from elsewhere.                
+                    Below are three data files that can be placed in the same directory as the MATLAB code linked to at
+                    the bottom of this webpage in order to replicate the nowcast estimates.
+                    These data are mostly gathered from FRED, except for some indicators reported on FRED with a lag or
+                    truncated timelines, which we scrape from other sources.
                     <br><br>
-                    <u>Contents by column</u> (<i>based on FRED codes - starting from January 1967 or 1967Q1</i>):
+                    <u>Contents by column</u> (<i>denoted by FRED codes - starting from January 1967 or 1967Q1</i>):
                     <br>
                     Monthly data: FEDFUNDS, UMCSENT, UNRATE, CPIAUCSL, INDPRO, HOUST, SP500
                     <br>
@@ -79,17 +87,17 @@
                 <div id="download">
                     <button id="download_button" class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly/?type=csv'"
-                        type="button">Download Latest Monthly Time Series CSV</button>
+                        type="button">Latest Monthly Time Series CSV</button>
                     <button id="download_button" class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-spread/?type=csv'"
-                        type="button">Download Latest Monthly Spread Time Series CSV</button>
+                        type="button">Latest Monthly Spread Time Series CSV</button>
                     <button id="download_button" class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'"
-                        type="button">Download Latest Quarterly Time Series CSV</button>
+                        type="button">Latest Quarterly Time Series CSV</button>
                     <br>
                 </div>
             </div>
-            
+
             <h4>Reference:</h4>
 
             Tino Berger, James Morley and Benjamin Wong, forthcoming, &quot;Nowcasting
@@ -108,12 +116,13 @@
             <br><br>
 
             <script src="script.js"></script>
-            
+
         </div>
     </div>
     <div id="footer">
         <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener noreferrer" href="http://sites.google.com/site/drtinoberger">Tino
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener noreferrer"
+            href="http://sites.google.com/site/drtinoberger">Tino
             Berger</a>&nbsp;&nbsp;&nbsp;&nbsp;
         <a target="_blank" rel="noopener noreferrer" href="http://sites.google.com/site/jamescmorley">James
             Morley</a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -128,7 +137,7 @@
         <br>
         <div id="disclaimer">
             Note that we are not responsible for any financial decisions
-            made based on the results presented here. 
+            made based on the results presented here.
         </div>
         <br>
     </div>
