@@ -1,4 +1,4 @@
-const URL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap-all-data/';
+const URL = 'https://nowcasting-the-us-output-gap.herokuapp.com/gap-all-data/';
 
 const concreteColour = "#0b789c",
       nowcastColour = "#EF8354",
