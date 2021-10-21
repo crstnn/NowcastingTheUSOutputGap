@@ -15,21 +15,15 @@ function getAPIData(url) {
   return req.open("GET", url, true);
 };
 
-function getQuarter(val, isTruncated=true) {
+function getQuarter(val) {
   const q = val % 1;
   const dTrunc = {
-    0: "Q1",
-    0.25: "Q2",
-    0.5: "Q3",
-    0.75: "Q4"
+    0.25: "Q1",
+    0.5: "Q2",
+    0.75: "Q3",
+    0: "Q4"
   };
-  const d = {
-    0: "1" + "st".sup() + " Quarter",
-    0.25: "2" + "nd".sup() + " Quarter",
-    0.5: "3" + "rd".sup() + " Quarter",
-    0.75: "4" + "th".sup() + " Quarter"
-  };
-  return String(isTruncated ? dTrunc[q] : d[q]);
+  return String(dTrunc[q]);
 };
 
 
@@ -43,8 +37,8 @@ function writeTextBelowGraph(reqJSON){
     const conditionalForecastQuarter = conditionalForecastXval % 1;
     const lastUpdateMonth = parseInt(reqJSON['latestRunUTC'].slice(5, 7));
 
-    return (conditionalForecastQuarter == 0 && [1, 2, 3].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.25 && [4, 5, 6].includes(lastUpdateMonth)) || 
-            (conditionalForecastQuarter == 0.5 && [7, 8, 9].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.75 && [10, 11, 12].includes(lastUpdateMonth));
+    return (conditionalForecastQuarter == 0.25 && [1, 2, 3].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.5 && [4, 5, 6].includes(lastUpdateMonth)) || 
+            (conditionalForecastQuarter == 0.75 && [7, 8, 9].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.0 && [10, 11, 12].includes(lastUpdateMonth));
 
   };
   
