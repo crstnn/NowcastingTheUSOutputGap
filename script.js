@@ -158,7 +158,7 @@ function graph(reqJSON) {
         }
       }
     ],
-    margin: { 'l': 30, 'r': 30, 't': 25, 'b': 20 },
+    margin: { 'l': 30, 'r': 10, 't': 25, 'b': 20 },
     yaxis: {
       ticksuffix: "%",
       automargin: true
