@@ -236,19 +236,21 @@ function onResize() {
 
 
 const dataCollapsible = document.getElementsByClassName("collapsible");
-const dataCollapsibleArrow = document.getElementById("arrow");
+const dataCollapsibleArrow = document.getElementsByClassName("arrow");
 
-for (var i = 0; i < dataCollapsible.length; i++) {
-  dataCollapsible[i].addEventListener("click", function () {
-    this.classList.toggle("active");
-    dataCollapsibleArrow.classList.toggle("down");
-    const content = this.nextElementSibling;
-    if (content.style.maxHeight) {
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    };
-  });
+for (var idx = 0; idx < dataCollapsible.length; idx++) {
+  (function(idx){
+    dataCollapsible[idx].addEventListener("click", function () {
+      this.classList.toggle("active");
+      dataCollapsibleArrow[idx].classList.toggle("down");
+      const content = this.nextElementSibling;
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      };
+    });
+  })(idx);
 };
 
 
