@@ -61,9 +61,6 @@ function writeTextBelowGraph(reqJSON){
     lastQuarterTypeIsIntitialRealised = (cValList[cValList.length-1]['isRealized'] === 'True'),
     nowcastGapIsIntitialRealised = (nValList[0]['isRealized'] === 'True');
 
-    console.log(nValList[0]['isRealized'])
-    console.log(cValList[cValList.length-1]['isRealized'])
-
   
   document.getElementById(outputGapText).innerHTML = 
       '<p>' + (isCurrentQuarter(nowcastForcastXVal[1]) ? `Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>` : "") + 
@@ -342,15 +339,15 @@ function buildHistoricNowcastsTable(dataDict) {
     dataArray.push(dataDict.observations[key]);
   };
 
-  const numberOfRows = Math.ceil(keyArray.length / 3); // no more than 3 columns displays nicely
-  const numberOfColumns = Math.floor(keyArray.length / numberOfRows)
+  const numberOfColumns = Math.ceil(keyArray.length / 3); // no more than 3 columns displays nicely
+  const numberOfRows = Math.floor(keyArray.length / numberOfColumns)
 
   historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns*2}>Historical Nowcasts ${getQuarterFromMonth(dataDict.latestRunUTC.slice(5, 7))}</th></tr>`;
 
   for (var r = 0; r < numberOfRows; r++){
     var row ="<tr>"
     for (var c = 0; c < numberOfColumns; c++){
-      row += `<td><b>${(keyArray[r+c])}</b></td><td>${round(dataArray[r+c].gapPercentage)}</td>`;
+      row += `<td><b>${(keyArray[r+c])}</b></td><td>${round(dataArray[r+c].gapPercentage)} |</td>`;
     };
     row += "</tr>";
     historicalNowcastsTable.innerHTML += row;
