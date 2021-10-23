@@ -282,21 +282,22 @@ function roundSpecial(value, isTo1DP=false) {
   return parseFloat(value).toFixed(2);
 };
 
+const MONTH = {
+  "01": "Jan.",
+  "02": "Feb.",
+  "03": "Mar.",
+  "04": "Apr.",
+  "05": "May.",
+  "06": "Jun.",
+  "07": "Jul.",
+  "08": "Aug.",
+  "09": "Sept.",
+  "10": "Oct.",
+  "11": "Nov.",
+  "12": "Dec.",
+};
+
 function buildMonthlyIndicatorsTable(dataDict) {
-  const month = {
-    "01": "Jan.",
-    "02": "Feb.",
-    "03": "Mar.",
-    "04": "Apr.",
-    "05": "May.",
-    "06": "Jun.",
-    "07": "Jul.",
-    "08": "Aug.",
-    "09": "Sept.",
-    "10": "Oct.",
-    "11": "Nov.",
-    "12": "Dec.",
-  };
 
   const monthlyIndicatorsTable = document.getElementById('monthlyIndicatorsTable');
   const keyArray = [];
@@ -312,7 +313,7 @@ function buildMonthlyIndicatorsTable(dataDict) {
 
   var horizontalHeader = "<tr><th></th>";
   for (const key of keyArray) {
-    horizontalHeader += "<th>" + month[key.slice(-2)] + "</th>";
+    horizontalHeader += "<th>" + MONTH[key.slice(-2)] + "</th>";
   };
 
   horizontalHeader += "</tr><tr>";
@@ -328,8 +329,13 @@ function buildMonthlyIndicatorsTable(dataDict) {
   };
 };
 
-
 function buildHistoricNowcastsTable(dataDict) {
+  function getCondensedDate(date) {
+    const day = date.slice(-2)
+    const month = date.slice(-5, -3)
+    return `${day}-${MONTH[month]}`
+  }
+
   const historicalNowcastsTable = document.getElementById('historicalNowcastsTable');
   const keyArray = [];
   const dataArray = [];
@@ -347,7 +353,7 @@ function buildHistoricNowcastsTable(dataDict) {
   for (var r = 0; r < numberOfRows; r++){
     var row ="<tr>"
     for (var c = 0; c < numberOfColumns; c++){
-      row += `<td><b>${(keyArray[r+c])}</b></td><td>${round(dataArray[r+c].gapPercentage)} |</td>`;
+      row += `<td><b>${(getCondensedDate(keyArray[r+c]))}</b></td><td>${round(dataArray[r+c].gapPercentage)} |</td>`;
     };
     row += "</tr>";
     historicalNowcastsTable.innerHTML += row;
