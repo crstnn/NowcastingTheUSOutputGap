@@ -342,7 +342,7 @@ function buildHistoricNowcastsTable(dataDict) {
   const numberOfColumns = Math.ceil(keyArray.length / 3); // no more than 3 columns displays nicely
   const numberOfRows = Math.floor(keyArray.length / numberOfColumns)
 
-  historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns*2}>Historical Nowcasts ${getQuarterFromMonth(dataDict.latestRunUTC.slice(5, 7))}</th></tr>`;
+  historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns*2}>Historical Nowcasts ${getYearAndQuarter(dataDict.latestRunUTC)}</th></tr>`;
 
   for (var r = 0; r < numberOfRows; r++){
     var row ="<tr>"
