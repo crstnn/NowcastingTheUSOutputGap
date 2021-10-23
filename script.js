@@ -58,8 +58,12 @@ function writeTextBelowGraph(reqJSON){
     lastQuarterOutputGap = Math.round(cValList[cValList.length-1]['gapPercentage'] * 10) / 10,
     nowcastGap = Math.round(nValList[0]['gapPercentage'] * 10) / 10,
     forecastGap = Math.round(nValList[1]['gapPercentage'] * 10) / 10,
-    lastQuarterTypeIsIntitialRealised = Boolean(cValList[cValList.length-1]['isRealized']),
-    nowcastGapIsIntitialRealised = Boolean(nValList[0]['isRealized']);
+    lastQuarterTypeIsIntitialRealised = (cValList[cValList.length-1]['isRealized'] === 'True'),
+    nowcastGapIsIntitialRealised = (nValList[0]['isRealized'] === 'True');
+
+    console.log(nValList[0]['isRealized'])
+    console.log(cValList[cValList.length-1]['isRealized'])
+
   
   document.getElementById(outputGapText).innerHTML = 
       '<p>' + (isCurrentQuarter(nowcastForcastXVal[1]) ? `Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>` : "") + 
@@ -233,7 +237,7 @@ req.onload = function () {
 
     buildHistoricNowcastsTable(reqJSON.historicalNowcasts);
 
-  } else { fig.innerHTML = '<b>Site momentarily undergoing maintenance. Please come back later.</b></br>'; };
+  } else { fig.innerHTML = '<br><b>Site momentarily undergoing maintenance. Please come back later.</b><br><br>'; };
 };
 
 req.send(null);
@@ -269,7 +273,7 @@ function round(value) {
   return parseFloat(value).toFixed(2);
 };
 
-function roundSpecial(value, isTo1DP=False) {
+function roundSpecial(value, isTo1DP=false) {
   function countDecimals(val) {
     if(Math.floor(val) === val) return 0;
     return val.toString().split(".")[1].length || 0;
