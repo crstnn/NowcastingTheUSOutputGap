@@ -106,7 +106,27 @@
 
             <button class="collapsible">Historical Nowcasts<i id="arrow2" class="arrow left"></i></button>
             <div class="content">
-feature in development
+                <br>
+                The table below contains the historical nowcasts for the current quarter, this quarter is dictated by the time (in UTC) as stated below the plot.
+                At the start of every quarter the table will start anew and the last nowcast for any given day (again, dictated by UTC) will be appended to the table.
+                Please see the option to download this data below.
+                <br><br>
+                
+                <table class="table">
+                    <tbody id="historicalNowcastsTable">
+
+                    </tbody>
+                </table>
+                <br><br>
+                <u>Contents by column</u>:<br>
+                Date of final nowcast estimate, gap (%), T/F as to whether it is the day's final estimate
+                <div class="download">
+                    <br>
+                    <button id="download_button" class="button"
+                    onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/gap/?type=csv'"
+                    type="button">Historical Nowcasts CSV</button>
+                    <br>
+                </div>
             </div>
 
             <script src="script.js"></script>

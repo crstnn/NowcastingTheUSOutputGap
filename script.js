@@ -28,8 +28,14 @@ function getQuarter(val) {
 
 
 function getYearAndQuarter(val) {
-  console.log(val)
   return String(~~val) + getQuarter(val);
+};
+
+function getQuarterFromMonth(month){
+  if ([1, 2, 3].includes(parseInt(month))) return "Q1";
+  if ([4, 5, 6].includes(parseInt(month))) return "Q2";
+  if ([7, 8, 9].includes(parseInt(month))) return "Q3";
+  if ([10, 11, 12].includes(parseInt(month))) return "Q4";
 };
 
 function writeTextBelowGraph(reqJSON){
@@ -225,7 +231,7 @@ req.onload = function () {
 
     buildMonthlyIndicatorsTable(reqJSON.last4MonthsTable);
 
-    //buildHistoricNowcastsTable(reqJSON.historicNowcastsTable);
+    buildHistoricNowcastsTable(reqJSON.historicalNowcasts);
 
   } else { fig.innerHTML = '<b>Site momentarily undergoing maintenance. Please come back later.</b></br>'; };
 };
@@ -292,8 +298,8 @@ function buildMonthlyIndicatorsTable(dataDict) {
   };
 
   const monthlyIndicatorsTable = document.getElementById('monthlyIndicatorsTable');
-  const dataArray = [];
   const keyArray = [];
+  const dataArray = [];
   for (const key in dataDict) {
     keyArray.push(key);
     dataArray.push(dataDict[key]);
@@ -321,33 +327,28 @@ function buildMonthlyIndicatorsTable(dataDict) {
   };
 };
 
+
 function buildHistoricNowcastsTable(dataDict) {
   const historicalNowcastsTable = document.getElementById('historicalNowcastsTable');
-  const dataArray = [];
   const keyArray = [];
-  for (const key in dataDict) {
+  const dataArray = [];
+
+  for (const key in dataDict.observations) {
     keyArray.push(key);
-    dataArray.push(dataDict[key]);
+    dataArray.push(dataDict.observations[key]);
   };
 
-  const numberOfRows = keyArray.length % 3; // no more than 3 columns displays nicely
+  const numberOfRows = Math.ceil(keyArray.length / 3); // no more than 3 columns displays nicely
+  const numberOfColumns = Math.floor(keyArray.length / numberOfRows)
 
+  historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns*2}>Historical Nowcasts ${getQuarterFromMonth(dataDict.latestRunUTC.slice(5, 7))}</th></tr>`;
 
-  var horizontalHeader = "<tr><th></th>";
-  for (const key of keyArray) {
-    horizontalHeader += "<th>" + month[key.slice(-2)] + "</th>";
-  };
-
-  horizontalHeader += "</tr><tr>";
-  monthlyIndicatorsTable.innerHTML += horizontalHeader;
-
-  for (var k = 0; k < dictKeys.length; k++) {
-    var row = `<tr><th>${titles[k]}</th>`;
-    for (var i = 0; i < dataArray.length; i++) {
-      row += `<td>${round(dataArray[i][dictKeys[k]])}</td>`;
+  for (var r = 0; r < numberOfRows; r++){
+    for (var c = 0; c < numberOfColumns; c++){
+      var row = `<tr><td><b>${(keyArray[r+c])}</b></td><td>${round(dataArray[r+c].gapPercentage)}</td>`;
     };
     row += "</tr>";
-    monthlyIndicatorsTable.innerHTML += row;
+    historicalNowcastsTable.innerHTML += row;
   };
 
 };
