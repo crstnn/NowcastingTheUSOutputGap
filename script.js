@@ -18,16 +18,17 @@ function getAPIData(url) {
 function getQuarter(val) {
   const q = val % 1;
   const dTrunc = {
-    0.25: "Q1",
-    0.5: "Q2",
-    0.75: "Q3",
-    0: "Q4"
+    0: "Q1",
+    0.25: "Q2",
+    0.5: "Q3",
+    0.75: "Q4"
   };
   return String(dTrunc[q]);
 };
 
 
 function getYearAndQuarter(val) {
+  console.log(val)
   return String(~~val) + getQuarter(val);
 };
 
@@ -222,7 +223,9 @@ req.onload = function () {
 
     writeTextBelowGraph(reqJSON)
 
-    buildTable(reqJSON.last4MonthsTable);
+    buildMonthlyIndicatorsTable(reqJSON.last4MonthsTable);
+
+    //buildHistoricNowcastsTable(reqJSON.historicNowcastsTable);
 
   } else { fig.innerHTML = '<b>Site momentarily undergoing maintenance. Please come back later.</b></br>'; };
 };
@@ -244,11 +247,7 @@ for (var idx = 0; idx < dataCollapsible.length; idx++) {
       this.classList.toggle("active");
       dataCollapsibleArrow[idx].classList.toggle("down");
       const content = this.nextElementSibling;
-      if (content.style.maxHeight) {
-        content.style.maxHeight = null;
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-      };
+      content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
     });
   })(idx);
 };
@@ -276,7 +275,7 @@ function roundSpecial(value, isTo1DP=False) {
   return parseFloat(value).toFixed(2);
 };
 
-function buildTable(dataDict) {
+function buildMonthlyIndicatorsTable(dataDict) {
   const month = {
     "01": "Jan.",
     "02": "Feb.",
@@ -292,7 +291,7 @@ function buildTable(dataDict) {
     "12": "Dec.",
   };
 
-  const last4monthsTable = document.getElementById('dataTable');
+  const monthlyIndicatorsTable = document.getElementById('monthlyIndicatorsTable');
   const dataArray = [];
   const keyArray = [];
   for (const key in dataDict) {
@@ -310,7 +309,7 @@ function buildTable(dataDict) {
   };
 
   horizontalHeader += "</tr><tr>";
-  last4monthsTable.innerHTML += horizontalHeader;
+  monthlyIndicatorsTable.innerHTML += horizontalHeader;
 
   for (var k = 0; k < dictKeys.length; k++) {
     var row = `<tr><th>${titles[k]}</th>`;
@@ -318,8 +317,39 @@ function buildTable(dataDict) {
       row += `<td>${roundSpecial(dataArray[i][dictKeys[k]], (dictKeys[k] == "UNRATE" || dictKeys[k] == "UMCSENT"))}</td>`;
     };
     row += "</tr>";
-    last4monthsTable.innerHTML += row;
+    monthlyIndicatorsTable.innerHTML += row;
   };
+};
+
+function buildHistoricNowcastsTable(dataDict) {
+  const historicalNowcastsTable = document.getElementById('historicalNowcastsTable');
+  const dataArray = [];
+  const keyArray = [];
+  for (const key in dataDict) {
+    keyArray.push(key);
+    dataArray.push(dataDict[key]);
+  };
+
+  const numberOfRows = keyArray.length % 3; // no more than 3 columns displays nicely
+
+
+  var horizontalHeader = "<tr><th></th>";
+  for (const key of keyArray) {
+    horizontalHeader += "<th>" + month[key.slice(-2)] + "</th>";
+  };
+
+  horizontalHeader += "</tr><tr>";
+  monthlyIndicatorsTable.innerHTML += horizontalHeader;
+
+  for (var k = 0; k < dictKeys.length; k++) {
+    var row = `<tr><th>${titles[k]}</th>`;
+    for (var i = 0; i < dataArray.length; i++) {
+      row += `<td>${round(dataArray[i][dictKeys[k]])}</td>`;
+    };
+    row += "</tr>";
+    monthlyIndicatorsTable.innerHTML += row;
+  };
+
 };
 
 ;

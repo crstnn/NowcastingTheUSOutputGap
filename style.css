@@ -154,15 +154,6 @@ p {
     margin: 0;
 }
 
-.dataBoxText {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    width: 100%;
-    text-align: justify;
-    word-wrap: normal;
-    white-space: normal;
-    word-break: normal;
-}
-
 .collapsible {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     color: white;

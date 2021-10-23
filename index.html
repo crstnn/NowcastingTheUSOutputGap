@@ -53,8 +53,8 @@
             <br>
             The estimates are automatically updated daily and usually within 30 minutes of major data releases.
             The date (UTC time zone) of the latest nowcast is reported directly below the time series plot.
-            For details of the most recent monthly indicators used in calculating the output gap estimates, click the
-            'Monthly Indicators' dropdown.
+            For details of the most recent monthly indicators used in calculating the output gap estimates or information on historical nowcasts for the given quarter, click the
+            'Monthly Indicators' or 'Historical Nowcasts' dropdown, respectively. 
             <br>
             <br>
 
@@ -68,11 +68,10 @@
                 only to two decimals.
                 <br><br>
                 <table class="table">
-                    <tbody id="dataTable">
+                    <tbody id="monthlyIndicatorsTable">
 
                     </tbody>
                 </table>
-                <p class="dataBoxText">
                     <br>
                     <hr>
                     <br>
@@ -88,8 +87,8 @@
                     Monthly data for spreads: BAA, AAA, DGS10, DGS1
                     <br>
                     Quarterly data: GDPC1
-                </p>
                 <div class="download">
+                    <br>
                     <button id="download_button" class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly/?type=csv'"
                         type="button">Monthly Time Series CSV</button>
@@ -107,10 +106,7 @@
 
             <button class="collapsible">Historical Nowcasts<i id="arrow2" class="arrow left"></i></button>
             <div class="content">
-                <br>
-                Feature in development (coming soon)
-                <br>
-
+                feature in development
             </div>
 
             <script src="script.js"></script>
