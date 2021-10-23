@@ -344,8 +344,9 @@ function buildHistoricNowcastsTable(dataDict) {
   historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns*2}>Historical Nowcasts ${getQuarterFromMonth(dataDict.latestRunUTC.slice(5, 7))}</th></tr>`;
 
   for (var r = 0; r < numberOfRows; r++){
+    var row ="<tr>"
     for (var c = 0; c < numberOfColumns; c++){
-      var row = `<tr><td><b>${(keyArray[r+c])}</b></td><td>${round(dataArray[r+c].gapPercentage)}</td>`;
+      row += `<td><b>${(keyArray[r+c])}</b></td><td>${round(dataArray[r+c].gapPercentage)}</td>`;
     };
     row += "</tr>";
     historicalNowcastsTable.innerHTML += row;
