@@ -38,8 +38,8 @@ function writeTextBelowGraph(reqJSON){
     const conditionalForecastQuarter = conditionalForecastXval % 1;
     const lastUpdateMonth = parseInt(reqJSON['latestRunUTC'].slice(5, 7));
 
-    return (conditionalForecastQuarter == 0.25 && [1, 2, 3].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.5 && [4, 5, 6].includes(lastUpdateMonth)) || 
-            (conditionalForecastQuarter == 0.75 && [7, 8, 9].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.0 && [10, 11, 12].includes(lastUpdateMonth));
+    return (conditionalForecastQuarter == 0.0 && [1, 2, 3].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.25 && [4, 5, 6].includes(lastUpdateMonth)) || 
+            (conditionalForecastQuarter == 0.5 && [7, 8, 9].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.75 && [10, 11, 12].includes(lastUpdateMonth));
 
   };
   
