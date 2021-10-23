@@ -47,8 +47,7 @@
             Conditional forecasts of future values of the output gap can be toggled on or off in the plot by clicking on
             the label in the legend and are displayed as a green line.
             Exact values of estimates can be seen by hovering over or tapping on each point in the plot.
-            The data file linked to above contains two columns corresponding to output gap estimates starting from
-            1967Q2 and whether or not real GDP has been realized for a given quarter.
+            The data file linked to above contains three columns, (1) for the date of the estimate, (2) output gap (%) and (3) whether or not real GDP has been realized for a given quarter.
             <br>
             <br>
             The estimates are automatically updated daily and usually within 30 minutes of major data releases.
@@ -80,13 +79,13 @@
                     These data are mostly gathered from FRED, except for some indicators reported on FRED with a lag or
                     truncated timelines, which we scrape from other sources.
                     <br><br>
-                    <u>Contents by column</u> (<i>denoted by FRED codes - starting from January 1967 or 1967Q1</i>):
+                    <u>Contents by column</u> (<i>denoted by FRED codes - starting from 1967</i>):
                     <br>
-                    Monthly data: FEDFUNDS, UMCSENT, UNRATE, CPIAUCSL, INDPRO, HOUST, SP500
+                    Monthly data: date, FEDFUNDS, UMCSENT, UNRATE, CPIAUCSL, INDPRO, HOUST, SP500
                     <br>
-                    Monthly data for spreads: BAA, AAA, DGS10, DGS1
+                    Monthly data for spreads: date, BAA, AAA, DGS10, DGS1
                     <br>
-                    Quarterly data: GDPC1
+                    Quarterly data: date, GDPC1
                 <div class="download">
                     <br>
                     <button id="download_button" class="button"
@@ -107,7 +106,7 @@
             <button class="collapsible">Historical Nowcasts<i id="arrow2" class="arrow left"></i></button>
             <div class="content">
                 <br>
-                The table below contains the historical nowcasts for the current quarter, this quarter is dictated by the time (UTC) as stated below the plot.
+                The table below contains the historical nowcasts for the current quarter, (this quarter is dictated by the UTC time as stated below the plot).
                 At the start of every quarter the table will start anew and the last nowcast for any given day (again, dictated by UTC) will be appended to the table.
                 Please see the option to download this data below.
                 <br><br>
@@ -119,7 +118,7 @@
                 </table>
                 <br><br>
                 <u>Contents by column</u>:<br>
-                Date of final nowcast estimate, gap (%)
+                Date of nowcast estimate, gap (%)
                 <div class="download">
                     <br>
                     <button id="download_button" class="button"
