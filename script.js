@@ -89,18 +89,26 @@ function graph(reqJSON) {
     nowcastForecastYVal.push(round(nValList[i]['gapPercentage']));
   }
 
+  // necessary so that the estimates align with recessions and 
+  //that the X axis for estimates now correspond with end of the quarter, not the start
+  const rollForwardDatesByAQuarter = q => parseFloat(q) + 0.25
+
   const 
     concreteXVal = Object.keys(reqJSON['concreteObservations']),
     nowcastForcastXVal = Object.keys(reqJSON['nowcastForecastObservations']),
     nowcastXVal = [nowcastForcastXVal[0]],
     nowcastYVal = [nowcastForecastYVal[0]],
     forecastXVal = nowcastForcastXVal.slice(Math.max(nowcastForcastXVal.length - 5, 1)),
-    forecastYVal = nowcastForecastYVal.slice(Math.max(nowcastForecastYVal.length - 5, 1));
+    forecastYVal = nowcastForecastYVal.slice(Math.max(nowcastForecastYVal.length - 5, 1)),
+    concreteXValShiftedQuarters = concreteXVal.map(rollForwardDatesByAQuarter),
+    nowcastForcastXValShiftedQuarters = nowcastForcastXVal.map(rollForwardDatesByAQuarter),
+    forecastXValShiftedQuarters = forecastXVal.map(rollForwardDatesByAQuarter);
+
 
   yearQuarterText = Object.keys(reqJSON['concreteObservations']).map(getYearAndQuarter);
 
   const traceConcreteObs = {
-    x: concreteXVal,
+    x: concreteXValShiftedQuarters,
     y: concreteYVal,
     mode: 'lines + markers',
     name: 'Realized Estimates',
@@ -110,7 +118,7 @@ function graph(reqJSON) {
   };
 
   const traceNowcast = {
-    x: nowcastXVal,
+    x: nowcastForcastXValShiftedQuarters,
     y: nowcastYVal,
     mode: 'lines + markers',
     name: 'Nowcast',
@@ -120,7 +128,7 @@ function graph(reqJSON) {
   };
 
   const traceForecast = {
-    x: forecastXVal,
+    x: forecastXValShiftedQuarters,
     y: forecastYVal,
     mode: 'lines + markers',
     name: 'Conditional Forecasts',
@@ -137,9 +145,9 @@ function graph(reqJSON) {
     shapes: [
       {
         type: 'line',
-        x0: concreteXVal[concreteXVal.length - 1],
+        x0: concreteXValShiftedQuarters[concreteXVal.length - 1],
         y0: concreteYVal[concreteYVal.length - 1],
-        x1: nowcastXVal[0],
+        x1: nowcastForcastXValShiftedQuarters[0],
         y1: nowcastYVal[0],
         visible: true,
         line: {
@@ -149,9 +157,9 @@ function graph(reqJSON) {
       },
       {
         type: 'line',
-        x0: nowcastXVal[0],
+        x0: nowcastForcastXValShiftedQuarters[0],
         y0: nowcastYVal[0],
-        x1: forecastXVal[0],
+        x1: forecastXValShiftedQuarters[0],
         y1: forecastYVal[0],
         visible: false,
         line: {
@@ -212,6 +220,7 @@ req.onload = function () {
   if (this.status == 200){
     fig.innerHTML = '';
     const reqJSON =  JSON.parse(req.responseText);
+    
     graph(reqJSON);
 
     fig.on('plotly_legenddoubleclick', () => false);
