@@ -234,7 +234,7 @@ req.onload = function () {
 
     buildHistoricNowcastsTable(reqJSON.historicalNowcasts);
 
-  } else { fig.innerHTML = '<br><b>Site momentarily undergoing maintenance. Please come back later.</b><br><br>'; };
+  } else { fig.innerHTML = '<br><br><br><br><b>Site momentarily undergoing maintenance. Please come back later.</b><br><br><br><br>'; };
 };
 
 req.send(null);
