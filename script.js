@@ -49,8 +49,9 @@ function writeTextBelowGraph(reqJSON){
 
   };
   
-  const cValList = Object.values(reqJSON['concreteObservations']);
-  const nValList = Object.values(reqJSON['nowcastForecastObservations']);
+  const 
+    cValList = Object.values(reqJSON['concreteObservations']),
+    nValList = Object.values(reqJSON['nowcastForecastObservations']);
 
   const 
     concreteXVal = Object.keys(reqJSON['concreteObservations']),
@@ -74,24 +75,25 @@ function graph(reqJSON) {
 
   document.getElementById("last_update").innerHTML = "Last updated (UTC): " + reqJSON['latestRunUTC'].slice(0, reqJSON['latestRunUTC'].length - 3);
 
-  const cValList = Object.values(reqJSON['concreteObservations']);
-  const nValList = Object.values(reqJSON['nowcastForecastObservations']);
+  const 
+    cValList = Object.values(reqJSON['concreteObservations']),
+    nValList = Object.values(reqJSON['nowcastForecastObservations']);
 
-  const concreteYVal = [];
+  const 
+    concreteYVal = [],
+    nowcastForecastYVal = [];
 
   for (var i = 0; i < cValList.length; i++) {
     concreteYVal.push(round(cValList[i]['gapPercentage']));
-  }
-
-  const nowcastForecastYVal = [];
+  };
 
   for (var i = 0; i < nValList.length; i++) {
     nowcastForecastYVal.push(round(nValList[i]['gapPercentage']));
-  }
+  };
 
   // necessary so that the estimates align with recessions and 
   //that the X axis for estimates now correspond with end of the quarter, not the start
-  const rollForwardDatesByAQuarter = q => parseFloat(q) + 0.25
+  const rollForwardDatesByAQuarter = q => parseFloat(q) + 0.25;
 
   const 
     concreteXVal = Object.keys(reqJSON['concreteObservations']),
@@ -187,8 +189,10 @@ function graph(reqJSON) {
   };
 
   reqJSON.recessions.forEach(recessionPeriod => {
-    const recCol = recessionPeriod.troughDate == "None" ? uncalledRecessionColour : recessionColour;
-    const troughDate = recessionPeriod.troughDate == "None" ? forecastXVal[forecastXVal.length - 1] : recessionPeriod.troughDate;
+    const 
+      recCol = recessionPeriod.troughDate == "None" ? uncalledRecessionColour : recessionColour,
+      troughDate = recessionPeriod.troughDate == "None" ? forecastXVal[forecastXVal.length - 1] : recessionPeriod.troughDate;
+
     layout['shapes'].push(
     {
       type: 'rect',
@@ -203,7 +207,7 @@ function graph(reqJSON) {
       line: {
         width: 0
       }
-    })});
+    });});
 
   const data = [traceConcreteObs, traceNowcast, traceForecast];
 
@@ -228,6 +232,7 @@ req.onload = function () {
     fig.on('plotly_legendclick', (clickData) => {
       const curvNum = clickData.curveNumber;
       if (curvNum == 0 || curvNum == 1) return false;
+
       if ([1, 2].includes(curvNum)) {
         const update = {};
         update["shapes[" + String(curvNum - 1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false;
@@ -254,8 +259,9 @@ function onResize() {
 };
 
 
-const dataCollapsible = document.getElementsByClassName("collapsible");
-const dataCollapsibleArrow = document.getElementsByClassName("arrow");
+const 
+  dataCollapsible = document.getElementsByClassName("collapsible"),
+  dataCollapsibleArrow = document.getElementsByClassName("arrow");
 
 for (var idx = 0; idx < dataCollapsible.length; idx++) {
   (function(idx){
@@ -308,9 +314,11 @@ const MONTH = {
 
 function buildMonthlyIndicatorsTable(dataDict) {
 
-  const monthlyIndicatorsTable = document.getElementById('monthlyIndicatorsTable');
-  const keyArray = [];
-  const dataArray = [];
+  const 
+    keyArray = [],
+    dataArray = [],
+    monthlyIndicatorsTable = document.getElementById('monthlyIndicatorsTable');
+
   for (const key in dataDict) {
     keyArray.push(key);
     dataArray.push(dataDict[key]);
@@ -340,14 +348,15 @@ function buildMonthlyIndicatorsTable(dataDict) {
 
 function buildHistoricNowcastsTable(dataDict) {
   function getCondensedDate(date) {
-    const day = date.slice(-2)
-    const month = date.slice(-5, -3)
-    return `${day}-${MONTH[month]}`
-  }
+    const day = date.slice(-2);
+    const month = date.slice(-5, -3);
+    return `${day}-${MONTH[month]}`;
+  };
 
-  const historicalNowcastsTable = document.getElementById('historicalNowcastsTable');
-  const keyArray = [];
-  const dataArray = [];
+  const 
+    keyArray = [],
+    dataArray = [],
+    historicalNowcastsTable = document.getElementById('historicalNowcastsTable');
 
   for (const key in dataDict.observations) {
     keyArray.push(key);
@@ -355,12 +364,12 @@ function buildHistoricNowcastsTable(dataDict) {
   };
 
   const numberOfColumns = Math.ceil(keyArray.length / 3); // no more than 3 columns displays nicely
-  const numberOfRows = Math.floor(keyArray.length / numberOfColumns)
+  const numberOfRows = Math.floor(keyArray.length / numberOfColumns);
 
   historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns*2}>Historical Nowcasts ${getYearAndQuarter(dataDict.latestRunUTC)}</th></tr>`;
 
   for (var r = 0; r < numberOfRows; r++){
-    var row ="<tr>"
+    var row ="<tr>";
     for (var c = 0; c < numberOfColumns; c++){
       row += `<td><b>${(getCondensedDate(keyArray[r+c]))}</b></td><td>${round(dataArray[r+c].gapPercentage)} |</td>`;
     };
