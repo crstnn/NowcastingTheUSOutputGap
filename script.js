@@ -366,19 +366,19 @@ function buildHistoricNowcastsTable(dataDict) {
   if (keyArray.length <= 0) return null;
 
   const lengthOfRow = 30; // no more than 30 rows displays nicely
-  const numberOfColumns = Math.floor(keyArray.length / lengthOfRow)
+  const numberOfColumns = Math.ceil(keyArray.length / lengthOfRow)
 
-  historicalNowcastsTable.innerHTML += `<tr><th colspan=${(numberOfColumns + 1)*2}>Historical Nowcasts ${getYearAndQuarter(dataDict.latestRunUTC)}</th></tr>`;
+  historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns * 2}>Historical Nowcasts ${getYearAndQuarter(dataDict.latestRunUTC)}</th></tr>`;
 
-  breakAllLoops:
+  var isIndexOutOfBounds = false;
   for (var r = 0; r < lengthOfRow; r++){
     var row = "";
-    for (var c = 0; c <= numberOfColumns; c++){
-      if (r+c >= keyArray.length) break breakAllLoops;
-      row += `<td><b>${(getCondensedDate(keyArray[r+c]))}</b></td><td>${round(dataArray[r+c].gapPercentage)} |</td>`;
+    for (var c = 1; c <= numberOfColumns; c++){
+      if (r*c >= keyArray.length) {isIndexOutOfBounds = true; break;}
+      row += `<td><b>${(getCondensedDate(keyArray[r*c]))}</b></td><td>${round(dataArray[r*c].gapPercentage)} |</td>`;
     };
-    row = "<tr>" + row + "</tr>";
-    historicalNowcastsTable.innerHTML += row;
+    historicalNowcastsTable.innerHTML += "<tr>" + row + "</tr>";
+    if (isIndexOutOfBounds) break;
   };
 
 };
