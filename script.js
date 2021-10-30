@@ -341,7 +341,7 @@ function buildMonthlyIndicatorsTable(dataDict) {
   for (var k = 0; k < dictKeys.length; k++) {
     var row = `<tr><th>${titles[k]}</th>`;
     for (var i = 0; i < dataArray.length; i++) {
-      row += `<td>${roundSpecial(dataArray[i][dictKeys[k]], (dictKeys[k] == "UNRATE" || dictKeys[k] == "UMCSENT"))}</td>`;
+      row += `<td>${roundSpecial(dataArray[i][dictKeys[k]], (dictKeys[k] == "U2RATE" || dictKeys[k] == "UMCSENT"))}</td>`;
     };
     row += "</tr>";
     monthlyIndicatorsTable.innerHTML += row;
