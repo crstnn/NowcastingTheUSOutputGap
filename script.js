@@ -326,8 +326,8 @@ function buildMonthlyIndicatorsTable(dataDict) {
     dataArray.push(dataDict[key]);
   };
 
-  const titles = ["Federal funds rate (%)", "Term spread (%)", "Risk spread (%)", "Stock returns (%)",
-    "Consumer sentiment (indx.)", "Unemployment rate (%)", "Monthly CPI Inflation (%)", "IP growth (%)", "Housing starts growth (%)"];
+  const titles = ["Federal funds rate (%)", "Term spread (ppt)", "Risk spread (ppt)", "Stock returns (%)",
+    "Consumer sentiment (indx.)", "U-2 uemployment rate (%)", "Monthly CPI inflation (%)", "IP growth (%)", "Housing starts growth (%)"];
   const dictKeys = ["FEDFUNDS", "TERMSPREAD", "RISKSPREAD", "SP500PERC", "UMCSENT", "U2RATE", "CPIAUCSLPERC", "INDPROPERC", "HOUSTPERC"];
 
   var horizontalHeader = "<tr><th></th>";

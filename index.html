@@ -38,7 +38,10 @@
             Nowcasts for the U.S. output gap are calculated following the approach described in
             <a target="_blank" rel="noopener noreferrer"
                 href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Berger, Morley, and
-                Wong</a> (forthcoming, <i>Journal of Econometrics</i>). Please cite the paper when referring to the
+                Wong</a> (forthcoming, <i>Journal of Econometrics</i>) using a model that includes the U-2 unemployment rate
+                instead of the unemployment rate, as in <a target="_blank" rel="noopener noreferrer"
+                href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3946709">Berger, Boll, Morley, and
+                Wong</a>. Please cite these papers when referring to the
             estimates reported here.<br><br>
             The latest nowcast reported above is displayed in the time series plot using an orange line extending from
             the
@@ -47,7 +50,8 @@
             Conditional forecasts of future values of the output gap can be toggled on or off in the plot by clicking on
             the label in the legend and are displayed as a green line.
             Exact values of estimates can be seen by hovering over or tapping on each point in the plot.
-            The data file linked to above contains three columns, (1) for the date of the estimate, (2) output gap (%) and (3) whether or not real GDP has been realized for a given quarter.
+            The data file linked to above contains three columns: (1) the year and quarter for the
+            estimate, (2) the output gap estimate (%), and (3) whether or not real GDP has been realized yet for the given quarter.
             <br>
             <br>
             The estimates are automatically updated daily and usually within 30 minutes of major data releases.
@@ -81,7 +85,7 @@
                     <br><br>
                     <u>Contents by column</u> (<i>denoted by FRED codes - starting from 1967</i>):
                     <br>
-                    Monthly data: date, FEDFUNDS, UMCSENT, UNRATE, CPIAUCSL, INDPRO, HOUST, SP500
+                    Monthly data: date, FEDFUNDS, UMCSENT, U2RATE, CPIAUCSL, INDPRO, HOUST, SP500
                     <br>
                     Monthly data for spreads: date, BAA, AAA, DGS10, DGS1
                     <br>
@@ -106,10 +110,9 @@
             <button class="collapsible">Historical Nowcasts<i id="arrow2" class="arrow left"></i></button>
             <div class="content">
                 <br>
-                The table below contains the historical nowcasts for the current nowcasted quarter (the quarter presented here is dictated by UTC time as stated below the plot).
-                At the start of every quarter the table will start anew and the last nowcast for any given day (again, dictated by UTC) will be appended to the table. Current day 
-                nowcasts may be revised.
-                Please see the option to download this data below.
+                The table below contains the historical nowcasts for the current quarter being nowcast. 
+                For previous days, the last nowcast of the day (based on the UTC time zone) is given in the table. 
+                Current-day nowcasts may be revised. Please see the option to download historical nowcasts below. 
                 <br><br>
                 
                 <table class="table tableWithSeparators">
@@ -130,27 +133,32 @@
             </div>
 
             <script src="script.js"></script>
-
-            <h4>Reference:</h4>
-            Tino Berger, James Morley and Benjamin Wong, forthcoming, "Nowcasting the Output Gap," <i>Journal of
-                Econometrics</i>.
-            <br>
+            <h4>References:</h4>
+            Tino Berger, James Morley and Benjamin Wong, "Nowcasting the Output Gap," <i>Journal of Econometrics</i>, forthcoming.
             <br>
             <a target="_blank" rel="noopener noreferrer"
-                href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Link to journal
-                version</a>
+            href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Link to journal
+            version</a>
             <br>
             <a target="_blank" rel="noopener noreferrer" href="https://ssrn.com/abstract=3586374">Link to working
+            paper</a>
+            <br><br>
+            Tino Berger, Paul David Boll, James Morley and Benjamin Wong, &quot;Cyclical
+            Signals from the Labor Market,&quot; <i>CAMA Working Paper No. 91/2021</i>.
+            <br>
+            <a target="_blank" rel="noopener noreferrer" href="https://ssrn.com/abstract=3946709">Link to working
                 paper</a>
+            <br>
             <br>
             <a target="_blank" rel="noopener noreferrer"
                 href="https://drive.google.com/file/d/1-lLAqZe4bU622uHuOmySFdVxt9fLrIdf/view?usp=sharing">Link to
                 code</a>
-            <br><br>
+            
         </div>
     </div>
     <div id="footer">
         <br>
+        <br><br>
         &nbsp;&nbsp;&nbsp;&nbsp; <a target="_blank" rel="noopener noreferrer"
             href="http://sites.google.com/site/drtinoberger">
             Tino Berger</a>&nbsp;&nbsp;&nbsp;&nbsp; 
