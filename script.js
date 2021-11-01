@@ -56,9 +56,9 @@ function writeTextBelowGraph(reqJSON){
   const 
     concreteXVal = Object.keys(reqJSON['concreteObservations']),
     nowcastForcastXVal = Object.keys(reqJSON['nowcastForecastObservations']),
-    lastQuarterOutputGap = Math.round(cValList[cValList.length-1]['gapPercentage'] * 10) / 10,
-    nowcastGap = Math.round(nValList[0]['gapPercentage'] * 10) / 10,
-    forecastGap = Math.round(nValList[1]['gapPercentage'] * 10) / 10,
+    lastQuarterOutputGap = parseFloat(cValList[cValList.length-1]['gapPercentage']).toFixed(1),
+    nowcastGap = parseFloat(nValList[0]['gapPercentage']).toFixed(1),
+    forecastGap = parseFloat(nValList[1]['gapPercentage']).toFixed(1),
     lastQuarterTypeIsIntitialRealised = (cValList[cValList.length-1]['isRealized'] === 'True'),
     nowcastGapIsIntitialRealised = (nValList[0]['isRealized'] === 'True');
 
@@ -84,11 +84,11 @@ function graph(reqJSON) {
     nowcastForecastYVal = [];
 
   for (var i = 0; i < cValList.length; i++) {
-    concreteYVal.push(round(cValList[i]['gapPercentage']));
+    concreteYVal.push(parseFloat(cValList[i]['gapPercentage']));
   };
 
   for (var i = 0; i < nValList.length; i++) {
-    nowcastForecastYVal.push(round(nValList[i]['gapPercentage']));
+    nowcastForecastYVal.push(parseFloat(nValList[i]['gapPercentage']));
   };
 
   // necessary so that the estimates align with recessions and 
@@ -173,7 +173,8 @@ function graph(reqJSON) {
     margin: { 'l': 30, 'r': 10, 't': 25, 'b': 20 },
     yaxis: {
       ticksuffix: "%",
-      automargin: true
+      automargin: true,
+      hoverformat: '.2f'
     },
     xaxis: {
       showgrid: false,
