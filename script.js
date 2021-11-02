@@ -92,7 +92,7 @@ function graph(reqJSON) {
   };
 
   // necessary so that the estimates align with recessions and 
-  //that the X axis for estimates now correspond with end of the quarter, not the start
+  // that the X-axis for the estimates now correspond with the end of the quarter, not the start
   const rollForwardDatesByAQuarter = q => parseFloat(q) + 0.25;
 
   const 
