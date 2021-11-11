@@ -216,6 +216,24 @@ function graph(reqJSON) {
 
 };
 
+function restrictGraphOperations(fig){
+
+  fig.on('plotly_legenddoubleclick', () => false);
+
+  fig.on('plotly_legendclick', (clickData) => {
+    const curvNum = clickData.curveNumber;
+    if (curvNum == 0 || curvNum == 1) return false;
+
+    if (curvNum == 2) {
+      const update = {};
+      update["shapes[" + String(curvNum - 1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false;
+
+      Plotly.relayout(graphDiv, update);
+    };
+
+  });
+};
+
 const req = new XMLHttpRequest();
 req.open("GET", URL, true);
 req.timeout = 8000;
@@ -228,22 +246,9 @@ req.onload = function () {
     
     graph(reqJSON);
 
-    fig.on('plotly_legenddoubleclick', () => false);
+    restrictGraphOperations(fig);
 
-    fig.on('plotly_legendclick', (clickData) => {
-      const curvNum = clickData.curveNumber;
-      if (curvNum == 0 || curvNum == 1) return false;
-
-      if ([1, 2].includes(curvNum)) {
-        const update = {};
-        update["shapes[" + String(curvNum - 1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false;
-
-        Plotly.relayout(graphDiv, update);
-      };
-
-    });
-
-    writeTextBelowGraph(reqJSON)
+    writeTextBelowGraph(reqJSON);
 
     buildMonthlyIndicatorsTable(reqJSON.last4MonthsTable);
 
@@ -259,6 +264,8 @@ req.send(null);
 
 function onResize() {
   graph(JSON.parse(req.responseText));
+  const fig = document.getElementById(graphDiv);
+  restrictGraphOperations(fig);
 };
 
 
