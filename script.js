@@ -107,7 +107,7 @@ function graph(reqJSON) {
     forecastXValShiftedQuarters = forecastXVal.map(rollForwardDatesByAQuarter);
 
 
-  yearQuarterText = Object.keys(reqJSON['concreteObservations']).map(getYearAndQuarter);
+  const yearQuarterText = Object.keys(reqJSON['concreteObservations']).map(getYearAndQuarter);
 
   const traceConcreteObs = {
     x: concreteXValShiftedQuarters,
