@@ -375,7 +375,7 @@ function buildHistoricNowcastsTable(dataDict) {
 
   if (keyArray.length <= 0) return null;
 
-  const lengthOfRow = 30; // no more than 30 rows displays nicely
+  const lengthOfRow = 31; // no more than 31 rows displays nicely
   const numberOfColumns = Math.ceil(keyArray.length / lengthOfRow)
 
   historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns * 2}>Historical Nowcasts for ${getYearAndQuarter(dataDict.latestRunUTC)}</th></tr>`;
