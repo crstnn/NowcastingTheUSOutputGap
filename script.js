@@ -18,15 +18,31 @@ function getAPIData(url) {
   return req.open("GET", url, true);
 };
 
+const QUARTER = {
+  0: "Q1",
+  0.25: "Q2",
+  0.5: "Q3",
+  0.75: "Q4"
+};
+
+const MONTH = {
+  "01": "Jan.",
+  "02": "Feb.",
+  "03": "Mar.",
+  "04": "Apr.",
+  "05": "May.",
+  "06": "Jun.",
+  "07": "Jul.",
+  "08": "Aug.",
+  "09": "Sept.",
+  "10": "Oct.",
+  "11": "Nov.",
+  "12": "Dec.",
+};
+
 function getQuarter(val) {
   const q = val % 1;
-  const dTrunc = {
-    0: "Q1",
-    0.25: "Q2",
-    0.5: "Q3",
-    0.75: "Q4"
-  };
-  return String(dTrunc[q]);
+  return String(QUARTER[q]);
 };
 
 
@@ -292,6 +308,21 @@ historicalNowcastsRequest.onload = function () {
 
 historicalNowcastsRequest.send(null);
 
+const quarterlyDataRequest = new XMLHttpRequest();
+quarterlyDataRequest.open("GET", quarterlyDataURL, true);
+quarterlyDataRequest.timeout = 8000;
+
+quarterlyDataRequest.onload = function () {
+  if (this.status == 200){
+    const reqJSON =  JSON.parse(quarterlyDataRequest.responseText);
+
+    buildQuarterlyIndicatorsTable(reqJSON.observations);
+
+  };
+};
+
+quarterlyDataRequest.send(null);
+
 
 function onResize() {
   graph(JSON.parse(gapRequest.responseText));
@@ -338,21 +369,6 @@ function roundSpecial(value, isTo1DP=false) {
   return parseFloat(value).toFixed(2);
 };
 
-const MONTH = {
-  "01": "Jan.",
-  "02": "Feb.",
-  "03": "Mar.",
-  "04": "Apr.",
-  "05": "May.",
-  "06": "Jun.",
-  "07": "Jul.",
-  "08": "Aug.",
-  "09": "Sept.",
-  "10": "Oct.",
-  "11": "Nov.",
-  "12": "Dec.",
-};
-
 function buildMonthlyIndicatorsTable(dataDict) {
 
   const 
@@ -384,6 +400,47 @@ function buildMonthlyIndicatorsTable(dataDict) {
     };
     row += "</tr>";
     monthlyIndicatorsTable.innerHTML += row;
+  };
+};
+
+function buildQuarterlyIndicatorsTable(dataDict) {
+
+  const numberOfQuartersToDisplay = 4;
+
+  const 
+    keyArray = [],
+    dataArray = [],
+    quarterlyIndicatorsTable = document.getElementById('quarterlyIndicatorsTable');
+
+
+  for (const key in dataDict) {
+    keyArray.push(key);
+    dataArray.push(dataDict[key]);
+  };
+
+  const smallerKeyArray = keyArray.slice(keyArray.length-numberOfQuartersToDisplay, keyArray.length);
+  const smallerDataArray = dataArray.slice(keyArray.length-numberOfQuartersToDisplay, keyArray.length);
+
+
+  const titles = ["Real GDP"];
+  const dictKeys = ["GDPC1"];
+
+  var horizontalHeader = "<tr><th></th>";
+  for (const key of smallerKeyArray) {
+    console.log(key.slice(-2))
+    horizontalHeader += "<th>" + getQuarter(key) + "</th>";
+  };
+
+  horizontalHeader += "</tr><tr>";
+  quarterlyIndicatorsTable.innerHTML += horizontalHeader;
+
+  for (var k = 0; k < dictKeys.length; k++) {
+    var row = `<tr><th>${titles[k]}</th>`;
+    for (var i = 0; i < smallerDataArray.length; i++) {
+      row += `<td>${roundSpecial(smallerDataArray[i][dictKeys[k]])}</td>`;
+    };
+    row += "</tr>";
+    quarterlyIndicatorsTable.innerHTML += row;
   };
 };
 
