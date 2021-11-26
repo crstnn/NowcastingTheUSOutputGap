@@ -427,7 +427,6 @@ function buildQuarterlyIndicatorsTable(dataDict) {
 
   var horizontalHeader = "<tr><th></th>";
   for (const key of smallerKeyArray) {
-    console.log(key.slice(-2))
     horizontalHeader += "<th>" + getQuarter(key) + "</th>";
   };
 
