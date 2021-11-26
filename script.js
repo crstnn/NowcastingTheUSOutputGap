@@ -15,7 +15,8 @@ const concreteColour = "#0b789c",
 
 function getAPIData(url) {
   const req = new XMLHttpRequest();
-  return req.open("GET", url, true);
+  req.open("GET", url, true);
+  return req;
 };
 
 const QUARTER = {
@@ -253,8 +254,7 @@ function restrictGraphOperations(fig){
   });
 };
 
-const gapRequest = new XMLHttpRequest();
-gapRequest.open("GET", gapDataURL, true);
+const gapRequest = getAPIData(gapDataURL);
 gapRequest.timeout = 8000;
 
 gapRequest.onload = function () {
@@ -277,8 +277,7 @@ gapRequest.onload = function () {
 gapRequest.send(null);
 
 
-const last4MontlyIndicatorsRequest = new XMLHttpRequest();
-last4MontlyIndicatorsRequest.open("GET", last4MontlyIndicatorsDataURL, true);
+const last4MontlyIndicatorsRequest = getAPIData(last4MontlyIndicatorsDataURL);
 last4MontlyIndicatorsRequest.timeout = 8000;
 
 last4MontlyIndicatorsRequest.onload = function () {
@@ -292,8 +291,7 @@ last4MontlyIndicatorsRequest.onload = function () {
 
 last4MontlyIndicatorsRequest.send(null);
 
-const quarterlyDataRequest = new XMLHttpRequest();
-quarterlyDataRequest.open("GET", quarterlyDataURL, true);
+const quarterlyDataRequest = getAPIData(quarterlyDataURL);
 quarterlyDataRequest.timeout = 8000;
 
 quarterlyDataRequest.onload = function () {
@@ -308,8 +306,7 @@ quarterlyDataRequest.onload = function () {
 quarterlyDataRequest.send(null);
 
 
-const historicalNowcastsRequest = new XMLHttpRequest();
-historicalNowcastsRequest.open("GET", historicalNowcastsDataURL, true);
+const historicalNowcastsRequest = getAPIData(historicalNowcastsDataURL);
 historicalNowcastsRequest.timeout = 8000;
 
 historicalNowcastsRequest.onload = function () {
@@ -435,7 +432,7 @@ function buildQuarterlyIndicatorsTable(dataDict) {
   for (var k = 0; k < dictKeys.length; k++) {
     var row = `<tr><th>${titles[k]}</th>`;
     for (var i = 0; i < smallerDataArray.length; i++) {
-      row += `<td>${roundSpecial(smallerDataArray[i][dictKeys[k]])}</td>`;
+      row += `<td>${parseFloat(smallerDataArray[i][dictKeys[k]]).toFixed(1)}</td>`;
     };
     row += "</tr>";
     quarterlyIndicatorsTable.innerHTML += row;
