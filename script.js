@@ -292,22 +292,6 @@ last4MontlyIndicatorsRequest.onload = function () {
 
 last4MontlyIndicatorsRequest.send(null);
 
-
-const historicalNowcastsRequest = new XMLHttpRequest();
-historicalNowcastsRequest.open("GET", historicalNowcastsDataURL, true);
-historicalNowcastsRequest.timeout = 8000;
-
-historicalNowcastsRequest.onload = function () {
-  if (this.status == 200){
-    const reqJSON =  JSON.parse(historicalNowcastsRequest.responseText);
-
-    buildHistoricNowcastsTable(reqJSON);
-
-  };
-};
-
-historicalNowcastsRequest.send(null);
-
 const quarterlyDataRequest = new XMLHttpRequest();
 quarterlyDataRequest.open("GET", quarterlyDataURL, true);
 quarterlyDataRequest.timeout = 8000;
@@ -323,6 +307,21 @@ quarterlyDataRequest.onload = function () {
 
 quarterlyDataRequest.send(null);
 
+
+const historicalNowcastsRequest = new XMLHttpRequest();
+historicalNowcastsRequest.open("GET", historicalNowcastsDataURL, true);
+historicalNowcastsRequest.timeout = 8000;
+
+historicalNowcastsRequest.onload = function () {
+  if (this.status == 200){
+    const reqJSON =  JSON.parse(historicalNowcastsRequest.responseText);
+
+    buildHistoricNowcastsTable(reqJSON);
+
+  };
+};
+
+historicalNowcastsRequest.send(null);
 
 function onResize() {
   graph(JSON.parse(gapRequest.responseText));
