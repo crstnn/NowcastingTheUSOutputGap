@@ -432,7 +432,7 @@ function buildQuarterlyIndicatorsTable(dataDict) {
   for (var k = 0; k < dictKeys.length; k++) {
     var row = `<tr><th>${titles[k]}</th>`;
     for (var i = 0; i < smallerDataArray.length; i++) {
-      row += `<td>${parseFloat(smallerDataArray[i][dictKeys[k]]).toFixed(1)}</td>`;
+      row += `<td>${parseFloat(smallerDataArray[i][dictKeys[k]]).toFixed(0)}</td>`;
     };
     row += "</tr>";
     quarterlyIndicatorsTable.innerHTML += row;
