@@ -1,4 +1,7 @@
-const URL = 'https://nowcasting-the-us-output-gap.herokuapp.com/gap-all-data/';
+const gapDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/gap-all-data/?type=json';
+const quarterlyDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=json';
+const last4MontlyIndicatorsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-indicators-last-4-months/?type=json';
+const historicalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/gap/?type=json';
 
 const concreteColour = "#0b789c",
       nowcastColour = "#EF8354",
@@ -234,15 +237,15 @@ function restrictGraphOperations(fig){
   });
 };
 
-const req = new XMLHttpRequest();
-req.open("GET", URL, true);
-req.timeout = 8000;
+const gapRequest = new XMLHttpRequest();
+gapRequest.open("GET", gapDataURL, true);
+gapRequest.timeout = 8000;
 
-req.onload = function () {
+gapRequest.onload = function () {
   const fig = document.getElementById(graphDiv);
   if (this.status == 200){
     fig.innerHTML = '';
-    const reqJSON =  JSON.parse(req.responseText);
+    const reqJSON =  JSON.parse(gapRequest.responseText);
     
     graph(reqJSON);
 
@@ -250,20 +253,48 @@ req.onload = function () {
 
     writeTextBelowGraph(reqJSON);
 
-    buildMonthlyIndicatorsTable(reqJSON.last4MonthsTable);
-
-    buildHistoricNowcastsTable(reqJSON.historicalNowcasts);
-
     if (window.screen.width < viewportHorizontalMaxSizeMobile) document.getElementsByClassName("twitter-hashtag-button")[0].setAttribute("data-size", "large");
 
   } else { fig.innerHTML = '<br><br><br><br><b>Site momentarily undergoing maintenance. Please come back later.</b><br><br><br><br>'; };
 };
 
-req.send(null);
+gapRequest.send(null);
+
+
+const last4MontlyIndicatorsRequest = new XMLHttpRequest();
+last4MontlyIndicatorsRequest.open("GET", last4MontlyIndicatorsDataURL, true);
+last4MontlyIndicatorsRequest.timeout = 8000;
+
+last4MontlyIndicatorsRequest.onload = function () {
+  if (this.status == 200){
+    const reqJSON =  JSON.parse(last4MontlyIndicatorsRequest.responseText);
+
+    buildMonthlyIndicatorsTable(reqJSON.observations);
+
+  };
+};
+
+last4MontlyIndicatorsRequest.send(null);
+
+
+const historicalNowcastsRequest = new XMLHttpRequest();
+historicalNowcastsRequest.open("GET", historicalNowcastsDataURL, true);
+historicalNowcastsRequest.timeout = 8000;
+
+historicalNowcastsRequest.onload = function () {
+  if (this.status == 200){
+    const reqJSON =  JSON.parse(historicalNowcastsRequest.responseText);
+
+    buildHistoricNowcastsTable(reqJSON);
+
+  };
+};
+
+historicalNowcastsRequest.send(null);
 
 
 function onResize() {
-  graph(JSON.parse(req.responseText));
+  graph(JSON.parse(gapRequest.responseText));
   const fig = document.getElementById(graphDiv);
   restrictGraphOperations(fig);
 };
