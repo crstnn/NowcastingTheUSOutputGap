@@ -401,11 +401,12 @@ function buildMonthlyIndicatorsTable(dataDict) {
 
 function buildQuarterlyIndicatorsTable(dataDict) {
 
-  const numberOfQuartersToDisplay = 4;
+  const numberOfQuartersToDisplay = 1;
 
   const 
     keyArray = [],
     dataArray = [],
+    percentChangeDataArray = [],
     quarterlyIndicatorsTable = document.getElementById('quarterlyIndicatorsTable');
 
 
@@ -414,12 +415,20 @@ function buildQuarterlyIndicatorsTable(dataDict) {
     dataArray.push(dataDict[key]);
   };
 
-  const smallerKeyArray = keyArray.slice(keyArray.length-numberOfQuartersToDisplay, keyArray.length);
-  const smallerDataArray = dataArray.slice(keyArray.length-numberOfQuartersToDisplay, keyArray.length);
+  const title = "Real GDP growth (%)";
+  const dictKey = "GDPC1";
+
+  // percentage change
+  for (var i = 1; i < dataArray.length; i++){
+    var obj = {};
+    obj[dictKey] = ((parseFloat(dataArray[i][dictKey]) - parseFloat(dataArray[i-1][dictKey]))/parseFloat(dataArray[i-1][dictKey]))*100;
+    percentChangeDataArray[i] = obj;
+  };
 
 
-  const titles = ["Real GDP"];
-  const dictKeys = ["GDPC1"];
+  const 
+    smallerKeyArray = keyArray.slice(keyArray.length-numberOfQuartersToDisplay),
+    smallerDataArray = percentChangeDataArray.slice(keyArray.length-numberOfQuartersToDisplay);
 
   var horizontalHeader = "<tr><th></th>";
   for (const key of smallerKeyArray) {
@@ -429,14 +438,13 @@ function buildQuarterlyIndicatorsTable(dataDict) {
   horizontalHeader += "</tr><tr>";
   quarterlyIndicatorsTable.innerHTML += horizontalHeader;
 
-  for (var k = 0; k < dictKeys.length; k++) {
-    var row = `<tr><th>${titles[k]}</th>`;
-    for (var i = 0; i < smallerDataArray.length; i++) {
-      row += `<td>${parseFloat(smallerDataArray[i][dictKeys[k]]).toFixed(0)}</td>`;
-    };
-    row += "</tr>";
-    quarterlyIndicatorsTable.innerHTML += row;
+  var row = `<tr><th>${title}</th>`;
+  for (var i = 0; i < smallerDataArray.length; i++) {
+    row += `<td>${smallerDataArray[i][dictKey].toFixed(2)}</td>`;
   };
+  row += "</tr>";
+  quarterlyIndicatorsTable.innerHTML += row;
+
 };
 
 function buildHistoricNowcastsTable(dataDict) {
