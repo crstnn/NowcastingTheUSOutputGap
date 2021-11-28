@@ -425,7 +425,6 @@ function buildQuarterlyIndicatorsTable(dataDict) {
     percentChangeDataArray[i] = obj;
   };
 
-
   const 
     smallerKeyArray = keyArray.slice(keyArray.length-numberOfQuartersToDisplay),
     smallerDataArray = percentChangeDataArray.slice(keyArray.length-numberOfQuartersToDisplay);
