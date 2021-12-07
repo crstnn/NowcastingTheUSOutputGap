@@ -477,7 +477,7 @@ function buildHistoricNowcastsTable(dataDict) {
       row += `<td><b>${(getCondensedDate(keyArray[idx]))}</b></td><td>${round(dataArray[idx].gapPercentage)}</td>`;
       idx += 1;
     };
-    historicalNowcastsTable.innerHTML += `<tr class="rowBorder"> ${row} </tr>`;
+    historicalNowcastsTable.innerHTML += `<tr class="rowBorder">${row}</tr>`;
   };
 
 };
