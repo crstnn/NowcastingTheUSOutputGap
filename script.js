@@ -474,10 +474,10 @@ function buildHistoricNowcastsTable(dataDict) {
     var row = "";
     for (var c = 0; c < numberOfColumns; c++){
       if (idx >= keyArray.length) break;
-      row += `<td><b>${(getCondensedDate(keyArray[idx]))}</b></td><td>${round(dataArray[idx].gapPercentage)} |</td>`;
+      row += `<td><b>${(getCondensedDate(keyArray[idx]))}</b></td><td>${round(dataArray[idx].gapPercentage)}</td>`;
       idx += 1;
     };
-    historicalNowcastsTable.innerHTML += "<tr>" + row + "</tr>";
+    historicalNowcastsTable.innerHTML += `<tr class="rowBorder"> ${row} </tr>`;
   };
 
 };
