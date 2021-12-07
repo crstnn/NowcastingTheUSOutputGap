@@ -463,22 +463,21 @@ function buildHistoricNowcastsTable(dataDict) {
     dataArray.push(dataDict.observations[key]);
   };
 
-  if (keyArray.length <= 0) return null;
+  if (keyArray.length == 0) return null;
 
-  const lengthOfRow = 31; // no more than 31 rows displays nicely
-  const numberOfColumns = Math.ceil(keyArray.length / lengthOfRow)
+  const numberOfColumns = keyArray.length < 3 ? keyArray.length : 3
 
   historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns * 2}>Historical Nowcasts for ${getYearAndQuarter(dataDict.latestRunUTC)}</th></tr>`;
 
-  var isIndexOutOfBounds = false;
-  for (var r = 0; r < lengthOfRow; r++){
+  var idx = 0;
+  for (var r = 0; r < keyArray.length; r++){
     var row = "";
-    for (var c = 1; c <= numberOfColumns; c++){
-      if (r*c >= keyArray.length) {isIndexOutOfBounds = true; break;}
-      row += `<td><b>${(getCondensedDate(keyArray[r*c]))}</b></td><td>${round(dataArray[r*c].gapPercentage)} |</td>`;
+    for (var c = 0; c < numberOfColumns; c++){
+      if (idx >= keyArray.length) break;
+      row += `<td><b>${(getCondensedDate(keyArray[idx]))}</b></td><td>${round(dataArray[idx].gapPercentage)} |</td>`;
+      idx += 1;
     };
     historicalNowcastsTable.innerHTML += "<tr>" + row + "</tr>";
-    if (isIndexOutOfBounds) break;
   };
 
 };
