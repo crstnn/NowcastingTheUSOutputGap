@@ -1,4 +1,4 @@
-## Nowcasting the Output Gap
+# Nowcasting the Output Gap
 
 Project serving live nowcasts of the US output gap, working with Dr. Benjamin Wong, Prof. James Morley and Prof. Tino Berger.
 
