@@ -6,6 +6,6 @@ The website for "Nowcasting the Output Gap", in keeping with the mixed-frequency
 
 \
 \
-\
 
-<sub><sup>Parenthetically, the back-end can be found at [github.com/crstnn/NowcastingTheUSOutputGapBE](https://github.com/crstnn/NowcastingTheUSOutputGapBE)</sup></sub>
+
+<sub><sup>The back-end can be found at [github.com/crstnn/NowcastingTheUSOutputGapBE](https://github.com/crstnn/NowcastingTheUSOutputGapBE)</sup></sub>
