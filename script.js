@@ -43,7 +43,7 @@ const MONTH = {
 
 function getQuarter(val) {
   const q = val % 1;
-  return String(QUARTER[q]);
+  return QUARTER[q];
 };
 
 
@@ -111,8 +111,8 @@ function graph(reqJSON) {
     nowcastForecastYVal.push(parseFloat(nValList[i]['gapPercentage']));
   };
 
-  // necessary so that the estimates align with recessions and 
-  // that the X-axis for the estimates now correspond with the end of the quarter, not the start
+  // Necessary so that the estimates align with recessions and that the X-axis 
+  // for the estimates now correspond with the end of the quarter, not the start
   const rollForwardDatesByAQuarter = q => parseFloat(q) + 0.25;
 
   const 
@@ -161,9 +161,10 @@ function graph(reqJSON) {
   };
 
   const layout = {
+    // small stylistic adjustments for mobile and desktop view
     font: { size: window.screen.width < viewportHorizontalMaxSizeMobile ? 30 : 13 },
-    autosize: true,
     height: window.screen.width < viewportHorizontalMaxSizeMobile ? 650 : 500 ,
+    autosize: true,
     shapes: [
       {
         type: 'line',
@@ -246,7 +247,7 @@ function restrictGraphOperations(fig){
 
     if (curvNum == 2) {
       const update = {};
-      update["shapes[" + String(curvNum - 1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly' ? true : false;
+      update["shapes[" + String(curvNum - 1) + "].visible"] = clickData.data[curvNum].visible == 'legendonly';
 
       Plotly.relayout(graphDiv, update);
     };
