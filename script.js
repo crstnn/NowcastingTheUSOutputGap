@@ -3,7 +3,8 @@ const quarterlyDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/tim
 const last4MontlyIndicatorsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-indicators-last-4-months/?type=json';
 const historicalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/gap/?type=json';
 
-const concreteColour = "#0b789c",
+const 
+      concreteColour = "#0b789c",
       nowcastColour = "#EF8354",
       forecastColour = "#89b34a",
       recessionColour = "#DDDDDD",
@@ -195,7 +196,7 @@ function graph(reqJSON) {
     yaxis: {
       ticksuffix: "%",
       automargin: true,
-      hoverformat: '.2f'
+      hoverformat: '.4f'
     },
     xaxis: {
       showgrid: false,
