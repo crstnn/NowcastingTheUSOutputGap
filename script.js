@@ -1,19 +1,20 @@
-const gapDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/gap-all-data/?type=json',
- quarterlyDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=json',
- last4MontlyIndicatorsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-indicators-last-4-months/?type=json',
- historicalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/gap/?type=json',
- historicalNowcastQuartersURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/available-quarters/?type=json',
- oldHistoricalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/previous-quarters/?type=json';
+const 
+  gapDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/gap-all-data/?type=json',
+  quarterlyDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=json',
+  last4MontlyIndicatorsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-indicators-last-4-months/?type=json',
+  historicalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/gap/?type=json',
+  historicalNowcastQuartersURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/available-quarters/?type=json',
+  oldHistoricalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/previous-quarters/?type=json';
 
 const 
-      concreteColour = "#0b789c",
-      nowcastColour = "#EF8354",
-      forecastColour = "#89b34a",
-      recessionColour = "#DDDDDD",
-      uncalledRecessionColour = "#f6eabe",
-      graphDiv = "graph",
-      outputGapText = "output_gap_text_under_data",
-      viewportHorizontalMaxSizeMobile = 520;
+  concreteColour = "#0b789c",
+  nowcastColour = "#EF8354",
+  forecastColour = "#89b34a",
+  recessionColour = "#DDDDDD",
+  uncalledRecessionColour = "#f6eabe",
+  graphDiv = "graph",
+  outputGapText = "output_gap_text_under_data",
+  viewportHorizontalMaxSizeMobile = 520;
 
 
 function getAPIData(url) {
