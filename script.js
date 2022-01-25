@@ -273,7 +273,7 @@ gapRequest.onload = function () {
 
     writeTextBelowGraph(reqJSON);
 
-    if (window.screen.width < viewportHorizontalMaxSizeMobile) document.getElementsByClassName("twitter-hashtag-button")[0].setAttribute("data-size", "large");
+    //if (window.screen.width < viewportHorizontalMaxSizeMobile) document.getElementsByClassName("twitter-hashtag-button")[0].setAttribute("data-size", "large");
 
   } else { fig.innerHTML = '<br><br><br><br><b>Site momentarily undergoing maintenance. Please come back later.</b><br><br><br><br>'; };
 };
@@ -318,6 +318,8 @@ historicalNowcastsRequest.onload = function () {
     const reqJSON =  JSON.parse(historicalNowcastsRequest.responseText);
 
     buildHistoricNowcastsTable(reqJSON);
+
+    buildHistoricNowcastsSelectorList();
 
   };
 };
@@ -485,5 +487,10 @@ function buildHistoricNowcastsTable(dataDict) {
   };
 
 };
+
+function buildHistoricNowcastsSelectorList() {
+  histNowcastsQSelector = document.getElementById('historicalNowcastsQuarterSelector');
+  histNowcastsQSelector.options[histNowcastsQSelector.options.length] = new Option('2021 Q4', '2021Q4');
+}
 
 ;
