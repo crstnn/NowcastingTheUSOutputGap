@@ -140,16 +140,17 @@
                 <br>
                 <div class="download">
                     <br>
-                    <select name="Select1" size="1" id="historicalNowcastsQuarterSelector">
-                        <option value="2021Q4">2021 Q4</option>
-                    </select>
-                    <br>
-                    <button id="download_button" class="button"
-                    onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/gap/?type=csv'"
-                    type="button">Download Quarter's Historical Nowcasts CSV</button>
-                    <br>
+                    <form action="">
+                        <select name="historicalNowcastsQuarterSelector" size="1" id="historicalNowcastsQuarterSelector">
+                            <option value="2021Q4">2021 Q4</option>
+                        </select>
+                        <br><br>
+                        <input id="download_button" class="button"
+                        onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/gap/?type=csv'"
+                        type="button" value="Download Quarter's Historical Nowcasts CSV">
+                    </form>
                 </div>
-                <br>
+                <br><br>
             </div>
 
             <script src="script.js"></script>

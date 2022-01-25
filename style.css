@@ -234,7 +234,9 @@ p {
   }
 
   #historicalNowcastsQuarterSelector {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     width: 250px;
+    font-size: medium;
     max-height: 200px; 
     overflow-y: auto; 
     overflow-x: hidden; 
