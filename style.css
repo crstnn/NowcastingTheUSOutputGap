@@ -233,6 +233,13 @@ p {
     background: #c5c5c5;
   }
 
+  #historicalNowcastsQuarterSelector {
+    width: 250px;
+    max-height: 200px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+ }
+
 
 
 @media only screen and (max-device-width: 520px) and (orientation : portrait) {

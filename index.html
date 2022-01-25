@@ -16,7 +16,7 @@
 </script>
 
 <head>
-    <script src="plotly-2.4.2.min.js"></script>
+    <script src="plotly-2.8.3.min.js"></script>
 </head>
 
 <body onresize="onResize()">
@@ -131,15 +131,25 @@
                     </tbody>
                 </table>
                 <br><br>
+                <hr>
+                <br>
+                To download other quarter's historical nowcasts please change the selection from the dropdown below otherwise click the download button for the current quarter.
+                <br><br>
                 <u>Contents by column</u>:<br>
                 Date of when the nowcast estimate is made, nowcast (%)
+                <br>
                 <div class="download">
+                    <br>
+                    <select name="Select1" size="1" id="historicalNowcastsQuarterSelector">
+                        <option value="2021Q4">2021 Q4</option>
+                    </select>
                     <br>
                     <button id="download_button" class="button"
                     onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/gap/?type=csv'"
-                    type="button">Current Quarter Historical Nowcasts CSV</button>
+                    type="button">Download Quarter's Historical Nowcasts CSV</button>
                     <br>
                 </div>
+                <br>
             </div>
 
             <script src="script.js"></script>
