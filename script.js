@@ -86,7 +86,9 @@ function writeTextBelowGraph(reqJSON){
   
   document.getElementById(outputGapText).innerHTML = 
       '<p>' + (isCurrentQuarter(nowcastForcastXVal[1]) ? `Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>` : "") + 
-      `<b>Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(realized)' : "(nowcast)"}</b><br/>
+      `${!nowcastGapIsIntitialRealised ? "<b>": "" } 
+      Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(realized)' : "(nowcast)"}
+      ${!nowcastGapIsIntitialRealised ? "</b>": "" } <br/>
       Output Gap ${getYearAndQuarter(concreteXVal[concreteXVal.length-1])}: ${lastQuarterOutputGap}% ${lastQuarterTypeIsIntitialRealised ? '(realized)' : ""}
       </p>`;
 
