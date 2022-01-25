@@ -279,7 +279,7 @@ p {
         width:70%;
     }
 
-    .button {
+    .button, #historicalNowcastsQuarterSelector {
         font-size: 35px;
     }
 
