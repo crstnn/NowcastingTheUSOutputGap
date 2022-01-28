@@ -28,7 +28,7 @@
         <div id="last_update">Last updated:</div>
         <div id="output_gap_text_under_data">
         </div>
-        <button id="download_button" class="button"
+        <button class="button"
             onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap/?type=csv'"
             type="button">Download Output Gap Time Series CSV</button>
     </div>
@@ -102,13 +102,13 @@
                     Quarterly data: date, GDPC1
                 <div class="download">
                     <br>
-                    <button id="download_button" class="button"
+                    <button class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly/?type=csv'"
                         type="button">Monthly Time Series CSV</button>
-                    <button id="download_button" class="button"
+                    <button class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-spread/?type=csv'"
                         type="button">Monthly Time Series for Spreads CSV</button>
-                    <button id="download_button" class="button"
+                    <button class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'"
                         type="button">Quarterly Time Series CSV</button>
                     <br>
@@ -133,20 +133,20 @@
                 <br><br>
                 <hr>
                 <br>
-                To download the above historical nowcasts for the current quarter click the download button below, or to view other quarter's historical nowcasts, please change the selection from the dropdown.
+                To download the above historical nowcasts for the current quarter click the download button below, or to view other quarter's historical nowcasts, change the selection from the dropdown.
                 <br><br>
                 <u>Contents by column</u>:<br>
                 Date of when the nowcast estimate is made, nowcast (%)
                 <br>
                 <div class="download">
                     <br>
-                    <form action="">
-                        <select name="historicalNowcastsQuarterSelector" size="1" id="historicalNowcastsQuarterSelector">
+                    <form>
+                        <select name="quarterSelector" id="historicalNowcastsQuarterSelector">
                         </select>
                         <br><br>
-                        <input id="download_button" class="button"
-                        onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/gap/?type=csv'"
-                        type="button" value="Download Quarter's Historical Nowcasts CSV">
+                        <input class="button"
+                        onclick="historicalNowcastsQuarterSubmit()"
+                        type="button" value="Download Chosen Quarter's Historical Nowcasts CSV">
                     </form>
                     <br><br>
                 </div>

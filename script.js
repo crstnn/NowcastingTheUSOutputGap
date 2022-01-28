@@ -1,12 +1,12 @@
-const 
+const
   gapDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/gap-all-data/?type=json',
   quarterlyDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=json',
   last4MontlyIndicatorsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-indicators-last-4-months/?type=json',
-  historicalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/gap/?type=json',
+  historicalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/gap/',
   historicalNowcastQuartersURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/available-quarters/?type=json',
-  oldHistoricalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/previous-quarters/?type=json';
+  oldHistoricalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/previous-quarters/';
 
-const 
+const
   concreteColour = "#0b789c",
   nowcastColour = "#EF8354",
   forecastColour = "#89b34a",
@@ -51,61 +51,61 @@ function getQuarter(val) {
 };
 
 
-function getYearAndQuarter(val) {
-  return String(~~val) + getQuarter(val);
+function getYearAndQuarter(val, spaceBetweenYearQuarter = false) {
+  return String(~~val) + (spaceBetweenYearQuarter ? " " : "") + getQuarter(val);
 };
 
-function getQuarterFromMonth(month){
+function getQuarterFromMonth(month) {
   if ([1, 2, 3].includes(parseInt(month))) return "Q1";
   if ([4, 5, 6].includes(parseInt(month))) return "Q2";
   if ([7, 8, 9].includes(parseInt(month))) return "Q3";
   if ([10, 11, 12].includes(parseInt(month))) return "Q4";
 };
 
-function writeTextBelowGraph(reqJSON){
+function writeTextBelowGraph(reqJSON) {
 
-  function isCurrentQuarter(conditionalForecastXval){
+  function isCurrentQuarter(conditionalForecastXval) {
     const conditionalForecastQuarter = conditionalForecastXval % 1;
     const lastUpdateMonth = parseInt(reqJSON['latestRunUTC'].slice(5, 7));
 
-    return (conditionalForecastQuarter == 0.0 && [1, 2, 3].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.25 && [4, 5, 6].includes(lastUpdateMonth)) || 
-            (conditionalForecastQuarter == 0.5 && [7, 8, 9].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.75 && [10, 11, 12].includes(lastUpdateMonth));
+    return (conditionalForecastQuarter == 0.0 && [1, 2, 3].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.25 && [4, 5, 6].includes(lastUpdateMonth)) ||
+      (conditionalForecastQuarter == 0.5 && [7, 8, 9].includes(lastUpdateMonth)) || (conditionalForecastQuarter == 0.75 && [10, 11, 12].includes(lastUpdateMonth));
 
   };
-  
-  const 
+
+  const
     cValList = Object.values(reqJSON['concreteObservations']),
     nValList = Object.values(reqJSON['nowcastForecastObservations']);
 
-  const 
+  const
     concreteXVal = Object.keys(reqJSON['concreteObservations']),
     nowcastForcastXVal = Object.keys(reqJSON['nowcastForecastObservations']),
-    lastQuarterOutputGap = parseFloat(cValList[cValList.length-1]['gapPercentage']).toFixed(1),
+    lastQuarterOutputGap = parseFloat(cValList[cValList.length - 1]['gapPercentage']).toFixed(1),
     nowcastGap = parseFloat(nValList[0]['gapPercentage']).toFixed(1),
     forecastGap = parseFloat(nValList[1]['gapPercentage']).toFixed(1),
-    lastQuarterTypeIsIntitialRealised = (cValList[cValList.length-1]['isRealized'] === 'True'),
+    lastQuarterTypeIsIntitialRealised = (cValList[cValList.length - 1]['isRealized'] === 'True'),
     nowcastGapIsIntitialRealised = (nValList[0]['isRealized'] === 'True');
 
-  
-  document.getElementById(outputGapText).innerHTML = 
-      '<p>' + (isCurrentQuarter(nowcastForcastXVal[1]) ? `Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>` : "") + 
-      `${!nowcastGapIsIntitialRealised ? "<b>": "" } 
+
+  document.getElementById(outputGapText).innerHTML =
+    '<p>' + (isCurrentQuarter(nowcastForcastXVal[1]) ? `Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>` : "") +
+    `${!nowcastGapIsIntitialRealised ? "<b>" : ""} 
       Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(realized)' : "(nowcast)"}
-      ${!nowcastGapIsIntitialRealised ? "</b>": "" } <br/>
-      Output Gap ${getYearAndQuarter(concreteXVal[concreteXVal.length-1])}: ${lastQuarterOutputGap}% ${lastQuarterTypeIsIntitialRealised ? '(realized)' : ""}
+      ${!nowcastGapIsIntitialRealised ? "</b>" : ""} <br/>
+      Output Gap ${getYearAndQuarter(concreteXVal[concreteXVal.length - 1])}: ${lastQuarterOutputGap}% ${lastQuarterTypeIsIntitialRealised ? '(realized)' : ""}
       </p>`;
 
 };
 
-function graph(reqJSON) {
+async function graph(reqJSON) {
 
   document.getElementById("last_update").innerHTML = "Last updated (UTC): " + reqJSON['latestRunUTC'].slice(0, reqJSON['latestRunUTC'].length - 3);
 
-  const 
+  const
     cValList = Object.values(reqJSON['concreteObservations']),
     nValList = Object.values(reqJSON['nowcastForecastObservations']);
 
-  const 
+  const
     concreteYVal = [],
     nowcastForecastYVal = [];
 
@@ -121,7 +121,7 @@ function graph(reqJSON) {
   // for the estimates now correspond with the end of the quarter, not the start
   const rollForwardDatesByAQuarter = q => parseFloat(q) + 0.25;
 
-  const 
+  const
     concreteXVal = Object.keys(reqJSON['concreteObservations']),
     nowcastForcastXVal = Object.keys(reqJSON['nowcastForecastObservations']),
     nowcastXVal = [nowcastForcastXVal[0]],
@@ -169,7 +169,7 @@ function graph(reqJSON) {
   const layout = {
     // small stylistic adjustments for mobile and desktop view
     font: { size: window.screen.width < viewportHorizontalMaxSizeMobile ? 30 : 13 },
-    height: window.screen.width < viewportHorizontalMaxSizeMobile ? 650 : 500 ,
+    height: window.screen.width < viewportHorizontalMaxSizeMobile ? 650 : 500,
     autosize: true,
     shapes: [
       {
@@ -210,32 +210,33 @@ function graph(reqJSON) {
     legend: {
       orientation: "h",
       yanchor: "top",
-      y:  window.screen.width < viewportHorizontalMaxSizeMobile ? 1.18 : 1.03,
+      y: window.screen.width < viewportHorizontalMaxSizeMobile ? 1.18 : 1.03,
       xanchor: "right",
       x: 1.03,
     }
   };
 
   reqJSON.recessions.forEach(recessionPeriod => {
-    const 
+    const
       recCol = recessionPeriod.troughDate == "None" ? uncalledRecessionColour : recessionColour,
       troughDate = recessionPeriod.troughDate == "None" ? forecastXVal[forecastXVal.length - 1] : recessionPeriod.troughDate;
 
     layout['shapes'].push(
-    {
-      type: 'rect',
-      xref: 'x',
-      yref: 'paper',
-      x0: recessionPeriod.peakDate,
-      y0: 0,
-      x1: troughDate,
-      y1: 1,
-      fillcolor: recCol,
-      opacity: 0.2,
-      line: {
-        width: 0
-      }
-    });});
+      {
+        type: 'rect',
+        xref: 'x',
+        yref: 'paper',
+        x0: recessionPeriod.peakDate,
+        y0: 0,
+        x1: troughDate,
+        y1: 1,
+        fillcolor: recCol,
+        opacity: 0.2,
+        line: {
+          width: 0
+        }
+      });
+  });
 
   const data = [traceConcreteObs, traceNowcast, traceForecast];
 
@@ -243,7 +244,7 @@ function graph(reqJSON) {
 
 };
 
-function restrictGraphOperations(fig){
+function restrictGraphOperations(fig) {
 
   fig.on('plotly_legenddoubleclick', () => false);
 
@@ -266,10 +267,10 @@ gapRequest.timeout = 8000;
 
 gapRequest.onload = function () {
   const fig = document.getElementById(graphDiv);
-  if (this.status == 200){
+  if (this.status == 200) {
     fig.innerHTML = '';
-    const reqJSON =  JSON.parse(gapRequest.responseText);
-    
+    const reqJSON = JSON.parse(gapRequest.responseText);
+
     graph(reqJSON);
 
     restrictGraphOperations(fig);
@@ -288,8 +289,8 @@ const last4MontlyIndicatorsRequest = getAPIData(last4MontlyIndicatorsDataURL);
 last4MontlyIndicatorsRequest.timeout = 8000;
 
 last4MontlyIndicatorsRequest.onload = function () {
-  if (this.status == 200){
-    const reqJSON =  JSON.parse(last4MontlyIndicatorsRequest.responseText);
+  if (this.status == 200) {
+    const reqJSON = JSON.parse(last4MontlyIndicatorsRequest.responseText);
 
     buildMonthlyIndicatorsTable(reqJSON.observations);
 
@@ -302,8 +303,8 @@ const quarterlyDataRequest = getAPIData(quarterlyDataURL);
 quarterlyDataRequest.timeout = 8000;
 
 quarterlyDataRequest.onload = function () {
-  if (this.status == 200){
-    const reqJSON =  JSON.parse(quarterlyDataRequest.responseText);
+  if (this.status == 200) {
+    const reqJSON = JSON.parse(quarterlyDataRequest.responseText);
 
     buildQuarterlyIndicatorsTable(reqJSON.observations);
 
@@ -313,21 +314,35 @@ quarterlyDataRequest.onload = function () {
 quarterlyDataRequest.send(null);
 
 
-const historicalNowcastsRequest = getAPIData(historicalNowcastsDataURL);
+const historicalNowcastsRequest = getAPIData(historicalNowcastsDataURL + "?type=json");
 historicalNowcastsRequest.timeout = 8000;
 
 historicalNowcastsRequest.onload = function () {
-  if (this.status == 200){
-    const reqJSON =  JSON.parse(historicalNowcastsRequest.responseText);
-
+  if (this.status == 200) {
+    const reqJSON = JSON.parse(historicalNowcastsRequest.responseText);
     buildHistoricNowcastsTable(reqJSON);
 
-    buildHistoricNowcastsSelectorList(reqJSON);
+    const oldHistoricalNowcastsRequest = getAPIData(historicalNowcastQuartersURL);
+    oldHistoricalNowcastsRequest.timeout = 8000;
+
+    oldHistoricalNowcastsRequest.onload = function () {
+      if (this.status == 200) {
+        const reqJSON = JSON.parse(oldHistoricalNowcastsRequest.responseText);
+
+        buildHistoricNowcastsSelectorList(reqJSON);
+
+      };
+    };
+
+    oldHistoricalNowcastsRequest.send(null);
 
   };
 };
 
 historicalNowcastsRequest.send(null);
+
+
+
 
 function onResize() {
   graph(JSON.parse(gapRequest.responseText));
@@ -336,12 +351,12 @@ function onResize() {
 };
 
 
-const 
+const
   dataCollapsible = document.getElementsByClassName("collapsible"),
   dataCollapsibleArrow = document.getElementsByClassName("arrow");
 
 for (var idx = 0; idx < dataCollapsible.length; idx++) {
-  (function(idx){
+  (function (idx) {
     dataCollapsible[idx].addEventListener("click", function () {
       this.classList.toggle("active");
       dataCollapsibleArrow[idx].classList.toggle("down");
@@ -354,29 +369,29 @@ for (var idx = 0; idx < dataCollapsible.length; idx++) {
 
 function round(value) {
   function countDecimals(val) {
-    if(Math.floor(val) === val) return 0;
+    if (Math.floor(val) === val) return 0;
     return val.toString().split(".")[1].length || 0;
-    };
+  };
   if (value == "None") return "-";
-  if (countDecimals(value) <=2) return value;
+  if (countDecimals(value) <= 2) return value;
   return parseFloat(value).toFixed(2);
 };
 
-function roundSpecial(value, isTo1DP=false) {
+function roundSpecial(value, isTo1DP = false) {
   function countDecimals(val) {
-    if(Math.floor(val) === val) return 0;
+    if (Math.floor(val) === val) return 0;
     return val.toString().split(".")[1].length || 0;
-    };
+  };
   if (value == "None") return "-";
 
-  if (isTo1DP && countDecimals(value) <=2) return parseFloat(value).toFixed(1);
+  if (isTo1DP && countDecimals(value) <= 2) return parseFloat(value).toFixed(1);
 
   return parseFloat(value).toFixed(2);
 };
 
 function buildMonthlyIndicatorsTable(dataDict) {
 
-  const 
+  const
     keyArray = [],
     dataArray = [],
     monthlyIndicatorsTable = document.getElementById('monthlyIndicatorsTable');
@@ -412,7 +427,7 @@ function buildQuarterlyIndicatorsTable(dataDict) {
 
   const numberOfQuartersToDisplay = 1;
 
-  const 
+  const
     keyArray = [],
     dataArray = [],
     percentChangeDataArray = [],
@@ -428,15 +443,15 @@ function buildQuarterlyIndicatorsTable(dataDict) {
   const dictKey = "GDPC1";
 
   // percentage change
-  for (var i = 1; i < dataArray.length; i++){
+  for (var i = 1; i < dataArray.length; i++) {
     var obj = {};
-    obj[dictKey] = ((parseFloat(dataArray[i][dictKey]) - parseFloat(dataArray[i-1][dictKey]))/parseFloat(dataArray[i-1][dictKey]))*100;
+    obj[dictKey] = ((parseFloat(dataArray[i][dictKey]) - parseFloat(dataArray[i - 1][dictKey])) / parseFloat(dataArray[i - 1][dictKey])) * 100;
     percentChangeDataArray[i] = obj;
   };
 
-  const 
-    smallerKeyArray = keyArray.slice(keyArray.length-numberOfQuartersToDisplay),
-    smallerDataArray = percentChangeDataArray.slice(keyArray.length-numberOfQuartersToDisplay);
+  const
+    smallerKeyArray = keyArray.slice(keyArray.length - numberOfQuartersToDisplay),
+    smallerDataArray = percentChangeDataArray.slice(keyArray.length - numberOfQuartersToDisplay);
 
   var horizontalHeader = "<tr><th></th>";
   for (const key of smallerKeyArray) {
@@ -462,7 +477,7 @@ function buildHistoricNowcastsTable(dataDict) {
     return `${day}-${MONTH[month]}`;
   };
 
-  const 
+  const
     keyArray = [],
     dataArray = [],
     historicalNowcastsTable = document.getElementById('historicalNowcastsTable');
@@ -479,9 +494,9 @@ function buildHistoricNowcastsTable(dataDict) {
   historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns * 2}>Historical Nowcasts for ${getYearAndQuarter(dataDict.latestRunUTC)}</th></tr>`;
 
   var idx = 0;
-  for (var r = 0; r < keyArray.length; r++){
+  for (var r = 0; r < keyArray.length; r++) {
     var row = "";
-    for (var c = 0; c < numberOfColumns; c++){
+    for (var c = 0; c < numberOfColumns; c++) {
       if (idx >= keyArray.length) break;
       row += `<td><b>${(getCondensedDate(keyArray[idx]))}</b></td><td>${round(dataArray[idx].gapPercentage)}</td>`;
       idx += 1;
@@ -489,11 +504,38 @@ function buildHistoricNowcastsTable(dataDict) {
     historicalNowcastsTable.innerHTML += `<tr class="rowBorder">${row}</tr>`;
   };
 
+  // adding most recent historical nowcasted quarter to options list
+  const histNowcastsQSelector = document.getElementById('historicalNowcastsQuarterSelector');
+  histNowcastsQSelector.options[histNowcastsQSelector.options.length] = new Option(getYearAndQuarter(dataDict.latestRunUTC, true), "currentNowcastQuarter");
+
 };
 
 function buildHistoricNowcastsSelectorList(dataDict) {
+  const availableQuarters = Array(Object.keys(dataDict.observations).length);
+
+  for (const key in dataDict.observations) {
+    availableQuarters[key] = dataDict.observations[key]['date'];
+  };
+
   const histNowcastsQSelector = document.getElementById('historicalNowcastsQuarterSelector');
-  histNowcastsQSelector.options[histNowcastsQSelector.options.length] = new Option(getYearAndQuarter(dataDict.latestRunUTC), getYearAndQuarter(dataDict.latestRunUTC));
-}
+
+  availableQuarters.forEach(x => {
+    const numericQuarter = parseFloat(x.replace(/[^0-9|.]/g, ''));
+    histNowcastsQSelector.options[histNowcastsQSelector.options.length] =
+      new Option(getYearAndQuarter(numericQuarter, true), numericQuarter);
+  });
+};
+
+function historicalNowcastsQuarterSubmit() {
+
+  const selectedQuarter = document.getElementsByName("quarterSelector")[0].value;
+
+  if (selectedQuarter === "currentNowcastQuarter") {
+    window.location.assign(historicalNowcastsDataURL + "?type=csv");
+  } else {
+    window.location.assign(oldHistoricalNowcastsDataURL + "?type=csv&yearquarter=" + String(selectedQuarter));
+  };
+
+};
 
 ;
