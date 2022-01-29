@@ -28,9 +28,9 @@
         <div id="last_update">Last updated:</div>
         <div id="output_gap_text_under_data">
         </div>
-        <button class="button"
+        <button class="button" style="min-width: 280px;"
             onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap/?type=csv'"
-            type="button">Download Output Gap Time Series CSV</button>
+            type="button">Download Output Gap</button>
     </div>
     <div id="abstract_container">
         <div class="t">
@@ -104,13 +104,13 @@
                     <br>
                     <button class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly/?type=csv'"
-                        type="button">Monthly Time Series CSV</button>
+                        type="button">Download Monthly Time Series</button>
                     <button class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-spread/?type=csv'"
-                        type="button">Monthly Time Series for Spreads CSV</button>
+                        type="button">Download Monthly Time Series for Spreads</button>
                     <button class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'"
-                        type="button">Quarterly Time Series CSV</button>
+                        type="button">Download Quarterly Time Series</button>
                     <br>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                 <br><br>
                 <hr>
                 <br>
-                To download the above historical nowcasts for the current quarter click the download button below, or to view other quarter's historical nowcasts, change the selection from the dropdown.
+                To download the above historical nowcasts for the current quarter click the download button below, or to download other quarter's historical nowcasts, change the selection from the dropdown.
                 <br><br>
                 <u>Contents by column</u>:<br>
                 Date of when the nowcast estimate is made, nowcast (%)
@@ -146,9 +146,9 @@
                         <br><br>
                         <input class="button"
                         onclick="historicalNowcastsQuarterSubmit()"
-                        type="button" value="Download Quarter's Historical Nowcasts CSV">
+                        type="button" value="Download Historical Nowcasts">
                     </form>
-                    <br><br>
+                    <br>
                 </div>
             </div>
 
