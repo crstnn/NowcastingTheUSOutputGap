@@ -300,6 +300,7 @@ p {
 
     .tweet_button {
         font-size: 32px;
+        padding: 4px 8px;
     }
 
     .arrow {
@@ -319,13 +320,8 @@ p {
         width: 90%;
     }
 
-    .button {
-        font-size: 32px;
-        padding: 15px 15px;
-    }
-
-    .tweet_button {
-        font-size: 32px;
+    .button, .tweet_button {
+        font-size: 22px;
     }
 
   }
