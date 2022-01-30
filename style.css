@@ -293,15 +293,11 @@ p {
         font-size: 35px;
     }
 
-    .button {
+    .button, .tweet_button {
         font-size: 26px;
         padding: 15px 15px;
     }
-
-    .tweet_button {
-        font-size: 26px;
-    }
-
+    
     .arrow {
         border-width: 0 5px 5px 0;
         padding: 10px;
@@ -318,15 +314,10 @@ p {
     #graph {
         width: 90%;
     }
-    
 
-    .button {
+    .button, .tweet_button {
         font-size: 26px;
         padding: 15px 15px;
-    }
-
-    .tweet_button {
-        font-size: 26px;
     }
 
   }
