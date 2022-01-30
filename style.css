@@ -293,11 +293,15 @@ p {
         font-size: 35px;
     }
 
-    .button, .tweet_button {
-        font-size: 26px;
+    .button {
+        font-size: 32px;
         padding: 15px 15px;
     }
-    
+
+    .tweet_button {
+        font-size: 32px;
+    }
+
     .arrow {
         border-width: 0 5px 5px 0;
         padding: 10px;
@@ -315,9 +319,13 @@ p {
         width: 90%;
     }
 
-    .button, .tweet_button {
-        font-size: 26px;
+    .button {
+        font-size: 32px;
         padding: 15px 15px;
+    }
+
+    .tweet_button {
+        font-size: 32px;
     }
 
   }
