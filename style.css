@@ -218,7 +218,7 @@ p {
     flex-direction: column;
     align-items: center;
     padding: 8px 8px;
-    border-radius: 1.5px;
+    border-radius: 3px;
     border: none;
     background: linear-gradient(180deg, #e2e2e2 0%, #c5c5c5 100%);
     box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
@@ -231,6 +231,15 @@ p {
     box-shadow: inset 0px 0px 0px 1px rgba(108, 154, 255, 0.5);
     outline: 0;
     background: #c5c5c5;
+  }
+
+  .tweet_button {
+    background-color: #1DA1F2; 
+    color: white; 
+    font-size: small;
+    border-radius: 8px; 
+    border: 0; 
+    padding: 4px 4px;
   }
 
   #historicalNowcastsQuarterSelector {
@@ -283,6 +292,15 @@ p {
         font-size: 35px;
     }
 
+    .button {
+        font-size: 26px;
+        padding: 15px 15px;
+    }
+
+    .tweet_button {
+        font-size: 26px;
+    }
+
     .arrow {
         border-width: 0 5px 5px 0;
         padding: 10px;
@@ -302,8 +320,8 @@ p {
     
 
     .button {
-        font-size: 22px;
-        padding: 12px 12px;
+        font-size: 26px;
+        padding: 15px 15px;
     }
 
   }
