@@ -237,9 +237,10 @@ p {
     background-color: #1DA1F2; 
     color: white; 
     font-size: small;
-    border-radius: 8px; 
+    border-radius: 10px; 
     border: 0; 
-    padding: 4px 4px;
+    padding: 4px 8px;
+    display: inline-block
   }
 
   #historicalNowcastsQuarterSelector {
@@ -322,6 +323,10 @@ p {
     .button {
         font-size: 26px;
         padding: 15px 15px;
+    }
+
+    .tweet_button {
+        font-size: 26px;
     }
 
   }
