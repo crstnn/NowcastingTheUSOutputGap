@@ -277,8 +277,6 @@ gapRequest.onload = function () {
 
     writeTextBelowGraph(reqJSON);
 
-    //if (window.screen.width < viewportHorizontalMaxSizeMobile) document.getElementsByClassName("twitter-hashtag-button")[0].setAttribute("data-size", "large");
-
   } else { fig.innerHTML = '<br><br><br><br><b>Site momentarily undergoing maintenance. Please come back later.</b><br><br><br><br>'; };
 };
 
