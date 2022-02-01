@@ -13,7 +13,7 @@ const
   recessionColour = "#DDDDDD",
   uncalledRecessionColour = "#f6eabe",
   graphDiv = "graph",
-  outputGapText = "output_gap_text_under_data",
+  outputGapText = "outputGapTextUnderData",
   viewportHorizontalMaxSizeMobile = 520;
 
 
