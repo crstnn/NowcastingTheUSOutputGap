@@ -556,6 +556,5 @@ function historicalNowcastsQuarterSubmit() {
         window.location.assign(oldHistoricalNowcastsDataURL + "?type=csv&yearquarter=" + String(selectedQuarter));
     }
 
-
 }
 
