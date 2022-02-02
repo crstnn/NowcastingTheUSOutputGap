@@ -215,7 +215,7 @@ async function graph(reqJSON) {
             y: window.screen.width < viewportHorizontalMaxSizeMobile ? 1.18 : 1.03,
             xanchor: "right",
             x: 1.03,
-        }
+        },
     };
 
     reqJSON.recessions.forEach(recessionPeriod => {
@@ -242,7 +242,7 @@ async function graph(reqJSON) {
 
     const data = [traceConcreteObs, traceNowcast, traceForecast];
 
-    Plotly.newPlot(graphDiv, data, layout);
+    Plotly.newPlot(graphDiv, data, layout, {showTips: false});
 
 }
 
@@ -555,6 +555,7 @@ function historicalNowcastsQuarterSubmit() {
     } else {
         window.location.assign(oldHistoricalNowcastsDataURL + "?type=csv&yearquarter=" + String(selectedQuarter));
     }
+
 
 }
 
