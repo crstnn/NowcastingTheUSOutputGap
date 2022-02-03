@@ -248,6 +248,10 @@ p {
     cursor: pointer;
   }
 
+  .tweetButton:hover {
+    background-color: 	rgb(22, 142, 218); 
+  }
+
   #historicalNowcastsQuarterSelector {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     width: 250px;
