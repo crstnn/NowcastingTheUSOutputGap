@@ -241,7 +241,8 @@ p {
     border-radius: 14px; 
     border: 0; 
     padding: 4px 8px;
-    display: inline-block
+    display: inline-block;
+    cursor: pointer;
   }
 
   #historicalNowcastsQuarterSelector {
