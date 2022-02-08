@@ -170,8 +170,8 @@ async function graph(reqJSON) {
 
     const layout = {
         // small stylistic adjustments for mobile and desktop view
-        font: {size: window.screen.width < viewportHorizontalMaxSizeMobile ? 30 : 13},
-        height: window.screen.width < viewportHorizontalMaxSizeMobile ? 650 : 500,
+        font: {family: '"Lucida Sans Unicode", "Lucida Grande", sans-serif', size: window.screen.width < viewportHorizontalMaxSizeMobile ? 30 : 13},
+        height: window.screen.width < viewportHorizontalMaxSizeMobile ? 700 : 500,
         autosize: true,
         shapes: [
             {
