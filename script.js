@@ -525,7 +525,8 @@ function buildHistoricNowcastsTable(dataDict) {
 
     // adding most recent historical nowcasted quarter to options list
     const histNowcastsQSelector = document.getElementById('historicalNowcastsQuarterSelector');
-    histNowcastsQSelector.options[histNowcastsQSelector.options.length] = new Option(getYearAndQuarter(dataDict.latestRunUTC, true), "currentNowcastQuarter");
+    histNowcastsQSelector.options[histNowcastsQSelector.options.length] = 
+        new Option(getYearAndQuarter(dataDict.latestRunUTC, true) + " (most recent)", "currentNowcastQuarter");
 
 }
 
