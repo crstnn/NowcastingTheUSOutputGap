@@ -300,7 +300,7 @@ p {
 
     .button, #historicalNowcastsQuarterSelector {
         font-size: 35px;
-        min-width: 550px;
+        min-width: 500px;
     }
 
     .button {
