@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Nowcasting the Output Gap</title>
+    <title>Nowcasting the Output Gap</title>
     <meta charset="UTF-8"/>
-    <meta name="description" content="Provides updates of the latest nowcast of the United States output gap"/>
-    <link rel="icon" type="image/png" href="assets/favicon.png"/>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta content="Provides updates of the latest nowcast of the United States output gap" name="description"/>
+    <link href="assets/favicon.png" rel="icon" type="image/png"/>
+    <link href="style.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
+
+
+<body onresize="onResize()">
 <div id="header">
     <h1>Nowcasting the Output Gap</h1>
 </div>
@@ -20,190 +23,200 @@
 </script>
 
 <script src="plotly-2.8.3.min.js"></script>
+<div id="data">
+    <div id="graph"><br>loading...<br><br></div>
+</div>
 
-<body onresize="onResize()">
-    <div id="data">
-        <div id="graph"><br>loading...<br><br></div>
+<div id="underData">
+    <div id="lastUpdate">Last updated:</div>
+    <div id="outputGapTextUnderData">
     </div>
+    <button class="button" onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap/?type=csv'"
+            style="min-width: 280px;"
+            type="button">Download Output Gap
+    </button>
+</div>
+<div id="abstractContainer">
+    <div class="t">
+        <br>
+        Nowcasts for the U.S. output gap are calculated following the approach described in
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523" rel="noopener noreferrer"
+           target="_blank">Berger, Morley, and
+            Wong</a> (forthcoming, <i>Journal of Econometrics</i>) using a model that includes the U-2 unemployment rate
+        instead of the unemployment rate, as in <a href="https://academic.oup.com/ooec/advance-article/doi/10.1093/ooec/odab002/6520732" rel="noopener noreferrer"
+                                                   target="_blank">Berger,
+        Boll, Morley, and
+        Wong</a> (forthcoming, <i>Oxford Open Economics</i>). Please cite these papers when referring to the
+        estimates reported here.<br><br>
+        The latest nowcast reported above is displayed in the time series plot using an orange line extending from
+        the
+        realized estimates of the output gap based on data up to and including the latest quarter for which real GDP
+        has been released.
+        Conditional forecasts of future values of the output gap can be toggled on or off in the plot by clicking on
+        the label in the legend and are displayed as a green line.
+        Exact values of estimates can be seen by hovering over or tapping on each point in the plot.
+        The data file linked to above contains three columns: (1) the quarter of an
+        estimate, (2) the output gap estimate (%), and (3) whether or not real GDP has been realized yet in a given
+        quarter.
+        <br>
+        <br>
+        The estimates are automatically updated daily and usually within 30 minutes of major data releases.
+        The date (UTC time zone) of the latest nowcast is reported directly below the time series plot.
+        Parameter estimates
+        are based on the full sample for which real GDP has been released, but not
+        including 2020Q1-2020Q3 in the forecast evaluation used for calculation of
+        the shrinkage hyperparameter in order to avoid any distortions from Covid-related outliers.
+        For details of the indicators used in calculating the output gap estimates or information on historical nowcasts
+        for the given quarter, click the
+        'Indicators' or 'Historical Nowcasts' dropdown, respectively.
+        <br>
+        <br>
 
-    <div id="underData">
-        <div id="lastUpdate">Last updated:</div>
-        <div id="outputGapTextUnderData">
-        </div>
-        <button class="button" style="min-width: 280px;"
-            onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/gap/?type=csv'"
-            type="button">Download Output Gap</button>
-    </div>
-    <div id="abstractContainer">
-        <div class="t">
+        <button class="collapsible">Indicators<i class="arrow left" id="arrow"></i></button>
+        <div class="content">
             <br>
-            Nowcasts for the U.S. output gap are calculated following the approach described in
-            <a target="_blank" rel="noopener noreferrer"
-                href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Berger, Morley, and
-                Wong</a> (forthcoming, <i>Journal of Econometrics</i>) using a model that includes the U-2 unemployment rate
-                instead of the unemployment rate, as in <a target="_blank" rel="noopener noreferrer"
-                href="https://academic.oup.com/ooec/advance-article/doi/10.1093/ooec/odab002/6520732">Berger, Boll, Morley, and
-                Wong</a> (forthcoming, <i>Oxford Open Economics</i>). Please cite these papers when referring to the
-            estimates reported here.<br><br>
-            The latest nowcast reported above is displayed in the time series plot using an orange line extending from
-            the
-            realized estimates of the output gap based on data up to and including the latest quarter for which real GDP
-            has been released.
-            Conditional forecasts of future values of the output gap can be toggled on or off in the plot by clicking on
-            the label in the legend and are displayed as a green line.
-            Exact values of estimates can be seen by hovering over or tapping on each point in the plot.
-            The data file linked to above contains three columns: (1) the quarter of an
-            estimate, (2) the output gap estimate (%), and (3) whether or not real GDP has been realized yet in a given quarter.
-            <br>
-            <br>
-            The estimates are automatically updated daily and usually within 30 minutes of major data releases.
-            The date (UTC time zone) of the latest nowcast is reported directly below the time series plot.
-            Parameter estimates
-            are based on the full sample for which real GDP has been released, but not
-            including 2020Q1-2020Q3 in the forecast evaluation used for calculation of
-            the shrinkage hyperparameter in order to avoid any distortions from Covid-related outliers.
-            For details of the indicators used in calculating the output gap estimates or information on historical nowcasts for the given quarter, click the
-            'Indicators' or 'Historical Nowcasts' dropdown, respectively. 
-            <br>
-            <br>
+            The table below contains the most recent values of the indicators that feed into the output gap
+            estimates. Note that consumer sentiment may be a
+            preliminary measure and there can be revisions to IP growth, housing starts, and real GDP growth over time.
+            Also, we note that the interest rates used in calculating spreads are measured
+            only to two decimals.
+            <br><br>
+            <table class="table">
+                <tbody id="monthlyIndicatorsTable">
 
-            <button class="collapsible">Indicators<i id="arrow" class="arrow left"></i></button>
-            <div class="content">
+                </tbody>
+
+            </table>
+            <br>
+            <table class="table">
+                <tbody id="quarterlyIndicatorsTable">
+
+                </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
+            Below are three CSV data files that can be placed in the same directory as the MATLAB code linked to at
+            the bottom of this webpage in order to replicate the nowcast estimates.
+            These data are mostly gathered from FRED, except for some indicators reported on FRED with a lag or
+            truncated timelines, which we scrape from other sources.
+            <br><br>
+            <u>Contents by column</u> (<i>denoted by FRED codes - starting from 1967</i>):
+            <br>
+            Monthly data: date, FEDFUNDS, UMCSENT, U2RATE, CPIAUCSL, INDPRO, HOUST, SP500
+            <br>
+            Monthly data for spreads: date, BAA, AAA, DGS10, DGS1
+            <br>
+            Quarterly data: date, GDPC1
+            <div class="download">
                 <br>
-                The table below contains the most recent values of the indicators that feed into the output gap
-                estimates. Note that consumer sentiment may be a
-                preliminary measure and there can be revisions to IP growth, housing starts, and real GDP growth over time. Also, we note that the interest rates used in calculating spreads are measured
-                only to two decimals.
-                <br><br>
-                <table class="table">
-                    <tbody id="monthlyIndicatorsTable">
-
-                    </tbody>
-
-                </table>
-                <br>
-                <table class="table">
-                    <tbody id="quarterlyIndicatorsTable">
-
-                    </tbody>
-                </table>
-                    <br>
-                    <hr>
-                    <br>
-                    Below are three CSV data files that can be placed in the same directory as the MATLAB code linked to at
-                    the bottom of this webpage in order to replicate the nowcast estimates.
-                    These data are mostly gathered from FRED, except for some indicators reported on FRED with a lag or
-                    truncated timelines, which we scrape from other sources.
-                    <br><br>
-                    <u>Contents by column</u> (<i>denoted by FRED codes - starting from 1967</i>):
-                    <br>
-                    Monthly data: date, FEDFUNDS, UMCSENT, U2RATE, CPIAUCSL, INDPRO, HOUST, SP500
-                    <br>
-                    Monthly data for spreads: date, BAA, AAA, DGS10, DGS1
-                    <br>
-                    Quarterly data: date, GDPC1
-                <div class="download">
-                    <br>
-                    <button class="button"
+                <button class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly/?type=csv'"
-                        type="button">Download Monthly Time Series</button>
-                    <button class="button"
+                        type="button">Download Monthly Time Series
+                </button>
+                <button class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-spread/?type=csv'"
-                        type="button">Download Monthly Time Series for Spreads</button>
-                    <button class="button"
+                        type="button">Download Monthly Time Series for Spreads
+                </button>
+                <button class="button"
                         onclick="location.href='https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=csv'"
-                        type="button">Download Quarterly Time Series</button>
-                    <br>
-                </div>
+                        type="button">Download Quarterly Time Series
+                </button>
+                <br>
             </div>
+        </div>
 
+        <br>
+
+        <button class="collapsible">Historical Nowcasts<i class="arrow left" id="arrow2"></i></button>
+        <div class="content">
             <br>
+            The table below contains the historical nowcasts for the quarter currently being nowcast.
+            For previous days, the last nowcast of the day (based on the UTC time zone) is given in the table.
+            The most recent nowcast given in the table may be revised within the day.
+            <br><br>
 
-            <button class="collapsible">Historical Nowcasts<i id="arrow2" class="arrow left"></i></button>
-            <div class="content">
-                <br>
-                The table below contains the historical nowcasts for the quarter currently being nowcast. 
-                For previous days, the last nowcast of the day (based on the UTC time zone) is given in the table. 
-                The most recent nowcast given in the table may be revised within the day. 
-                <br><br>
-                
-                <table class="table tableRowBorderBottom">
-                    <tbody id="historicalNowcastsTable">
+            <table class="table tableRowBorderBottom">
+                <tbody id="historicalNowcastsTable">
 
-                    </tbody>
-                </table>
-                <br><br>
-                <hr>
+                </tbody>
+            </table>
+            <br><br>
+            <hr>
+            <br>
+            To download the above historical nowcasts for the current quarter click the download button below, or to
+            download another quarter's historical nowcasts, change the selection from the dropdown.
+            <br><br>
+            <u>Contents by column</u>:<br>
+            Date of when the nowcast estimate is made, nowcast (%)
+            <br>
+            <div class="download">
                 <br>
-                To download the above historical nowcasts for the current quarter click the download button below, or to download another quarter's historical nowcasts, change the selection from the dropdown.
-                <br><br>
-                <u>Contents by column</u>:<br>
-                Date of when the nowcast estimate is made, nowcast (%)
+                <form>
+                    <select id="historicalNowcastsQuarterSelector" name="quarterSelector">
+                    </select>
+                    <br><br>
+                    <input class="button"
+                           onclick="historicalNowcastsQuarterSubmit()"
+                           type="button" value="Download Historical Nowcasts">
+                </form>
                 <br>
-                <div class="download">
-                    <br>
-                    <form>
-                        <select name="quarterSelector" id="historicalNowcastsQuarterSelector">
-                        </select>
-                        <br><br>
-                        <input class="button"
-                        onclick="historicalNowcastsQuarterSubmit()"
-                        type="button" value="Download Historical Nowcasts">
-                    </form>
-                    <br>
-                </div>
             </div>
+        </div>
 
-            <script src="script.js"></script>
+        <script src="script.js"></script>
 
 
-            <h4>References:</h4>
-            Tino Berger, James Morley and Benjamin Wong, "Nowcasting the Output Gap," <i>Journal of Econometrics</i>, forthcoming.
-            <br>
-            <a target="_blank" rel="noopener noreferrer"
-            href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523">Link to journal
+        <h4>References:</h4>
+        Tino Berger, James Morley and Benjamin Wong, "Nowcasting the Output Gap," <i>Journal of Econometrics</i>,
+        forthcoming.
+        <br>
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0304407620303523" rel="noopener noreferrer"
+           target="_blank">Link to journal
             article (open access)</a>
-            <br><br>
-            Tino Berger, Paul David Boll, James Morley and Benjamin Wong, &quot;Cyclical
-            Signals from the Labor Market,&quot; <i>Oxford Open Economics</i>, forthcoming.
-            <br>
-            <a target="_blank" rel="noopener noreferrer" href="https://academic.oup.com/ooec/advance-article/doi/10.1093/ooec/odab002/6520732">
-                Link to journal article (open access)</a>
-            <br><br><br>
-            <a target="_blank" rel="noopener noreferrer"
-            href="https://faculti.net/nowcasting-the-output-gap/">Link to interview about nowcasting the output gap</a>
-            <br><br>
-            <a target="_blank" rel="noopener noreferrer"
-            href="https://drive.google.com/file/d/1-lLAqZe4bU622uHuOmySFdVxt9fLrIdf/view?usp=sharing">Link to
+        <br><br>
+        Tino Berger, Paul David Boll, James Morley and Benjamin Wong, &quot;Cyclical
+        Signals from the Labor Market,&quot; <i>Oxford Open Economics</i>, forthcoming.
+        <br>
+        <a href="https://academic.oup.com/ooec/advance-article/doi/10.1093/ooec/odab002/6520732" rel="noopener noreferrer"
+           target="_blank">
+            Link to journal article (open access)</a>
+        <br><br><br>
+        <a href="https://faculti.net/nowcasting-the-output-gap/" rel="noopener noreferrer"
+           target="_blank">Link to interview about nowcasting the output gap</a>
+        <br><br>
+        <a href="https://drive.google.com/file/d/1-lLAqZe4bU622uHuOmySFdVxt9fLrIdf/view?usp=sharing" rel="noopener noreferrer"
+           target="_blank">Link to
             code</a>
 
-        </div>
     </div>
-    <div id="footer">
+</div>
+<div id="footer">
+    <br>
+    <br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; <a href="http://sites.google.com/site/drtinoberger" rel="noopener noreferrer"
+                                target="_blank">
+    Tino Berger</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://sites.google.com/site/jamescmorley" rel="noopener noreferrer" target="_blank">
+        James Morley</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://sites.google.com/site/benjaminwongshijie" rel="noopener noreferrer" target="_blank">
+        Benjamin Wong</a>
+    <br>
+    <br>
+    <button class="tweetButton" onclick="window.open('https://twitter.com/intent/tweet?text=%23outputgapnow', '_top')"
+            rel="noopener noreferrer">
+        <i class="fa fa-twitter"></i> #outputgapnow
+    </button>
+    <div id="disclaimer">
         <br>
-        <br><br>
-        &nbsp;&nbsp;&nbsp;&nbsp; <a target="_blank" rel="noopener noreferrer"
-            href="http://sites.google.com/site/drtinoberger">
-            Tino Berger</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-        <a target="_blank" rel="noopener noreferrer" href="http://sites.google.com/site/jamescmorley">
-            James Morley</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-        <a target="_blank" rel="noopener noreferrer" href="http://sites.google.com/site/benjaminwongshijie">
-            Benjamin Wong</a> 
+        We are not responsible for any financial decisions
+        made based on the results presented here
         <br>
         <br>
-        <button class="tweetButton" rel="noopener noreferrer"
-            onclick="window.open('https://twitter.com/intent/tweet?text=%23outputgapnow', '_top')">
-            <i class="fa fa-twitter"></i> #outputgapnow </button>
-        <div id="disclaimer">
-            <br>
-            We are not responsible for any financial decisions
-            made based on the results presented here
-            <br>
-            <br>
-            <a target="_blank" rel="noopener noreferrer"
-            href="https://github.com/crstnn">@cristian</a>
-        </div>
+        <a href="https://github.com/crstnn" rel="noopener noreferrer"
+           target="_blank">@cristian</a>
     </div>
+</div>
 </body>
 
 
