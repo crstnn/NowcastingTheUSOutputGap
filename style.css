@@ -23,8 +23,8 @@ a {
     font-size: small;
     align-items: center;
     word-wrap: normal;
-    margin:auto;
-    width:30%;
+    margin: auto;
+    width: 30%;
 }
 
 #data {
@@ -70,7 +70,7 @@ table {
 
 tr.rowBorder td {
     border-bottom: 0.5px solid rgba(187, 186, 186, 0.37);
-  }
+}
 
 td, th {
     padding: 0.2em;
@@ -78,7 +78,7 @@ td, th {
 
 th {
     text-align: center;
-    border-bottom: 1px solid #444444!important;
+    border-bottom: 1px solid #444444 !important;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
@@ -103,8 +103,8 @@ th {
     justify-content: center;
     align-items: center;
     word-wrap: normal;
-    margin:auto;
-    width:30%;
+    margin: auto;
+    width: 30%;
 }
 
 p {
@@ -198,14 +198,14 @@ p {
     display: inline-block;
     padding: 4px;
     transition: 0.05s ease-out;
-  }
+}
 
-  .left {
+.left {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
 }
 
-  .down {
+.down {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
 }
@@ -225,60 +225,60 @@ p {
     color: #000000;
     touch-action: manipulation;
     min-width: 350px;
-  }
-  
-  .button:hover {
+}
+
+.button:hover {
     outline: 0;
     background: #d1d1d1;
-  }
+}
 
-  .button:active {
+.button:active {
     box-shadow: inset 0px 0px 0px 2px rgba(108, 154, 255, 0.5);
-  }
+}
 
-  .tweetButton {
+.tweetButton {
     font: normal normal normal 12px/18px 'Helvetica Neue', Arial, sans-serif;
-    background-color: #1DA1F2; 
-    color: white; 
+    background-color: #1DA1F2;
+    color: white;
     font-size: small;
-    border-radius: 14px; 
-    border: 0; 
+    border-radius: 14px;
+    border: 0;
     padding: 4px 8px;
     display: inline-block;
     cursor: pointer;
-  }
+}
 
-  .tweetButton:hover {
-    background-color: 	rgb(22, 142, 218); 
-  }
+.tweetButton:hover {
+    background-color: rgb(22, 142, 218);
+}
 
-  #historicalNowcastsQuarterSelector {
+#historicalNowcastsQuarterSelector {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     width: 250px;
     font-size: medium;
-    max-height: 200px; 
-    overflow-y: auto; 
-    overflow-x: hidden; 
- }
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 
 
-@media only screen and (max-device-width: 520px) and (orientation : portrait) {
+@media only screen and (max-device-width: 520px) and (orientation: portrait) {
 
     .t {
         width: 80%;
         font-size: 38px;
     }
-    
+
     #graph {
         width: 99%;
     }
-    
+
 
     #outputGapTextUnderData {
         font-size: 42px;
     }
 
-    #dataTable, #footer, #lastUpdate, #header{
+    #dataTable, #footer, #lastUpdate, #header {
         font-size: 30px;
     }
 
@@ -287,7 +287,7 @@ p {
         padding: 25px;
     }
 
-    .arrow{
+    .arrow {
         margin-top: 25px;
         margin-bottom: 25px;
     }
@@ -295,7 +295,7 @@ p {
 
     #disclaimer {
         font-size: 20px;
-        width:70%;
+        width: 70%;
     }
 
     .button, #historicalNowcastsQuarterSelector {
@@ -319,14 +319,14 @@ p {
         padding: 10px;
     }
 
-  }
+}
 
-@media only screen and (max-device-width: 950px) and (orientation : landscape) {
+@media only screen and (max-device-width: 950px) and (orientation: landscape) {
 
     .t {
         width: 70%;
     }
-    
+
     #graph {
         width: 90%;
     }
@@ -335,4 +335,4 @@ p {
         font-size: 16px;
     }
 
-  }
+}
