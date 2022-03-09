@@ -299,7 +299,7 @@ p {
     }
 
     #historicalNowcastsQuarterSelector {
-        font-size: 38px;
+        font-size: 36px;
         min-width: 500px;
         min-height: 80px;
     }
@@ -313,8 +313,9 @@ p {
     }
 
     .tweetButton {
-        font-size: 31px;
-        padding: 12px 14px;
+        font-size: 30px;
+        padding: 16px 18px;
+        border-radius: 30px;
     }
 
     .arrow {
