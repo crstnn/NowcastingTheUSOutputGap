@@ -298,15 +298,18 @@ p {
         width: 70%;
     }
 
-    .button, #historicalNowcastsQuarterSelector {
-        font-size: 35px;
+    #historicalNowcastsQuarterSelector {
+        font-size: 38px;
         min-width: 500px;
+        min-height: 80px;
     }
 
     .button {
-        font-size: 32px;
-        padding: 15px 15px;
-        min-width: 700px;
+        font-size: 36px;
+        padding: 20px 20px;
+        max-width: 500px;
+        margin: 30px 0;
+        white-space: normal;
     }
 
     .tweetButton {
