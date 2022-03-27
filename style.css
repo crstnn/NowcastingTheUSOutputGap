@@ -63,7 +63,7 @@ a {
     text-align: center;
     justify-content: center;
     align-items: center;
-    height: 495px;
+    height: 500px;
     padding-bottom: 125px;
 }
 
@@ -297,8 +297,8 @@ p {
     }
 
     .loadingSpace {
-        height: 595px;
-        padding-bottom: 140px;
+        height: 800px;
+        padding-bottom: 160px;
     }
 
     #outputGapTextUnderData {
