@@ -58,6 +58,15 @@ a {
     100% { transform: rotate(360deg); }
 }
 
+.loadingSpace {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 495px;
+    padding-bottom: 125px;
+}
+
 h1 {
     margin-block-start: 0.3em;
     margin-block-end: 0.3em;
@@ -287,6 +296,10 @@ p {
         width: 99%;
     }
 
+    .loadingSpace {
+        height: 595px;
+        padding-bottom: 140px;
+    }
 
     #outputGapTextUnderData {
         font-size: 42px;
