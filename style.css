@@ -297,8 +297,11 @@ p {
     }
 
     .loadingSpace {
-        height: 805px;
+        height: 800px;
         padding-bottom: 160px;
+    }
+
+    .loadingSpinner {
         height: 100px;
         width: 100px;
     }
