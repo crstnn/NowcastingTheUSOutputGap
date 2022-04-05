@@ -62,16 +62,15 @@ function getQuarterFromMonth(month) {
     if ([10, 11, 12].includes(parseInt(month))) return "Q4";
 }
 
+function isCurrentQuarter(lastUpdateMonth, conditionalForecastXval) {
+    const conditionalForecastQuarter = conditionalForecastXval % 1;
+
+    return (conditionalForecastQuarter === 0.0 && [1, 2, 3].includes(lastUpdateMonth)) || (conditionalForecastQuarter === 0.25 && [4, 5, 6].includes(lastUpdateMonth)) ||
+        (conditionalForecastQuarter === 0.5 && [7, 8, 9].includes(lastUpdateMonth)) || (conditionalForecastQuarter === 0.75 && [10, 11, 12].includes(lastUpdateMonth));
+
+}
+
 function writeTextBelowGraph(reqJSON) {
-
-    function isCurrentQuarter(conditionalForecastXval) {
-        const conditionalForecastQuarter = conditionalForecastXval % 1;
-        const lastUpdateMonth = parseInt(reqJSON['latestRunUTC'].slice(5, 7));
-
-        return (conditionalForecastQuarter === 0.0 && [1, 2, 3].includes(lastUpdateMonth)) || (conditionalForecastQuarter === 0.25 && [4, 5, 6].includes(lastUpdateMonth)) ||
-            (conditionalForecastQuarter === 0.5 && [7, 8, 9].includes(lastUpdateMonth)) || (conditionalForecastQuarter === 0.75 && [10, 11, 12].includes(lastUpdateMonth));
-
-    }
 
     const
         cValList = Object.values(reqJSON['concreteObservations']),
@@ -86,9 +85,10 @@ function writeTextBelowGraph(reqJSON) {
         lastQuarterTypeIsIntitialRealised = (cValList[cValList.length - 1]['isRealized'] === 'True'),
         nowcastGapIsIntitialRealised = (nValList[0]['isRealized'] === 'True');
 
+    const lastUpdateMonth = parseInt(reqJSON['latestRunUTC'].slice(5, 7));
 
     document.getElementById(outputGapText).innerHTML =
-        '<p>' + (isCurrentQuarter(nowcastForcastXVal[1]) ? `Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>` : "") +
+        '<p>' + (isCurrentQuarter(lastUpdateMonth, nowcastForcastXVal[1]) ? `Output Gap ${getYearAndQuarter(nowcastForcastXVal[1])}: ${forecastGap}% (forecast)<br/>` : "") +
         `${!nowcastGapIsIntitialRealised ? "<b>" : ""} 
       Output Gap ${getYearAndQuarter(nowcastForcastXVal[0])}: ${nowcastGap}% ${nowcastGapIsIntitialRealised ? '(realized)' : "(nowcast)"}
       ${!nowcastGapIsIntitialRealised ? "</b>" : ""} <br/>
@@ -134,6 +134,7 @@ async function graph(reqJSON) {
         nowcastForcastXValShiftedQuarters = nowcastForcastXVal.map(rollForwardDatesByAQuarter),
         forecastXValShiftedQuarters = forecastXVal.map(rollForwardDatesByAQuarter);
 
+    const lastUpdateMonth = parseInt(reqJSON['latestRunUTC'].slice(5, 7));
 
     const yearQuarterText = Object.keys(reqJSON['concreteObservations']).map(getYearAndQuarter);
 
@@ -164,7 +165,7 @@ async function graph(reqJSON) {
         name: 'Conditional Forecasts',
         customdata: forecastXVal.map(getYearAndQuarter),
         hovertemplate: "%{customdata}, %{y}",
-        visible: "legendonly",
+        visible: isCurrentQuarter(lastUpdateMonth, nowcastForcastXVal[1]) ? true : "legendonly",
         line: {color: forecastColour}
     };
 
@@ -195,7 +196,7 @@ async function graph(reqJSON) {
                 y0: nowcastYVal[0],
                 x1: forecastXValShiftedQuarters[0],
                 y1: forecastYVal[0],
-                visible: false,
+                visible: isCurrentQuarter(lastUpdateMonth, nowcastForcastXVal[1]),
                 line: {
                     color: forecastColour,
                     width: 2,
