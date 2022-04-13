@@ -306,11 +306,15 @@ p {
         width: 100px;
     }
 
+    table {
+        font-size: 34px;
+    }
+
     #outputGapTextUnderData {
         font-size: 42px;
     }
 
-    #dataTable, #footer, #lastUpdate, #header {
+    #footer, #lastUpdate, #header {
         font-size: 30px;
     }
 
