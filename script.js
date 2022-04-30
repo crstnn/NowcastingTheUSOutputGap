@@ -537,17 +537,19 @@ function buildHistoricNowcastsTable(dataDict) {
 function buildHistoricNowcastsSelectorList(dataDict) {
     const availableQuarters = Array(Object.keys(dataDict.observations).length);
 
-    for (const key in dataDict.observations) {
+    Object.keys(dataDict.observations).forEach((key) => {
         availableQuarters[key] = dataDict.observations[key]['date'];
-    }
+    })
 
+    // for descending order
+    availableQuarters.reverse()
 
     const histNowcastsQSelector = document.getElementById('historicalNowcastsQuarterSelector');
 
     availableQuarters.forEach(x => {
-        const numericQuarter = parseFloat(x.replace(/[^0-9|.]/g, ''));
+        const quarter = x.replace(/[^0-9|.]/g, '');
         histNowcastsQSelector.options[histNowcastsQSelector.options.length] =
-            new Option(getYearAndQuarter(numericQuarter, true), numericQuarter);
+            new Option(getYearAndQuarter(quarter, true), quarter);
     });
 }
 
@@ -555,9 +557,12 @@ function historicalNowcastsQuarterSubmit() {
 
     const selectedQuarter = document.getElementsByName("quarterSelector")[0].value;
 
+    console.log(selectedQuarter);
+
     if (selectedQuarter === "currentNowcastQuarter") {
         window.location.assign(historicalNowcastsDataURL + "?type=csv");
     } else {
+        console.log(oldHistoricalNowcastsDataURL + "?type=csv&yearquarter=" + String(selectedQuarter))
         window.location.assign(oldHistoricalNowcastsDataURL + "?type=csv&yearquarter=" + String(selectedQuarter));
     }
 
