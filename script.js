@@ -246,7 +246,7 @@ async function graph(reqJSON) {
 
     const data = [traceConcreteObs, traceNowcast, traceForecast];
 
-    Plotly.newPlot(graphDiv, data, layout, {showTips: false});
+    Plotly.newPlot(graphDiv, data, layout, ); // to remove tooltip: {showTips: false}
 
 }
 
