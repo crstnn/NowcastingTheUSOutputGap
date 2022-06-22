@@ -21,7 +21,7 @@ a:hover {
 #header {
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: x-large;
+    font-size: large;
     background-color: #ededed;
     border: solid #ededed;
 }
@@ -55,8 +55,8 @@ a:hover {
     border: 6px solid #efefef;
     border-top: 6px solid rgb(136, 136, 136);
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 5vh;
+    width: 5vh;
     animation: spin 2s linear infinite;
 }
 
@@ -215,7 +215,7 @@ p {
 }
 
 .content {
-    padding: 0px 25px 0px 25px;
+    padding: 0 25px 0 25px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease-out;
@@ -297,9 +297,25 @@ p {
 
 @media only screen and (max-device-width: 520px) and (orientation: portrait) {
 
+    #header {
+        font-size: small;
+    }
+
+    #outputGapTextUnderData {
+        font-size: large;
+    }
+
+    #lastUpdate {
+        font-size: x-small;
+    }
+
     .t {
-        width: 80%;
-        font-size: 38px;
+        width: 85%;
+    }
+
+    .button {
+        font-size: small;
+        min-width: 100%;
     }
 
     #graph {
@@ -311,63 +327,15 @@ p {
         padding-bottom: 160px;
     }
 
-    .loadingSpinner {
-        height: 100px;
-        width: 100px;
-    }
-
     table {
-        font-size: 34px;
+        margin: 0;
+        font-size: small;
     }
-
-    #outputGapTextUnderData {
-        font-size: 42px;
-    }
-
-    #footer, #lastUpdate, #header {
-        font-size: 30px;
-    }
-
-    .collapsible {
-        font-size: 50px;
-        padding: 25px;
-    }
-
-    .arrow {
-        margin-top: 25px;
-        margin-bottom: 25px;
-    }
-
 
     .disclaimer {
-        font-size: 20px;
         width: 70%;
     }
 
-    #historicalNowcastsQuarterSelector {
-        font-size: 36px;
-        min-width: 500px;
-        min-height: 80px;
-    }
-
-    .button {
-        font-size: 36px;
-        padding: 20px 20px;
-        max-width: 500px;
-        margin: 30px 0;
-        white-space: normal;
-    }
-
-    .tweetButton {
-        font-size: 30px;
-        padding: 16px 18px;
-        border-radius: 30px;
-    }
-
-    .arrow {
-        border-width: 0 5px 5px 0;
-        padding: 10px;
-    }
 
 }
 
@@ -379,10 +347,6 @@ p {
 
     #graph {
         width: 90%;
-    }
-
-    .button, .tweetButton {
-        font-size: 16px;
     }
 
 }

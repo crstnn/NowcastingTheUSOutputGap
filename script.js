@@ -13,8 +13,7 @@ const
     recessionColour = "#DDDDDD",
     uncalledRecessionColour = "#f6eabe",
     graphDiv = "graph",
-    outputGapText = "outputGapTextUnderData",
-    viewportHorizontalMaxSizeMobile = 520;
+    outputGapText = "outputGapTextUnderData";
 
 
 function getAPIData(url) {
@@ -173,9 +172,7 @@ async function graph(reqJSON) {
         // small stylistic adjustments for mobile and desktop view
         font: {
             family: '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
-            size: window.screen.width < viewportHorizontalMaxSizeMobile ? 30 : 13
         },
-        height: window.screen.width < viewportHorizontalMaxSizeMobile ? 700 : 500,
         autosize: true,
         shapes: [
             {
@@ -203,7 +200,7 @@ async function graph(reqJSON) {
                 }
             }
         ],
-        margin: {'l': 30, 'r': 10, 't': 25, 'b': 20},
+        margin: {'l': 30, 'r': 10, 't': 35, 'b': 20},
         yaxis: {
             ticksuffix: "%",
             automargin: true,
@@ -215,10 +212,8 @@ async function graph(reqJSON) {
         },
         legend: {
             orientation: "h",
-            yanchor: "top",
-            y: window.screen.width < viewportHorizontalMaxSizeMobile ? 1.18 : 1.03,
-            xanchor: "right",
-            x: 1.03,
+            y: -0.04,
+            x: 0.45,
         },
     };
 
