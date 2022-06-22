@@ -74,7 +74,7 @@ a:hover {
     text-align: center;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    height: 445px;
     padding-bottom: 125px;
 }
 
@@ -320,11 +320,6 @@ p {
 
     #graph {
         width: 99%;
-    }
-
-    .loadingSpace {
-        height: 800px;
-        padding-bottom: 160px;
     }
 
     table {
