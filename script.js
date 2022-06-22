@@ -200,7 +200,7 @@ async function graph(reqJSON) {
                 }
             }
         ],
-        margin: {'l': 30, 'r': 10, 't': 35, 'b': 20},
+        margin: {'l': 30, 'r': 10, 't': 0, 'b': 60},
         yaxis: {
             ticksuffix: "%",
             automargin: true,
@@ -212,8 +212,9 @@ async function graph(reqJSON) {
         },
         legend: {
             orientation: "h",
-            y: -0.04,
-            x: 0.45,
+            x: 0.5,
+            xanchor: "center",
+            y: -0.05,
         },
     };
 
