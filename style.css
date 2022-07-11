@@ -20,8 +20,8 @@ a:hover {
 
 #header {
     text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: large;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: medium;
     background-color: #e2e2e2;
     border: solid #e2e2e2;
 }
@@ -92,6 +92,7 @@ h1 {
 }
 
 table {
+    font-size: medium;
     text-align: right;
     margin-left: auto;
     margin-right: auto;
@@ -113,7 +114,7 @@ td, th {
 th {
     text-align: center;
     border-bottom: 1px solid #444444 !important;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, 'Times New Roman', Times, serif;
 }
 
 .modebar {
@@ -157,10 +158,10 @@ p {
 }
 
 .t {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: 'Times New Roman', serif;
     width: 50%;
     text-align: justify;
-    font-size: medium;
+    font-size: large;
 }
 
 #abstractContainer {
