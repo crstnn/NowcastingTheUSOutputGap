@@ -114,7 +114,7 @@ td, th {
 th {
     text-align: center;
     border-bottom: 1px solid #444444 !important;
-    font-family: Arial, 'Times New Roman', Times, serif;
+    font-family: "Open Sans", verdana, arial, sans-serif;
 }
 
 .modebar {
@@ -158,10 +158,10 @@ p {
 }
 
 .t {
-    font-family: 'Times New Roman', serif;
+    font-family: "Open Sans", verdana, arial, sans-serif;
     width: 50%;
     text-align: justify;
-    font-size: large;
+    font-size: medium;
 }
 
 #abstractContainer {
@@ -199,7 +199,7 @@ p {
 }
 
 .collapsible {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: "Open Sans", verdana, arial, sans-serif;
     color: white;
     background: linear-gradient(180deg, #aaaaaa 0%, #797979 100%);
     cursor: pointer;
@@ -246,7 +246,7 @@ p {
 }
 
 .button {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: "Open Sans", verdana, arial, sans-serif;
     margin: 1.5px;
     font-size: medium;
     display: flex;
@@ -288,7 +288,7 @@ p {
 }
 
 #historicalNowcastsQuarterSelector {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: "Open Sans", verdana, arial, sans-serif;
     width: 250px;
     font-size: medium;
     max-height: 200px;

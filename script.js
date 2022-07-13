@@ -171,7 +171,7 @@ async function graph(reqJSON) {
     const layout = {
         // small stylistic adjustments for mobile and desktop view
         font: {
-            family: '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
+            family: '"Open Sans", verdana, arial, sans-serif',
         },
         autosize: true,
         shapes: [
