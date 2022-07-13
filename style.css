@@ -92,7 +92,7 @@ h1 {
 }
 
 table {
-    font-size: medium;
+    font-size: small;
     text-align: right;
     margin-left: auto;
     margin-right: auto;
@@ -122,6 +122,8 @@ th {
 }
 
 #footer {
+    font-family: "Open Sans", verdana, arial, sans-serif;
+    font-size: small;
     background-color: #F7F7F7;
     border-bottom: 1px solid #F7F7F7;
     border-top: 1px solid #E7E7E7;
@@ -134,12 +136,13 @@ th {
 }
 
 .feature {
-    font-size: small;
+    font-size: x-small;
     margin: 7px auto 7px auto;
     width: 30%;
 }
 
 .disclaimer {
+    font-size: x-small;
     padding: 5px 0 5px;
 }
 
@@ -161,7 +164,7 @@ p {
     font-family: "Open Sans", verdana, arial, sans-serif;
     width: 50%;
     text-align: justify;
-    font-size: medium;
+    font-size: small;
 }
 
 #abstractContainer {
@@ -259,7 +262,7 @@ p {
     box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.1);
     color: #000000;
     touch-action: manipulation;
-    min-width: 350px;
+    min-width: 360px;
 }
 
 .button:hover {
@@ -299,7 +302,7 @@ p {
 
 @media only screen and (max-device-width: 520px) and (orientation: portrait) {
 
-    #header {
+    #header, #historicalNowcastsQuarterSelector {
         font-size: small;
     }
 
@@ -307,7 +310,7 @@ p {
         font-size: large;
     }
 
-    #lastUpdate {
+    #lastUpdate, table {
         font-size: x-small;
     }
 
@@ -322,10 +325,6 @@ p {
 
     #graph {
         width: 99%;
-    }
-
-    table {
-        font-size: small;
     }
 
     .disclaimer {
