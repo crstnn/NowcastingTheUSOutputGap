@@ -206,7 +206,7 @@ p {
     color: white;
     background: linear-gradient(180deg, #aaaaaa 0%, #797979 100%);
     cursor: pointer;
-    padding: 16px;
+    min-height: 65px;
     width: 100%;
     border: none;
     text-align: left;
@@ -230,8 +230,7 @@ p {
 .arrow {
     border: solid rgb(39, 39, 39);
     float: right;
-    margin-top: 13px;
-    margin-bottom: 13px;
+    margin: 10px 5px 10px 0;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 4px;
