@@ -251,7 +251,7 @@ p {
 .button {
     font-family: "Open Sans", verdana, arial, sans-serif;
     margin: 1.5px;
-    font-size: medium;
+    font-size: small;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -262,7 +262,7 @@ p {
     box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.1);
     color: #000000;
     touch-action: manipulation;
-    min-width: 360px;
+    min-width: 300px;
 }
 
 .button:hover {
@@ -292,8 +292,9 @@ p {
 
 #historicalNowcastsQuarterSelector {
     font-family: "Open Sans", verdana, arial, sans-serif;
+    min-height: 25px;
     width: 250px;
-    font-size: medium;
+    font-size: small;
     max-height: 200px;
     overflow-y: auto;
     overflow-x: hidden;
