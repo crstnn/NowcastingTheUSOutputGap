@@ -293,7 +293,7 @@ p {
 #historicalNowcastsQuarterSelector {
     font-family: "Open Sans", verdana, arial, sans-serif;
     min-height: 25px;
-    width: 250px;
+    width: 210px;
     font-size: small;
     max-height: 200px;
     overflow-y: auto;
