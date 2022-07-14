@@ -202,7 +202,7 @@ p {
 }
 
 .collapsible {
-    font-family: "Open Sans", verdana, arial, sans-serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     color: white;
     background: linear-gradient(180deg, #aaaaaa 0%, #797979 100%);
     cursor: pointer;
