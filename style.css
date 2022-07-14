@@ -206,6 +206,7 @@ p {
     color: white;
     background: linear-gradient(180deg, #aaaaaa 0%, #797979 100%);
     cursor: pointer;
+    padding: 10px 0 10px 15px;
     min-height: 65px;
     width: 100%;
     border: none;
@@ -214,6 +215,7 @@ p {
     word-wrap: normal;
     font-size: x-large;
 }
+
 
 .active, .collapsible:hover {
     background: linear-gradient(180deg, #949494 0%, #6e6e6e 100%);
@@ -230,7 +232,7 @@ p {
 .arrow {
     border: solid rgb(39, 39, 39);
     float: right;
-    margin: 10px 5px 10px 0;
+    margin: 10px 10px 10px 0;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 4px;
