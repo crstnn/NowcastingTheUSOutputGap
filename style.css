@@ -262,7 +262,7 @@ p {
     color: #000000;
     touch-action: manipulation;
     height: 40px;
-    min-width: 300px;
+    min-width: 320px;
 }
 
 .button:hover {
