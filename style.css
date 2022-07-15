@@ -321,7 +321,7 @@ p {
 
     .button {
         font-size: small;
-        min-width: 100%;
+        min-width: 280px;
     }
 
     #graph {
