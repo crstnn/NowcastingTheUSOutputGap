@@ -315,6 +315,10 @@ p {
         font-size: x-small;
     }
 
+    #lastUpdate {
+        width: 60%;
+    }
+
     .t {
         width: 85%;
     }
