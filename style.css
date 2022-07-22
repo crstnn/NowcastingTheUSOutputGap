@@ -175,7 +175,7 @@ p {
 }
 
 #outputGapTextUnderData {
-    font-size: x-large;
+    font-size: large;
     word-wrap: normal;
     white-space: normal;
     word-break: normal;
@@ -183,7 +183,6 @@ p {
 
 #underData {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-size: x-large;
     display: flex;
     flex-direction: column;
     justify-content: center;
