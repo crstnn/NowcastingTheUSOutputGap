@@ -79,8 +79,8 @@ a:hover {
 }
 
 h1 {
-    margin-block-start: 5px;
-    margin-block-end: 5px;
+    margin-block-start: 1vh;
+    margin-block-end: 1vh;
 }
 
 .download {
