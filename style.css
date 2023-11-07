@@ -79,8 +79,8 @@ a:hover {
 }
 
 h1 {
-    margin-block-start: 0.1em;
-    margin-block-end: 0.1em;
+    margin-block-start: 0.05em;
+    margin-block-end: 0.05em;
 }
 
 .download {
@@ -196,7 +196,7 @@ p {
 .topNav {
     background-color: rgb(136, 136, 136);
     overflow: auto;
-    padding: 2px;
+    padding: 1px;
     margin: 0;
 }
 
