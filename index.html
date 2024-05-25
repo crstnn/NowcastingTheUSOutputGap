@@ -30,7 +30,11 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HFBKPVWXP7"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
     gtag('config', 'G-HFBKPVWXP7');
 </script>
@@ -224,11 +228,10 @@
         <a href="https://crstnn.github.io/" rel="noopener noreferrer"
            target="_blank">@cristian</a>
     </div>
-    <button class="tweetButton" onclick="window.open('https://twitter.com/intent/tweet?text=%23outputgapnow', '_top')"
-            rel="noopener noreferrer">
-        <i class="fa fa-twitter"></i> #outputgapnow
-    </button>
-    <div class="feature disclaimer">
+    <a class="tweetButton twitter-hashtag-button"
+       data-show-count="false" href="https://twitter.com/intent/tweet?button_hashtag=outputgapnow&ref_src=twsrc%5Etfw">Tweet #outputgapnow</a>
+    <script async charset="utf-8" src="https://platform.twitter.com/widgets.js"></script>
+    <div class="disclaimer">
         We are not responsible for any financial decisions made based on the results presented here
     </div>
 </div>
