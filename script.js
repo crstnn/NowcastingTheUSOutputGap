@@ -351,9 +351,7 @@ historicalNowcastsRequest.send(null);
 
 
 function onResize() {
-    graph(JSON.parse(gapRequest.responseText));
-    const fig = document.getElementById(graphDiv);
-    restrictGraphOperations(fig);
+    Plotly.relayout(graphDiv, JSON.parse(gapRequest.responseText));
 }
 
 
