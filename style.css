@@ -300,15 +300,20 @@ p {
 }
 
 #historicalNowcastsQuarterSelector {
-    font-family: "Open Sans", verdana, arial, sans-serif;
-    min-height: 25px;
-    width: 210px;
-    font-size: small;
-    max-height: 200px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    padding: 8px 60px 8px 10px;
+    border: 1px solid var(--table-border-color);
+    border-radius: 4px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
 
+#historicalNowcastsQuarterSelector:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
 @media only screen and (max-device-width: 520px) and (orientation: portrait) {
 
