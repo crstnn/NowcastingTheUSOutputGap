@@ -66,12 +66,14 @@ a:hover {
 }
 
 #graph {
-    width: 60%;
+    width: 100%; /* Adjust width to make it responsive */
+    max-width: 1200px; /* Set a maximum width for larger screens */
     padding-top: 1.5rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin: 0 auto; /* Center the graph */
 }
 
 .loadingSpinner {
