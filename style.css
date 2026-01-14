@@ -66,8 +66,8 @@ a:hover {
 }
 
 #graph {
-    width: 100%; /* Adjust width to make it responsive */
-    max-width: 1200px; /* Set a maximum width for larger screens */
+    width: 100%;
+    max-width: 1200px;
     padding-top: 1.5rem;
     display: flex;
     flex-direction: row;
@@ -188,7 +188,8 @@ p {
 
 .t {
     font-family: "Open Sans", verdana, arial, sans-serif;
-    width: 50%;
+    width: 100%;
+    max-width: 1200px;
     text-align: justify;
     font-size: small;
 }
@@ -345,7 +346,7 @@ p {
     }
 
     #graph {
-        width: 99%;
+        width: 97%;
     }
 
     .disclaimer {
