@@ -73,7 +73,7 @@ a:hover {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin: 0 auto; /* Center the graph */
+    margin: 0 auto;
 }
 
 .loadingSpinner {
