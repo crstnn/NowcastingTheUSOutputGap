@@ -41,7 +41,7 @@ a:hover {
 #header {
     text-align: center;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-size: 1em;
+    font-size: 1.1em;
     background-color: var(--background-color);
     color: var(--text-color);
     border: none;
