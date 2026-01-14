@@ -214,7 +214,7 @@ async function graph(reqJSON) {
             orientation: "h",
             x: 0.5,
             xanchor: "center",
-            y: -0.05,
+            y: -0.06, // Adjusted spacing for the legend
         },
     };
 
@@ -562,4 +562,3 @@ function historicalNowcastsQuarterSubmit() {
 
 
 }
-

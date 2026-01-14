@@ -1,29 +1,52 @@
+:root {
+    --primary-color: #6a7b8c;
+    --secondary-color: #8a9bac;
+    --accent-color: #4a5b6c;
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --link-color: #3a4a5a;
+    --hover-color: #4a5b6c;
+    --spinner-border-color: #efefef;
+    --spinner-top-border-color: #888888;
+    --footer-background-color: #f1f1f1;
+    --footer-text-color: #ffffff;
+    --table-border-color: rgba(187, 186, 186, 0.37);
+    --table-header-border-color: #444444;
+    --arrow-border-color: rgb(39, 39, 39);
+}
+
 html, body {
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: #ffffff;
+    background-color: var(--background-color);
+    color: var(--text-color);
     overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
 }
 
 a {
     font-weight: 600;
-    color: rgb(14, 20, 75);
+    color: var(--link-color);
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
+    color: var(--hover-color);
 }
 
 #header {
     text-align: center;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-size: medium;
-    background-color: #e2e2e2;
-    border: solid #e2e2e2;
+    font-size: 1em;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #lastUpdate {
@@ -44,7 +67,7 @@ a:hover {
 
 #graph {
     width: 60%;
-    padding: 0.01em;
+    padding-top: 1.5rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -52,8 +75,8 @@ a:hover {
 }
 
 .loadingSpinner {
-    border: 6px solid #efefef;
-    border-top: 6px solid rgb(136, 136, 136);
+    border: 6px solid var(--spinner-border-color);
+    border-top: 6px solid var(--spinner-top-border-color);
     border-radius: 50%;
     height: 5vh;
     width: 5vh;
@@ -104,7 +127,7 @@ table {
 }
 
 tr.rowBorder td {
-    border-bottom: 0.5px solid rgba(187, 186, 186, 0.37);
+    border-bottom: 0.5px solid var(--table-border-color);
 }
 
 td, th {
@@ -113,7 +136,7 @@ td, th {
 
 th {
     text-align: center;
-    border-bottom: 1px solid #444444 !important;
+    border-bottom: 1px solid var(--table-header-border-color) !important;
     font-family: "Open Sans", verdana, arial, sans-serif;
 }
 
@@ -123,13 +146,13 @@ th {
 
 #footer {
     font-family: "Open Sans", verdana, arial, sans-serif;
-    font-size: small;
-    background-color: #F7F7F7;
-    border-bottom: 1px solid #F7F7F7;
+    font-size: 0.9em;
+    background-color: var(--footer-background-color);
+    color: var(--footer-text-color);
+    padding: 20px 0;
     border-top: 1px solid #E7E7E7;
     text-align: center;
     margin-top: 40px;
-    padding: 10px 0 0;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -142,6 +165,7 @@ th {
 }
 
 .disclaimer {
+    color: var(--text-color);
     font-size: x-small;
     margin: 8px auto 12px;
 }
@@ -202,10 +226,10 @@ p {
 
 .collapsible {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    color: white;
-    background: linear-gradient(180deg, #aaaaaa 0%, #797979 100%);
+    color: #ffffff;
+    background: linear-gradient(180deg, var(--secondary-color) 0%, var(--primary-color) 100%);
     cursor: pointer;
-    padding: 10px 0 10px 15px;
+    padding: 10px;
     min-height: 65px;
     width: 100%;
     border: none;
@@ -213,11 +237,12 @@ p {
     outline: none;
     word-wrap: normal;
     font-size: x-large;
+    border-radius: 5px;
 }
 
 
 .active, .collapsible:hover {
-    background: linear-gradient(180deg, #949494 0%, #6e6e6e 100%);
+    background: linear-gradient(180deg, var(--primary-color) 0%, var(--accent-color) 100%);
 }
 
 .content {
@@ -229,7 +254,7 @@ p {
 }
 
 .arrow {
-    border: solid rgb(39, 39, 39);
+    border: solid var(--arrow-border-color);
     float: right;
     margin: 10px 20px 10px 0;
     border-width: 0 3px 3px 0;
@@ -254,19 +279,20 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 3px;
+    border-radius: 5px;
     border: none;
-    background: linear-gradient(180deg, #e2e2e2 0%, #c5c5c5 100%);
+    background: linear-gradient(180deg, var(--secondary-color) 0%, var(--primary-color) 100%);
     box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.1);
-    color: #000000;
+    color: #ffffff;
     touch-action: manipulation;
     height: 40px;
     min-width: 320px;
+    transition: background 0.3s ease;
 }
 
 .button:hover {
     outline: 0;
-    background: #d1d1d1;
+    background: linear-gradient(180deg, var(--primary-color) 0%, var(--accent-color) 100%);
 }
 
 .button:active {
