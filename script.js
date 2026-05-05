@@ -491,12 +491,21 @@ function buildHistoricNowcastsTable(dataDict) {
         return `${day}-${MONTH[month]}`;
     }
 
+    function formatHistoricalGap(observation) {
+        if (!observation || observation.gapPercentage === undefined || observation.gapPercentage === null) return "-";
+
+        const numericGap = Number(observation.gapPercentage);
+        if (!Number.isFinite(numericGap)) return "-";
+
+        return round(numericGap);
+    }
+
     const
         keyArray = [],
         dataArray = [],
         historicalNowcastsTable = document.getElementById('historicalNowcastsTable');
 
-    for (const key in dataDict.observations) {
+    for (const key in (dataDict.observations || {})) {
         keyArray.push(key);
         dataArray.push(dataDict.observations[key]);
     }
@@ -513,7 +522,7 @@ function buildHistoricNowcastsTable(dataDict) {
         var row = "";
         for (var c = 0; c < numberOfColumns; c++) {
             if (idx >= keyArray.length) break;
-            row += `<td><b>${(getCondensedDate(keyArray[idx]))}</b></td><td>${round(dataArray[idx].gapPercentage)}</td>`;
+            row += `<td><b>${(getCondensedDate(keyArray[idx]))}</b></td><td>${formatHistoricalGap(dataArray[idx])}</td>`;
             idx += 1;
         }
 
