@@ -335,7 +335,7 @@ historicalNowcastsRequest.onload = function () {
         historicalTableRequest.onload = function () {
             if (this.status === 200) {
                 const tableReqJSON = JSON.parse(historicalTableRequest.responseText);
-                buildHistoricNowcastsTable(tableReqJSON);
+                buildHistoricNowcastsTable(tableReqJSON, mostRecentQuarter);
             }
         };
 
@@ -481,7 +481,7 @@ function buildQuarterlyIndicatorsTable(dataDict) {
 
 }
 
-function buildHistoricNowcastsTable(dataDict) {
+function buildHistoricNowcastsTable(dataDict, mostRecentQuarter) {
     function getCondensedDate(date) {
         const day = date.slice(-2);
         const month = date.slice(-5, -3);
@@ -512,7 +512,7 @@ function buildHistoricNowcastsTable(dataDict) {
 
     const numberOfColumns = keyArray.length < 3 ? keyArray.length : 3
 
-    historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns * 2}>Historical Nowcasts for ${getYearAndQuarter(dataDict.latestRunUTC)}</th></tr>`;
+    historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns * 2}>Historical Nowcasts for ${getYearAndQuarter(mostRecentQuarter)}</th></tr>`;
 
     let idx = 0;
     for (let r = 0; r < keyArray.length; r++) {
