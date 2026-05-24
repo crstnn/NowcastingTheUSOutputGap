@@ -1,10 +1,9 @@
 const
     gapDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/gap-all-data/?type=json',
     quarterlyDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/quarterly/?type=json',
-    last4MontlyIndicatorsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-indicators-last-4-months/?type=json',
-    historicalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/gap/',
+    last4MonthlyIndicatorsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/time-series-data/monthly-indicators-last-4-months/?type=json',
     historicalNowcastQuartersURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/available-quarters/?type=json',
-    oldHistoricalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/previous-quarters/';
+    oldHistoricalNowcastsDataURL = 'https://nowcasting-the-us-output-gap.herokuapp.com/historical-data/data-series/';
 
 const
     concreteColour = "#0b789c",
@@ -108,12 +107,12 @@ async function graph(reqJSON) {
         concreteYVal = [],
         nowcastForecastYVal = [];
 
-    for (var i = 0; i < cValList.length; i++) {
+    for (let i = 0; i < cValList.length; i++) {
         concreteYVal.push(parseFloat(cValList[i]['gapPercentage']));
     }
 
 
-    for (var i = 0; i < nValList.length; i++) {
+    for (let i = 0; i < nValList.length; i++) {
         nowcastForecastYVal.push(parseFloat(nValList[i]['gapPercentage']));
     }
 
@@ -289,7 +288,7 @@ gapRequest.onload = function () {
 gapRequest.send(null);
 
 
-const last4MontlyIndicatorsRequest = getAPIData(last4MontlyIndicatorsDataURL);
+const last4MontlyIndicatorsRequest = getAPIData(last4MonthlyIndicatorsDataURL);
 last4MontlyIndicatorsRequest.timeout = 8000;
 
 last4MontlyIndicatorsRequest.onload = function () {
@@ -320,29 +319,27 @@ quarterlyDataRequest.onload = function () {
 quarterlyDataRequest.send(null);
 
 
-const historicalNowcastsRequest = getAPIData(historicalNowcastsDataURL + "?type=json");
+const historicalNowcastsRequest = getAPIData(historicalNowcastQuartersURL);
 historicalNowcastsRequest.timeout = 8000;
 
 historicalNowcastsRequest.onload = function () {
     if (this.status === 200) {
         const reqJSON = JSON.parse(historicalNowcastsRequest.responseText);
-        buildHistoricNowcastsTable(reqJSON);
+        const mostRecentQuarter = buildHistoricNowcastsSelectorList(reqJSON);
 
-        const oldHistoricalNowcastsRequest = getAPIData(historicalNowcastQuartersURL);
-        oldHistoricalNowcastsRequest.timeout = 8000;
+        if (!mostRecentQuarter) return;
 
-        oldHistoricalNowcastsRequest.onload = function () {
+        const historicalTableRequest = getAPIData(oldHistoricalNowcastsDataURL + "?type=json&yearquarter=" + encodeURIComponent(mostRecentQuarter));
+        historicalTableRequest.timeout = 8000;
+
+        historicalTableRequest.onload = function () {
             if (this.status === 200) {
-                const reqJSON = JSON.parse(oldHistoricalNowcastsRequest.responseText);
-
-                buildHistoricNowcastsSelectorList(reqJSON);
-
+                const tableReqJSON = JSON.parse(historicalTableRequest.responseText);
+                buildHistoricNowcastsTable(tableReqJSON);
             }
-
         };
 
-        oldHistoricalNowcastsRequest.send(null);
-
+        historicalTableRequest.send(null);
     }
 
 };
@@ -359,7 +356,7 @@ const
     dataCollapsible = document.getElementsByClassName("collapsible"),
     dataCollapsibleArrow = document.getElementsByClassName("arrow");
 
-for (var idx = 0; idx < dataCollapsible.length; idx++) {
+for (let idx = 0; idx < dataCollapsible.length; idx++) {
     (function (idx) {
         dataCollapsible[idx].addEventListener("click", function () {
             this.classList.toggle("active");
@@ -412,7 +409,7 @@ function buildMonthlyIndicatorsTable(dataDict) {
         "Consumer sentiment (indx.)", "U-2 unemployment rate (%)", "Monthly CPI inflation (%)", "IP growth (%)", "Housing starts growth (%)"];
     const dictKeys = ["FEDFUNDS", "TERMSPREAD", "RISKSPREAD", "SP500PERC", "UMCSENT", "U2RATE", "CPIAUCSLPERC", "INDPROPERC", "HOUSTPERC"];
 
-    var horizontalHeader = "<tr><th></th>";
+    let horizontalHeader = "<tr><th></th>";
     for (const key of keyArray) {
         horizontalHeader += "<th>" + MONTH[key.slice(-2)] + "</th>";
     }
@@ -421,9 +418,9 @@ function buildMonthlyIndicatorsTable(dataDict) {
     horizontalHeader += "</tr><tr>";
     monthlyIndicatorsTable.innerHTML += horizontalHeader;
 
-    for (var k = 0; k < dictKeys.length; k++) {
-        var row = `<tr><th>${titles[k]}</th>`;
-        for (var i = 0; i < dataArray.length; i++) {
+    for (let k = 0; k < dictKeys.length; k++) {
+        let row = `<tr><th>${titles[k]}</th>`;
+        for (let i = 0; i < dataArray.length; i++) {
             row += `<td>${roundSpecial(dataArray[i][dictKeys[k]], (dictKeys[k] === "U2RATE" || dictKeys[k] === "UMCSENT"))}</td>`;
         }
 
@@ -454,8 +451,8 @@ function buildQuarterlyIndicatorsTable(dataDict) {
     const dictKey = "GDPC1";
 
     // percentage change
-    for (var i = 1; i < dataArray.length; i++) {
-        var obj = {};
+    for (let i = 1; i < dataArray.length; i++) {
+        let obj = {};
         obj[dictKey] = ((parseFloat(dataArray[i][dictKey]) - parseFloat(dataArray[i - 1][dictKey])) / parseFloat(dataArray[i - 1][dictKey])) * 100;
         percentChangeDataArray[i] = obj;
     }
@@ -465,7 +462,7 @@ function buildQuarterlyIndicatorsTable(dataDict) {
         smallerKeyArray = keyArray.slice(keyArray.length - numberOfQuartersToDisplay),
         smallerDataArray = percentChangeDataArray.slice(keyArray.length - numberOfQuartersToDisplay);
 
-    var horizontalHeader = "<tr><th></th>";
+    let horizontalHeader = "<tr><th></th>";
     for (const key of smallerKeyArray) {
         horizontalHeader += "<th>" + getQuarter(key) + "</th>";
     }
@@ -474,8 +471,8 @@ function buildQuarterlyIndicatorsTable(dataDict) {
     horizontalHeader += "</tr><tr>";
     quarterlyIndicatorsTable.innerHTML += horizontalHeader;
 
-    var row = `<tr><th>${title}</th>`;
-    for (var i = 0; i < smallerDataArray.length; i++) {
+    let row = `<tr><th>${title}</th>`;
+    for (let i = 0; i < smallerDataArray.length; i++) {
         row += `<td>${smallerDataArray[i][dictKey].toFixed(2)}</td>`;
     }
 
@@ -517,10 +514,10 @@ function buildHistoricNowcastsTable(dataDict) {
 
     historicalNowcastsTable.innerHTML += `<tr><th colspan=${numberOfColumns * 2}>Historical Nowcasts for ${getYearAndQuarter(dataDict.latestRunUTC)}</th></tr>`;
 
-    var idx = 0;
-    for (var r = 0; r < keyArray.length; r++) {
-        var row = "";
-        for (var c = 0; c < numberOfColumns; c++) {
+    let idx = 0;
+    for (let r = 0; r < keyArray.length; r++) {
+        let row = "";
+        for (let c = 0; c < numberOfColumns; c++) {
             if (idx >= keyArray.length) break;
             row += `<td><b>${(getCondensedDate(keyArray[idx]))}</b></td><td>${formatHistoricalGap(dataArray[idx])}</td>`;
             idx += 1;
@@ -528,12 +525,6 @@ function buildHistoricNowcastsTable(dataDict) {
 
         historicalNowcastsTable.innerHTML += `<tr class="rowBorder">${row}</tr>`;
     }
-
-
-    // adding most recent historical nowcasted quarter to options list
-    const histNowcastsQSelector = document.getElementById('historicalNowcastsQuarterSelector');
-    histNowcastsQSelector.options[histNowcastsQSelector.options.length] =
-        new Option(getYearAndQuarter(dataDict.latestRunUTC, true) + " (most recent)", "currentNowcastQuarter");
 
 }
 
@@ -548,12 +539,20 @@ function buildHistoricNowcastsSelectorList(dataDict) {
     availableQuarters.reverse()
 
     const histNowcastsQSelector = document.getElementById('historicalNowcastsQuarterSelector');
+    let mostRecentQuarter = null;
 
-    availableQuarters.forEach(x => {
-        const quarter = x.replace(/[^0-9|.]/g, '');
+    availableQuarters.forEach((item, idx) => {
+        const quarter = item.replace(/[^0-9|.]/g, '');
+        const isFirst = idx === 0;
+        const label = getYearAndQuarter(quarter, true) + (isFirst ? " (most recent)" : "");
+
+        if (isFirst) mostRecentQuarter = quarter;
+
         histNowcastsQSelector.options[histNowcastsQSelector.options.length] =
-            new Option(getYearAndQuarter(quarter, true), quarter);
+            new Option(label, quarter);
     });
+
+    return mostRecentQuarter;
 }
 
 function historicalNowcastsQuarterSubmit() {
@@ -562,12 +561,9 @@ function historicalNowcastsQuarterSubmit() {
 
     console.log(selectedQuarter);
 
-    if (selectedQuarter === "currentNowcastQuarter") {
-        window.location.assign(historicalNowcastsDataURL + "?type=csv");
-    } else {
-        console.log(oldHistoricalNowcastsDataURL + "?type=csv&yearquarter=" + String(selectedQuarter))
-        window.location.assign(oldHistoricalNowcastsDataURL + "?type=csv&yearquarter=" + String(selectedQuarter));
-    }
+    console.log(oldHistoricalNowcastsDataURL + "?type=csv&yearquarter=" + String(selectedQuarter))
+    window.location.assign(oldHistoricalNowcastsDataURL + "?type=csv&yearquarter=" + String(selectedQuarter));
+
 
 
 }
