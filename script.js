@@ -168,6 +168,9 @@ async function graph(reqJSON) {
         line: {color: forecastColour}
     };
 
+    // drag-to-zoom (double-click to reset) on mouse devices; off on touch so swipes scroll the page
+    const canZoom = window.matchMedia('(pointer: fine)').matches;
+
     const layout = {
         // small stylistic adjustments for mobile and desktop view
         font: {
@@ -210,13 +213,13 @@ async function graph(reqJSON) {
             }
         ],
         margin: {'l': 30, 'r': 10, 't': 0, 'b': 60},
-        dragmode: false,
+        dragmode: canZoom ? 'zoom' : false,
         hovermode: 'closest',
         yaxis: {
             ticksuffix: "%",
             automargin: true,
             hoverformat: '.4f',
-            fixedrange: true,
+            fixedrange: !canZoom,
             gridcolor: '#eef1f4',
             zerolinecolor: '#9aa3ad',
             zerolinewidth: 1
@@ -224,7 +227,7 @@ async function graph(reqJSON) {
         xaxis: {
             showgrid: false,
             automargin: true,
-            fixedrange: true,
+            fixedrange: !canZoom,
             linecolor: '#e3e7ec',
             ticks: 'outside',
             tickcolor: '#e3e7ec'
