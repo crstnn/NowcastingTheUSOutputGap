@@ -168,10 +168,22 @@ async function graph(reqJSON) {
         line: {color: forecastColour}
     };
 
+    // drag-to-zoom (double-click to reset) on mouse devices; off on touch so swipes scroll the page
+    const canZoom = window.matchMedia('(pointer: fine)').matches;
+
     const layout = {
         // small stylistic adjustments for mobile and desktop view
         font: {
-            family: '"Open Sans", verdana, arial, sans-serif',
+            family: '"Inter", "Segoe UI", Roboto, Arial, sans-serif',
+            color: '#5b6573',
+            size: 12
+        },
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        hoverlabel: {
+            bgcolor: '#ffffff',
+            bordercolor: '#e3e7ec',
+            font: {family: '"Inter", "Segoe UI", Roboto, Arial, sans-serif', color: '#1f2933', size: 13}
         },
         autosize: true,
         shapes: [
@@ -201,24 +213,35 @@ async function graph(reqJSON) {
             }
         ],
         margin: {'l': 30, 'r': 10, 't': 0, 'b': 60},
-        dragmode: false,
+        dragmode: canZoom ? 'zoom' : false,
         hovermode: 'closest',
         yaxis: {
             ticksuffix: "%",
             automargin: true,
             hoverformat: '.4f',
-            fixedrange: true
+            fixedrange: !canZoom,
+            gridcolor: '#eef1f4',
+            zerolinecolor: '#9aa3ad',
+            zerolinewidth: 1
         },
         xaxis: {
             showgrid: false,
             automargin: true,
-            fixedrange: true
+            fixedrange: !canZoom,
+            linecolor: '#e3e7ec',
+            ticks: 'outside',
+            tickcolor: '#e3e7ec'
         },
         legend: {
             orientation: "h",
             x: 0.5,
             xanchor: "center",
-            y: -0.06, // Adjusted spacing for the legend
+            yref: "container",
+            y: 0,
+            yanchor: "bottom",
+            // transparent border keeps a gap between the legend and the tick labels
+            borderwidth: 8,
+            bordercolor: "rgba(0,0,0,0)"
         },
     };
 
