@@ -171,7 +171,16 @@ async function graph(reqJSON) {
     const layout = {
         // small stylistic adjustments for mobile and desktop view
         font: {
-            family: '"Open Sans", verdana, arial, sans-serif',
+            family: '"Inter", "Segoe UI", Roboto, Arial, sans-serif',
+            color: '#5b6573',
+            size: 12
+        },
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        hoverlabel: {
+            bgcolor: '#ffffff',
+            bordercolor: '#e3e7ec',
+            font: {family: '"Inter", "Segoe UI", Roboto, Arial, sans-serif', color: '#1f2933', size: 13}
         },
         autosize: true,
         shapes: [
@@ -207,12 +216,18 @@ async function graph(reqJSON) {
             ticksuffix: "%",
             automargin: true,
             hoverformat: '.4f',
-            fixedrange: true
+            fixedrange: true,
+            gridcolor: '#eef1f4',
+            zerolinecolor: '#9aa3ad',
+            zerolinewidth: 1
         },
         xaxis: {
             showgrid: false,
             automargin: true,
-            fixedrange: true
+            fixedrange: true,
+            linecolor: '#e3e7ec',
+            ticks: 'outside',
+            tickcolor: '#e3e7ec'
         },
         legend: {
             orientation: "h",
