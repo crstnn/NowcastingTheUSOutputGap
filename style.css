@@ -1,6 +1,6 @@
 :root {
     --font: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --page-bg: #f5f7fa;
+    --page-bg: #ffffff;
     --card-bg: #ffffff;
     --text: #1f2933;
     --muted: #5b6573;
@@ -79,12 +79,7 @@ main {
 /* Chart card */
 
 #data {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius) var(--radius) 0 0;
-    border-bottom: none;
-    box-shadow: var(--shadow);
-    padding: 16px 12px 0;
+    padding-top: 8px;
 }
 
 #graph {
@@ -128,11 +123,7 @@ main {
 }
 
 #underData {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-top: none;
-    border-radius: 0 0 var(--radius) var(--radius);
-    box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -158,12 +149,9 @@ main {
 /* the current nowcast is the headline figure */
 #outputGapTextUnderData b {
     display: inline-block;
-    margin: 4px 0;
-    padding: 6px 16px;
-    border-radius: 999px;
-    background: var(--accent-soft);
+    margin: 2px 0;
     color: var(--text);
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     font-weight: 700;
     letter-spacing: -0.01em;
 }
@@ -247,10 +235,6 @@ main {
     text-align: left;
 }
 
-.t > p {
-    max-width: 75ch;
-}
-
 .t p {
     margin: 0 0 1em;
 }
@@ -274,7 +258,6 @@ main {
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -444,7 +427,7 @@ tr.rowBorder td {
     }
 
     #data {
-        padding: 10px 4px 0;
+        padding-top: 4px;
     }
 
     #graph {
