@@ -254,9 +254,9 @@ main {
     font-family: var(--font);
     font-size: 1.15rem;
     font-weight: 600;
-    color: var(--text);
-    background: var(--card-bg);
-    border: 1px solid var(--border);
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+    border: 1px solid #b9d9e2;
     border-radius: var(--radius);
     cursor: pointer;
     display: flex;
@@ -271,7 +271,8 @@ main {
 }
 
 .collapsible:hover {
-    border-color: #c5ccd5;
+    background: #d9ecf1;
+    border-color: var(--accent);
 }
 
 .collapsible.active {
@@ -308,7 +309,7 @@ main {
 }
 
 .arrow {
-    border: solid var(--muted);
+    border: solid var(--accent-dark);
     border-width: 0 2px 2px 0;
     display: inline-block;
     padding: 4px;
@@ -390,7 +391,7 @@ tr.rowBorder td {
 
 .authors {
     list-style: none;
-    margin: 0 0 14px;
+    margin: 0 0 6px;
     padding: 0;
     display: flex;
     flex-wrap: wrap;

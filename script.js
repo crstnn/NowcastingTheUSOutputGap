@@ -233,7 +233,12 @@ async function graph(reqJSON) {
             orientation: "h",
             x: 0.5,
             xanchor: "center",
-            y: -0.06, // Adjusted spacing for the legend
+            yref: "container",
+            y: 0,
+            yanchor: "bottom",
+            // transparent border keeps a gap between the legend and the tick labels
+            borderwidth: 8,
+            bordercolor: "rgba(0,0,0,0)"
         },
     };
 
