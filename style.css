@@ -1,7 +1,7 @@
 :root {
-    --primary-color: #6a7b8c;
-    --secondary-color: #8a9bac;
-    --accent-color: #4a5b6c;
+    --primary-color: #56677a;
+    --secondary-color: #627385;
+    --accent-color: #44535f;
     --background-color: #ffffff;
     --text-color: #000000;
     --link-color: #3a4a5a;
@@ -9,7 +9,8 @@
     --spinner-border-color: #efefef;
     --spinner-top-border-color: #888888;
     --footer-background-color: #f1f1f1;
-    --footer-text-color: #ffffff;
+    --footer-text-color: #4a4a4a;
+    --focus-color: #0b789c;
     --table-border-color: rgba(187, 186, 186, 0.37);
     --table-header-border-color: #444444;
     --arrow-border-color: rgb(39, 39, 39);
@@ -31,6 +32,11 @@ a {
     font-weight: 600;
     color: var(--link-color);
     text-decoration: none;
+}
+
+a:focus-visible, .button:focus-visible, .collapsible:focus-visible, select:focus-visible {
+    outline: 3px solid var(--focus-color);
+    outline-offset: 2px;
 }
 
 a:hover {
@@ -68,6 +74,7 @@ a:hover {
 #graph {
     width: 100%;
     max-width: 1200px;
+    height: 450px;
     padding-top: 1.5rem;
     display: flex;
     flex-direction: row;
@@ -99,8 +106,13 @@ a:hover {
     text-align: center;
     justify-content: center;
     align-items: center;
-    height: 445px;
-    padding-bottom: 125px;
+    width: 100%;
+    height: 100%;
+}
+
+#graph .plot-container {
+    width: 100%;
+    height: 100%;
 }
 
 h1 {
@@ -110,6 +122,7 @@ h1 {
 
 .download {
     display: flex;
+    gap: 4px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -151,25 +164,45 @@ th {
     font-size: 0.9em;
     background-color: var(--footer-background-color);
     color: var(--footer-text-color);
-    padding: 20px 0;
-    border-top: 1px solid #E7E7E7;
+    padding: 28px 16px 20px;
+    border-top: 1px solid #e7e7e7;
     text-align: center;
-    margin-top: 40px;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    margin-top: 48px;
 }
 
-.feature {
-    font-size: x-small;
-    margin: 7px auto 10px auto;
-    width: 30%;
+.authors {
+    list-style: none;
+    margin: 0 0 14px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 28px;
+}
+
+.authors a {
+    font-size: 1.05em;
+}
+
+.footerMeta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85em;
+    margin-bottom: 14px;
+}
+
+.feature a {
+    font-weight: 600;
 }
 
 .disclaimer {
-    color: var(--text-color);
-    font-size: x-small;
-    margin: 8px auto 12px;
+    color: #6b6b6b;
+    font-size: 0.75em;
+    margin: 0 auto;
+    max-width: 36em;
 }
 
 p {
@@ -190,8 +223,12 @@ p {
     font-family: "Open Sans", verdana, arial, sans-serif;
     width: 100%;
     max-width: 1200px;
-    text-align: justify;
-    font-size: small;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.t p {
+    margin: 0 0 1em;
 }
 
 #abstractContainer {
@@ -237,10 +274,46 @@ p {
     width: 100%;
     border: none;
     text-align: left;
-    outline: none;
     word-wrap: normal;
     font-size: x-large;
+    font-weight: normal;
     border-radius: 5px;
+}
+
+.sectionHeading {
+    margin: 0 0 0.75em;
+    font-size: inherit;
+}
+
+.referencesHeading {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 1.1em;
+    font-weight: normal;
+    margin: 1.5em 0 0.75em;
+}
+
+.content p:first-child {
+    margin-top: 1em;
+}
+
+.content .download:last-child {
+    padding-bottom: 1.25em;
+}
+
+.tableScroll {
+    overflow-x: auto;
+}
+
+.visuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 
@@ -290,7 +363,28 @@ p {
     touch-action: manipulation;
     height: 40px;
     min-width: 320px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    font-weight: normal;
+    text-decoration: none;
     transition: background 0.3s ease;
+}
+
+a.button:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.buttonNarrow {
+    min-width: 220px;
+}
+
+.download form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
 }
 
 .button:hover {
@@ -318,7 +412,7 @@ p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-@media only screen and (max-device-width: 520px) and (orientation: portrait) {
+@media only screen and (max-width: 520px) and (orientation: portrait) {
 
     #header, #historicalNowcastsQuarterSelector {
         font-size: small;
@@ -347,14 +441,16 @@ p {
 
     #graph {
         width: 97%;
+        height: 500px;
     }
 
-    .disclaimer {
-        width: 70%;
+    .collapsible {
+        font-size: large;
+        min-height: 52px;
     }
 }
 
-@media only screen and (max-device-width: 950px) and (orientation: landscape) {
+@media only screen and (max-width: 950px) and (orientation: landscape) {
 
     .t {
         width: 70%;

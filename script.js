@@ -141,8 +141,9 @@ async function graph(reqJSON) {
         y: concreteYVal,
         mode: 'lines + markers',
         name: 'Realized Estimates',
+        marker: {size: 3},
         customdata: yearQuarterText,
-        hovertemplate: "%{customdata}, %{y}",
+        hovertemplate: "%{customdata}: %{y:.4f}%",
         line: {color: concreteColour}
     };
 
@@ -152,7 +153,7 @@ async function graph(reqJSON) {
         mode: 'lines + markers',
         name: 'Nowcast',
         customdata: nowcastXVal.map(getYearAndQuarter),
-        hovertemplate: "%{customdata}, %{y}",
+        hovertemplate: "%{customdata}: %{y:.4f}%",
         line: {color: nowcastColour}
     };
 
@@ -162,7 +163,7 @@ async function graph(reqJSON) {
         mode: 'lines + markers',
         name: 'Conditional Forecasts',
         customdata: forecastXVal.map(getYearAndQuarter),
-        hovertemplate: "%{customdata}, %{y}",
+        hovertemplate: "%{customdata}: %{y:.4f}%",
         visible: isCurrentQuarter(lastUpdateMonth, nowcastForcastXVal[1]) ? true : "legendonly",
         line: {color: forecastColour}
     };
@@ -200,14 +201,18 @@ async function graph(reqJSON) {
             }
         ],
         margin: {'l': 30, 'r': 10, 't': 0, 'b': 60},
+        dragmode: false,
+        hovermode: 'closest',
         yaxis: {
             ticksuffix: "%",
             automargin: true,
-            hoverformat: '.4f'
+            hoverformat: '.4f',
+            fixedrange: true
         },
         xaxis: {
             showgrid: false,
-            automargin: true
+            automargin: true,
+            fixedrange: true
         },
         legend: {
             orientation: "h",
@@ -232,7 +237,8 @@ async function graph(reqJSON) {
                 x1: troughDate,
                 y1: 1,
                 fillcolor: recCol,
-                opacity: 0.2,
+                opacity: 0.6,
+                layer: 'below',
                 line: {
                     width: 0
                 }
@@ -241,8 +247,28 @@ async function graph(reqJSON) {
 
     const data = [traceConcreteObs, traceNowcast, traceForecast];
 
-    Plotly.newPlot(graphDiv, data, layout,); // to remove tooltip: {showTips: false}
+    Plotly.newPlot(graphDiv, data, layout, {responsive: true, displayModeBar: false});
 
+    describeGraph(reqJSON);
+
+}
+
+// Text alternative for screen readers, since the plot itself is not readable by assistive tech
+function describeGraph(reqJSON) {
+    const fig = document.getElementById(graphDiv);
+    const
+        concreteKeys = Object.keys(reqJSON['concreteObservations']),
+        nowcastKeys = Object.keys(reqJSON['nowcastForecastObservations']),
+        lastConcreteKey = concreteKeys[concreteKeys.length - 1],
+        lastConcrete = reqJSON['concreteObservations'][lastConcreteKey],
+        nowcast = reqJSON['nowcastForecastObservations'][nowcastKeys[0]];
+
+    const summary = `Time series of the US output gap from ${getYearAndQuarter(concreteKeys[0])} to ${getYearAndQuarter(lastConcreteKey)}, `
+        + `with shaded recessions. Latest nowcast for ${getYearAndQuarter(nowcastKeys[0])}: ${parseFloat(nowcast['gapPercentage']).toFixed(1)}%. `
+        + `${getYearAndQuarter(lastConcreteKey)} estimate: ${parseFloat(lastConcrete['gapPercentage']).toFixed(1)}%.`;
+
+    fig.setAttribute('role', 'img');
+    fig.setAttribute('aria-label', summary);
 }
 
 function restrictGraphOperations(fig) {
@@ -347,11 +373,6 @@ historicalNowcastsRequest.onload = function () {
 historicalNowcastsRequest.send(null);
 
 
-function onResize() {
-    Plotly.relayout(graphDiv, JSON.parse(gapRequest.responseText));
-}
-
-
 const
     dataCollapsible = document.getElementsByClassName("collapsible"),
     dataCollapsibleArrow = document.getElementsByClassName("arrow");
@@ -359,9 +380,10 @@ const
 for (let idx = 0; idx < dataCollapsible.length; idx++) {
     (function (idx) {
         dataCollapsible[idx].addEventListener("click", function () {
-            this.classList.toggle("active");
+            const isOpen = this.classList.toggle("active");
+            this.setAttribute("aria-expanded", String(isOpen));
             dataCollapsibleArrow[idx].classList.toggle("down");
-            const content = this.nextElementSibling;
+            const content = document.getElementById(this.getAttribute("aria-controls"));
             content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
         });
     })(idx);
@@ -559,9 +581,6 @@ function historicalNowcastsQuarterSubmit() {
 
     const selectedQuarter = document.getElementsByName("quarterSelector")[0].value;
 
-    console.log(selectedQuarter);
-
-    console.log(oldHistoricalNowcastsDataURL + "?type=csv&yearquarter=" + String(selectedQuarter))
     window.location.assign(oldHistoricalNowcastsDataURL + "?type=csv&yearquarter=" + String(selectedQuarter));
 
 
